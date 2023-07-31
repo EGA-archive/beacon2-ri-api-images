@@ -49,7 +49,6 @@ def build_response_by_dataset(data, response_dict, num_total_results, qparams, f
             'resultsCount': len(v),
             'results': v,
             # 'info': None,
-            'resultsHandover': None,  # build_results_handover
         }
         list_of_responses.append(response)
 
@@ -65,7 +64,6 @@ def build_response(data, num_total_results, qparams, func):
         'resultsCount': num_total_results,
         'results': data,
         # 'info': None,
-        'resultsHandover': None,  # build_results_handover
     }
 
     return response
@@ -89,8 +87,7 @@ def build_beacon_resultset_response(data,
         # TODO: 'extendedInfo': build_extended_info(),
         'response': {
             'resultSets': [build_response(data, num_total_results, qparams, func_response_type)]
-        },
-        'beaconHandovers': conf.beacon_handovers,
+        }
     }
     return beacon_response
 
@@ -99,50 +96,45 @@ def build_beacon_resultset_response_by_dataset(data,
                                     num_total_results,
                                     qparams: RequestParams,
                                     func_response_type,
-                                    entity_schema: DefaultSchemas):
+                                    entity_schema: DefaultSchemas,
+                                    start_record, finish_record):
     """"
     Transform data into the Beacon response format.
     """
     response_dict={}
-    LOG.debug(list_of_dataset_dicts)
-
+    #LOG.debug(list_of_dataset_dicts)
+    dataset_ids_list = []
+    
     for dataset_dict in list_of_dataset_dicts:
         dataset_id = dataset_dict['dataset']
         response_dict[dataset_id] = []
-        
-
+        dataset_ids_list.append(dataset_id)
     
-    for dataset_dict in list_of_dataset_dicts:
-        datas = dataset_dict['ids']
-        try:
-            biosample_list = datas[0]
-        except Exception:
-            biosample_list = []
-            #for datas in dataset_dict['ids']:
-        if isinstance(datas, str):
-            dict_2={}
-            dict_2['id']=datas
-            dataset_id = dataset_dict['dataset']
-            response_dict[dataset_id]=[]
-            response_dict[dataset_id].append(dict_2)
-            LOG.debug(response_dict)
+    for doc in data:
+        for dataset_dict in list_of_dataset_dicts:
+            try:
+                if doc['PatientID'] in dataset_dict['ids'][0]['individualIds']:
+                    dataset_id = dataset_dict['dataset']
+                    response_dict[dataset_id].append(doc)
+            except Exception as e:
+                LOG.debug(e)
+    length_to_rest=0
+    for dataset_id in dataset_ids_list:
+        finish_record = finish_record - length_to_rest
+        length_response = len(response_dict[dataset_id])
+        LOG.debug(length_response)
+        LOG.debug(finish_record)
+        LOG.debug(start_record)
 
+        if length_response >= finish_record:
+            response_dict[dataset_id] = response_dict[dataset_id][start_record:finish_record]
+            length_to_rest = len(response_dict[dataset_id])
+        elif length_response > start_record:
+            response_dict[dataset_id] = response_dict[dataset_id][start_record:length_response]
+            start_record = 0
+            length_to_rest = len(response_dict[dataset_id])
         else:
-            for doc in data:
-                #LOG.debug(isinstance(doc,dict))
-                #LOG.debug(doc)
-                #convert doc to dict
-                try:
-                    if doc['id'] in biosample_list['biosampleIds']:
-                        dataset_id = dataset_dict['dataset']
-                        response_dict[dataset_id].append(doc)
-                    elif doc['id'] in biosample_list['individualIds']:
-                        dataset_id = dataset_dict['dataset']
-                        response_dict[dataset_id].append(doc)
-                except Exception:
-                    pass
-
-
+            start_record = start_record - len(response_dict[dataset_id])
     
     beacon_response = {
         'meta': build_meta(qparams, entity_schema, Granularity.RECORD),
@@ -150,8 +142,7 @@ def build_beacon_resultset_response_by_dataset(data,
         # TODO: 'extendedInfo': build_extended_info(),
         'response': {
             'resultSets': build_response_by_dataset(data, response_dict, num_total_results, qparams, func_response_type)
-        },
-        'beaconHandovers': conf.beacon_handovers,
+        }
     }
     return beacon_response
 
@@ -170,9 +161,7 @@ def build_beacon_count_response(data,
 
     beacon_response = {
         'meta': build_meta(qparams, entity_schema, Granularity.COUNT),
-        'responseSummary': build_response_summary(num_total_results > 0, num_total_results),
-        # TODO: 'extendedInfo': build_extended_info(),
-        'beaconHandovers': conf.beacon_handovers,
+        'responseSummary': build_response_summary(num_total_results > 0, num_total_results)
     }
     return beacon_response
 
@@ -191,9 +180,7 @@ def build_beacon_boolean_response(data,
 
     beacon_response = {
         'meta': build_meta(qparams, entity_schema, Granularity.BOOLEAN),
-        'responseSummary': build_response_summary(num_total_results > 0, None),
-        # TODO: 'extendedInfo': build_extended_info(),
-        'beaconHandovers': conf.beacon_handovers,
+        'responseSummary': build_response_summary(num_total_results > 0, None)
     }
     return beacon_response
 
@@ -205,8 +192,6 @@ def build_beacon_collection_response(data, num_total_results, qparams: RequestPa
     beacon_response = {
         'meta': build_meta(qparams, entity_schema, Granularity.RECORD),
         'responseSummary': build_response_summary(num_total_results > 0, num_total_results),
-        # TODO: 'info': build_extended_info(),
-        'beaconHandovers': conf.beacon_handovers,
         'response': {
             'collections': func_response_type(data, qparams)
         }
@@ -296,7 +281,6 @@ def build_filtering_terms_response(data,
         # TODO: 'extendedInfo': build_extended_info(),
         'response': {
             'filteringTerms': data,
-        },
-        'beaconHandovers': conf.beacon_handovers,
+        }
     }
     return beacon_response

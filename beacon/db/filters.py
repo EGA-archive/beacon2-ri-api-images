@@ -277,18 +277,13 @@ def format_operator(operator: Operator) -> str:
 
 def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collection: str) -> dict:
     LOG.debug(filter.value)
-    formatted_value = format_value(filter.value)
+    alphanumeric_fields=['PatientID', 'TumourTopography']
+    if filter.id in alphanumeric_fields:
+        formatted_value = str(filter.value)
+    else:
+        formatted_value = format_value(filter.value)
     formatted_operator = format_operator(filter.operator)
-    if collection == 'g_variants':
-        if filter.id == "_position.refseqId":
-            filter.value = str(filter.value)
-            formatted_value = filter.value
-            LOG.debug(formatted_value)
-        else:
-            formatted_value = format_value(filter.value)
-        formatted_operator = format_operator(filter.operator)
-        query[filter.id] = { formatted_operator: formatted_value }
-    elif isinstance(formatted_value,str):
+    if isinstance(formatted_value,str):
         if formatted_operator == "$eq":
             if '%' in filter.value:
                 try: 
@@ -301,7 +296,7 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
                 value_splitted=filter.value.split('%')
                 regex_dict={}
                 regex_dict['$regex']=value_splitted[1]
-                query_term = filter.id + '.' + 'label'
+                query_term = filter.id
                 query_id={}
                 query_id[query_term]=regex_dict
                 query['$or'].append(query_id)
@@ -314,7 +309,7 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
                         query['$or']=[]
                 except Exception:
                     query['$or']=[]
-                query_term = filter.id + '.' + 'label'
+                query_term = filter.id
                 query_id={}
                 query_id[query_term]=filter.value
                 query['$or'].append(query_id) 
@@ -331,11 +326,10 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
                 value_splitted=filter.value.split('%')
                 regex_dict={}
                 regex_dict['$regex']=value_splitted[1]
-                query_term = filter.id + '.' + 'label'
+                query_term = filter.id
                 query_id={}
                 query_id[query_term]=regex_dict
                 query['$nor'].append(query_id)
-
             else:
                 try: 
                     if query['$nor']:
@@ -345,23 +339,24 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
                 except Exception:
                     query['$nor']=[]
 
-                query_term = filter.id + '.' + 'label'
+                query_term = filter.id
                 query_id={}
                 query_id[query_term]=filter.value
                 query['$nor'].append(query_id) 
-    else:
-        query['measurementValue.quantity.value'] = { formatted_operator: float(formatted_value) }
-        if "LOINC" in filter.id:
-            query['assayCode.id']=filter.id
-        else:
-            query['assayCode.label']=filter.id
-        LOG.debug(query)
-        dict_elemmatch={}
-        dict_elemmatch['$elemMatch']=query
-        dict_measures={}
-        dict_measures['measures']=dict_elemmatch
-        query = dict_measures
 
+
+        else:
+            query = { formatted_operator: formatted_value }
+            LOG.debug(query)
+            dict_measures={}
+            dict_measures[filter.id]=query
+            query = dict_measures
+    else:
+        query = { formatted_operator: float(formatted_value) }
+        LOG.debug(query)
+        dict_measures={}
+        dict_measures[filter.id]=query
+        query = dict_measures
 
     LOG.debug("QUERY: %s", query)
     return query
@@ -372,8 +367,11 @@ def apply_custom_filter(query: dict, filter: CustomFilter, collection:str) -> di
     LOG.debug(query)
 
     value_splitted = filter.id.split(':')
-    query_term = value_splitted[0] + '.label'
-    query[query_term]=value_splitted[1]
+    query_term = value_splitted[0]
+    try:
+        query[query_term]=int(value_splitted[1])
+    except Exception:
+        query[query_term]=value_splitted[1]
 
 
     LOG.debug("QUERY: %s", query)

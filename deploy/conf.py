@@ -3,8 +3,8 @@
 #
 # Beacon general info
 #
-beacon_id = 'org.ega-archive.ga4gh-approval-beacon-test'  # ID of the Beacon
-beacon_name = 'GA4GH Approval Beacon Test'  # Name of the Beacon service
+beacon_id = 'org.ega-archive.ga4gh-approval-beacon-cancer-test'  # ID of the Beacon
+beacon_name = 'GA4GH Approval Beacon Cancer Test'  # Name of the Beacon service
 api_version = 'v2.0.0'  # Version of the Beacon implementation
 uri = 'https://ega-archive.org/test-beacon-apis/cineca/'
 
@@ -59,18 +59,6 @@ environment = 'test'  # Environment (production, development or testing/staging 
 ga4gh_service_type_group = 'org.ga4gh'
 ga4gh_service_type_artifact = 'beacon'
 ga4gh_service_type_version = '1.0'
-
-# Beacon handovers
-beacon_handovers = [
-    {
-        'handoverType': {
-            'id': 'CUSTOM:000001',
-            'label': 'Project description'
-        },
-        'note': 'Project description',
-        'url': 'https://www.nist.gov/programs-projects/genome-bottle'
-    }
-]
 
 #
 # Database connection

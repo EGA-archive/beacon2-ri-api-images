@@ -62,7 +62,7 @@ def main(path=None):
     #)
 
     beacon = web.Application(
-        middlewares=[web.normalize_path_middleware(), middlewares.error_middleware, cors_middleware(origins=["https://beacon-network-test.ega-archive.org", "https://beacon-network-test2.ega-archive.org", "https://beacon-network-demo.ega-archive.org","https://beacon-network-demo2.ega-archive.org", "http://localhost:3000", "https://beacon-network-cineca-demo.ega-archive.org"])]
+        middlewares=[web.normalize_path_middleware(), middlewares.error_middleware, cors_middleware(origins=["https://beacon-network-test.ega-archive.org", "https://beacon-network-test2.ega-archive.org", "https://beacon-network-demo.ega-archive.org","https://beacon-network-demo2.ega-archive.org", "http://localhost:3003", "http://localhost:3001", "https://beacon-network-cineca-demo.ega-archive.org", "https://beacon-cancer-registry-test.ega-archive.org/"])]
     )
 
 
@@ -102,7 +102,12 @@ def main(path=None):
 
     for route in list(beacon.router.routes()):
         cors.add(route, {
-        "http://localhost:3000":
+        "http://localhost:3003":
+            aiohttp_cors.ResourceOptions(allow_credentials=True,
+            expose_headers="*",
+            allow_methods=("POST", "PATCH", "GET", "OPTIONS"),
+            allow_headers=DEFAULT_ALLOW_HEADERS),
+        "http://localhost:3001":
             aiohttp_cors.ResourceOptions(allow_credentials=True,
             expose_headers="*",
             allow_methods=("POST", "PATCH", "GET", "OPTIONS"),
@@ -126,8 +131,14 @@ def main(path=None):
             aiohttp_cors.ResourceOptions(allow_credentials=True,
             expose_headers="*",
             allow_methods=("POST", "PATCH", "GET", "OPTIONS"),
+            allow_headers=DEFAULT_ALLOW_HEADERS),
+        "https://beacon-cancer-registry-test.ega-archive.org":
+            aiohttp_cors.ResourceOptions(allow_credentials=True,
+            expose_headers="*",
+            allow_methods=("POST", "PATCH", "GET", "OPTIONS"),
             allow_headers=DEFAULT_ALLOW_HEADERS)
-    })
+    },
+)
 
     # Configure HTTPS (or not)
     ssl_context = None
@@ -152,8 +163,6 @@ def main(path=None):
         # will create the UDS socket and bind to it
         web.run_app(beacon, path=path, shutdown_timeout=0, ssl_context=ssl_context)
     else:
-        static_files = Path(__file__).parent.parent.resolve() / "ui" / "static"
-        beacon.add_routes([web.static("/static", str(static_files))])
         web.run_app(
             beacon,
             host=getattr(conf, "beacon_host", "0.0.0.0"),
