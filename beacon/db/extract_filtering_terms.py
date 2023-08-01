@@ -64,7 +64,7 @@ def get_filtering_terms(collection:str):
 def get_filtering_object(dict_terms: dict, c_name: str):
     terms=[]
     #alphanumeric_fields=['AgeOfOnset', 'DateOfBirth.DayOfBirth', 'DateOfBirth.MonthOfBirth', 'DateOfBirth.YearOfBirth', 'Sex', 'TumourIdentificationCode', 'GeographicResidence', 'IncidenceDate.IncidenceDay', 'IncidenceDate.IncidenceMonth', 'IncidenceDate.IncidenceYear', 'BasisOfDiagnosis', 'TumourMorphology', 'TumourBehaviour', 'TumourGrade', 'TumourLaterality', 'PrimaryTreatment.Surgery', 'PrimaryTreatment.Radiotherapy', 'PrimaryTreatment.Chemotherapy', 'PrimaryTreatment.TargetedTherapy', 'PrimaryTreatment.Immunotherapy', 'PrimaryTreatment.HormoneTherapy', 'PrimaryTreatment.Other', 'PrimaryTreatment.StemCellTransplantation', 'DateOfRecurrence.DayOfRecurrence', 'DateOfRecurrence.MonthOfRecurrence', 'DateOfRecurrence.YearOfRecurrence', 'VitalStatus', 'VitalStatusDate.DayVitalStatus', 'VitalStatusDate.MonthVitalStatus', 'VitalStatusDate.YearVitalStatus', 'SurvivalDuration', 'CauseOfDeath_ICDedition']
-    type=''
+    id=None
     try:
         
         for k, v in dict_terms.items():
@@ -72,60 +72,81 @@ def get_filtering_object(dict_terms: dict, c_name: str):
                 for k2, v2 in v.items():
                     if isinstance(v2, dict):
                         for k3,v3 in v2.items():
-                            field = k + '.' + k2 + '.' + k3
+                            
                             label = v3
-                            if field is not None:
-                                if label is not None:
-                                    if '_id' not in field:
-                                        type='alphanumeric'
-                                        terms.append({
-                                                            'type': type,
-                                                            'id': field,
-                                                            'scope': c_name                    
-                                                        })
+                            if k3 == 'concept_id':
+                                id=v3
+                                field = k + '.' + k2 + '.' + k3
+                            if k3 == 'concept_name':
+                                label = v3
+                        if id is not None:
+                            terms.append({
+                                                                'type': 'ontology',
+                                                                'id': id,
+                                                                'label': label,
+                                                                'scope': c_name                    
+                                                            })
+                            terms.append({
+                                                                'type': 'alphanumeric',
+                                                                'id': field,
+                                                                'scope': c_name                    
+                                                            })
+                            terms.append({
+                                                                'type': 'custom',
+                                                                'id': '{}:{}'.format(field,label),
+                                                                'scope': c_name                    
+                                                            })
 
                     else:
-                        field = k + '.' + k2
-                        label = v2
-                        if field is not None:
-                            if label is not None:
-                                if '_id' not in field:
-                                    type='alphanumeric'
-                                    terms.append({
-                                                            'type': type,
-                                                            'id': field,
-                                                            'scope': c_name                    
-                                                        })
-            elif isinstance(v, list):
-                for item in v:
-                    field = k
-                    label = item
-                    if field is not None:
-                        if label is not None:
-                            if '_id' not in field:
-                                type='alphanumeric'
-                                terms.append({
-                                                            'type': type,
-                                                            'id': field,
-                                                            'scope': c_name                    
-                                                        })
+                        if k2 == 'concept_id':
+                            id=v2
+                            field = k + '.' + k2
+                        if k2 == 'concept_name':
+                            label = v2
+                if id is not None:
+                    terms.append({
+                                                                'type': 'ontology',
+                                                                'id': id,
+                                                                'label': label,
+                                                                'scope': c_name                    
+                                                            })
+                    terms.append({
+                                                                'type': 'alphanumeric',
+                                                                'id': field,
+                                                                'scope': c_name                    
+                                                            })
+                    terms.append({
+                                                                'type': 'custom',
+                                                                'id': '{}:{}'.format(field,label),
+                                                                'scope': c_name                    
+                                                            })
             else:
-                field = k
-                label = v
+                if k == 'concept_id':
+                    id=v
+                    field = k
+                if k == 'concept_name':
+                    label = v
+        if id is not None:
+            terms.append({
+                                                                'type': 'ontology',
+                                                                'id': id,
+                                                                'label': label,
+                                                                'scope': c_name                    
+                                                            })
+            terms.append({
+                                                                'type': 'alphanumeric',
+                                                                'id': field,
+                                                                'scope': c_name                    
+                                                            })
+            terms.append({
+                                                                'type': 'custom',
+                                                                'id': '{}:{}'.format(field,label),
+                                                                'scope': c_name                    
+                                                            })
 
-                if field is not None:
-                    if label is not None:
-                            if '_id' not in field:
-                                type='alphanumeric'
-                                terms.append({
-                                                            'type': type,
-                                                            'id': field,
-                                                            'scope': c_name                    
-                                                        })
-
-            print(terms)
-    except Exception:
-        pass
+        print(terms)
+    except Exception as e:
+        print(e)
 
     return terms
 
@@ -135,11 +156,10 @@ def insert_all_ontology_terms_used():
         collections.remove('filtering_terms')
     print("Collections:", collections)
     for c_name in collections:
-        if c_name == 'individuals':
-            dict_terms = get_filtering_terms(c_name)
-            terms = get_filtering_object(dict_terms, c_name)
-            if len(terms) > 0:
-                client.beacon.filtering_terms.insert_many(terms)
+        dict_terms = get_filtering_terms(c_name)
+        terms = get_filtering_object(dict_terms, c_name)
+        if len(terms) > 0:
+            client.beacon.filtering_terms.insert_many(terms)
 
 
 insert_all_ontology_terms_used()

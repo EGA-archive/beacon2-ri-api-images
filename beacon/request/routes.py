@@ -23,10 +23,10 @@ routes = [
     # GET
     ########################################
 
-    web.get('/api/analyses', generic_handler(db_fn=analyses.get_analyses)),
-    web.get('/api/analyses/filtering_terms', filtering_terms_handler(db_fn=analyses.get_filtering_terms_of_analyse)),
-    web.get('/api/analyses/{id}', generic_handler(db_fn=analyses.get_analysis_with_id)),
-    web.get('/api/analyses/{id}/g_variants', generic_handler(db_fn=analyses.get_variants_of_analysis)),
+    web.get('/api/occurrences', generic_handler(db_fn=analyses.get_analyses)),
+    web.get('/api/occurrences/filtering_terms', filtering_terms_handler(db_fn=analyses.get_filtering_terms_of_analyse)),
+    web.get('/api/occurrences/{id}', generic_handler(db_fn=analyses.get_analysis_with_id)),
+    web.get('/api/occurrences/{id}/g_variants', generic_handler(db_fn=analyses.get_variants_of_analysis)),
 
     web.get('/api/biosamples', generic_handler(db_fn=biosamples.get_biosamples)),
     web.get('/api/biosamples/filtering_terms', filtering_terms_handler(db_fn=biosamples.get_filtering_terms_of_biosample)),

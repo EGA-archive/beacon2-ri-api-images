@@ -1,76 +1,27 @@
 [{
-      "PatientID": 
-            "A12B34C56D78E90F123"
-      ,
-      "AgeOfOnset": 44,
-      "DateOfBirth": {
-            "DayOfBirth": 2,
-            "MonthOfBirth": 2,
-            "YearOfBirth": 1978
+      "person_id": 292495,
+      "sex": {
+            "concept_id": 442985,
+            "concept_name": "Male",
+            "domain_id": "Condition",
+            "vocabulary_id": "SNOMED",
+            "concept_class_id": "Clinical Finding",
+            "standard_concept": "Standard",
+            "concept_code": "248153007"
       },
-      "Sex": 2,
-      "TumourIdentificacionCode": 98,
-      "GeographicResidence": 42,
-      "HospitalOfDiagnosis": "Hospital 1",
-      "IncidenceDate": {
-            "IncidenceDay": 4,
-            "IncidenceMonth": 6,
-            "IncidenceYear": 2022
+      "birth": {
+            "year": "2001",
+            "month": "01",
+            "day": "01",
+            "datetime": "2001-01-01"
       },
-      "BasisOfDiagnosis": 7,
-      "TumourTopography": "C15",
-      "TumourMorphology": 8170,
-      "TumourBehaviour": 3,
-      "TumourGrade": 1,
-      "TumourLaterality": 2,
-      "TumourStage": {
-            "TnmFinding": {
-                  "TnmEdition": "8th",
-                  "Clinical_T_category": "cT0",
-                  "Pathological_T_category": "pT0",
-                  "Clinical_N_category": "cN1",
-                  "Pathological_N_category": "pN1",
-                  "Clinical_M_category": "cM1a",
-                  "Pathological_M_category": "pM1a",
-                  "TnmStage": "IIB"
-            },
-            "TorontoChildhoodCancerStage_Tier1": "a",
-            "TorontoChildhoodCancerStage_Tier2": "a",
-            "EssentialTnmStage": "a",
-            "AnnArborStagingSystem": "a",
-            "LuganoStagingSystem": "a",
-            "DukesStage": "a",
-            "SummaryExtentOfDisease": "a",
-            "FigoStage": "a"
-      },
-      "PrognosticTumourFactors": [
-            "HER2 positive",
-            "PR positive"
-      ],
-      "PrimaryTreatment": {
-            "Surgery": 2,
-            "Radiotherapy": 3,
-            "Chemotherapy": 0,
-            "TargetedTherapy": 1,
-            "Immunotherapy": 0,
-            "HormoneTherapy": 0,
-            "Other": 0,
-            "StemCellTransplantation": 0
-      },
-      "HospitalOfTreatment": "Hospital 1",
-      "DateOfRecurrence": {
-            "DayOfRecurrence": 1,
-            "MonthOfRecurrence": 4,
-            "YearOfRecurrence": 2021
-      },
-      "SiteOfRecurrence": "Site 1",
-      "VitalStatus": 1,
-      "VitalStatusDate": {
-            "DayVitalStatus": 30,
-            "MonthVitalStatus": 6,
-            "YearVitalStatus": 2023
-      },
-      "SurvivalDuration": 400,
-      "CauseOfDeath": "C43",
-      "CauseOfDeath_ICDedition": 10
+      "ethnicity": {
+            "concept_id": 38003600,
+            "concept_name": "African",
+            "domain_id": "Race",
+            "vocabulary_id": "Race",
+            "concept_class_id": "Race",
+            "standard_concept": "Standard",
+            "concept_code": "3.03"
+      }
 }]
