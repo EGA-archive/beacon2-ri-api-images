@@ -20,6 +20,7 @@ import ReactModal from 'react-modal';
 import makeAnimated from 'react-select/animated';
 
 import IndividualsResults from '../Individuals/IndividualsResults';
+import OccurrencesResults from '../Occurrences/OccurrencesResults';
 import { LinearProgress } from '@mui/material';
 
 function Layout(props) {
@@ -323,10 +324,10 @@ function Layout(props) {
             } catch (error) {
                 console.log(error)
             }
-        } else if (props.collection === 'Analyses') {
+        } else if (props.collection === 'Occurrences') {
             try {
 
-                let res = await axios.get("https://beacons.bsc.es/beacon-network/v2.0.0/analyses/filtering_terms")
+                let res = await axios.get("http://localhost:5054/api/occurrences/filtering_terms?skip=0&limit=0")
                 setFilteringTerms(res)
                 setResults(null)
 
@@ -568,9 +569,9 @@ function Layout(props) {
             setExtraIndividuals(false)
             setShowVariants(true)
 
-        } else if (props.collection === "Analyses") {
-            setPlaceholder('chr : pos ref > alt')
-            setExtraIndividuals(false)
+        } else if (props.collection === "Occurrences") {
+            setPlaceholder('filtering term comma-separated, ID><=value')
+            setExtraIndividuals(true)
         } else if (props.collection === "Runs") {
             setPlaceholder('chr : pos ref > alt')
             setExtraIndividuals(false)
@@ -582,9 +583,12 @@ function Layout(props) {
         }
 
         const fetchData = async () => {
-
+            
             try {
-                let res = await axios.get("http://localhost:5054/api/individuals/filtering_terms?skip=0&limit=0")
+                if (props.collection === 'Individuals') {
+                let res = await axios.get("http://localhost:5054/api/individuals/filtering_terms?skip=0&limit=0")}
+                else if (props.collection === 'Occurrences') {
+                    let res = await axios.get("http://localhost:5054/api/occurrences/filtering_terms?skip=0&limit=0")}
                 if (res !== null) {
                     res.data.response.filteringTerms.forEach(element => {
                         if (element.type !== "custom") {
@@ -640,8 +644,8 @@ function Layout(props) {
         if (props.collection === 'Individuals') {
 
             setResults('Individuals')
-        } else if (props.collection === 'Variant') {
-            setResults('Variant')
+        } else if (props.collection === 'Occurrences') {
+            setResults('Occurrences')
         }
 
 
@@ -662,8 +666,8 @@ function Layout(props) {
         }
         if (props.collection === 'Individuals') {
             setResults('Individuals')
-        } else if (props.collection === 'Variant') {
-            setResults('Variant')
+        } else if (props.collection === 'Occurrences') {
+            setResults('Occurrences')
         }
 
 
@@ -1012,6 +1016,11 @@ function Layout(props) {
                 {isSubmitted && results === 'Individuals' &&
                     <div>
                         <IndividualsResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
+                    </div>
+                }
+                {isSubmitted && results === 'Occurrences' &&
+                    <div>
+                        <OccurrencesResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
                     </div>
                 }
                 {isSubmitted && results === 'Variant' &&

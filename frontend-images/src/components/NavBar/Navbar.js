@@ -34,6 +34,14 @@ function Navbar() {
                 
                 <div class="animation nav2"></div>
             </nav>
+            <nav className='nav2'>
+                <NavLink exact
+                    to="/occurrences"
+                    className={({ isActive }) => (isActive ? 'Occurrences2' : 'Occurrences')}
+                ><b>Occurrences</b></NavLink>
+                
+                <div class="animation nav2"></div>
+            </nav>
 
 
             <nav className='nav3'>

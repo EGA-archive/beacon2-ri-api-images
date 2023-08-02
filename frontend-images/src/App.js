@@ -4,7 +4,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
 import Individuals from './components/Individuals/Individuals';
-import GenomicVariations from './components/GenomicVariations/GenomicVariations';
+import Occurrences from './components/Occurrences/Occurrences';
 import Biosamples from './components/Biosamples/Biosamples';
 import Runs from './components/Runs/Runs';
 import Analyses from './components/Analyses/Analyses';
@@ -22,6 +22,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Individuals />} />
         <Route path='/individuals' element={<Individuals />} />
+        <Route path='/occurrences' element={<Occurrences />} />
         <Route path="/sign-in" element={<SignInForm />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
