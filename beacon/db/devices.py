@@ -37,17 +37,17 @@ def apply_request_parameters(query: Dict[str, List[dict]], qparams: RequestParam
             query["$text"]["$search"]=v
     return query
 
-def get_runs(entry_id: Optional[str], qparams: RequestParams):
-    collection = 'runs'
+def get_devices(entry_id: Optional[str], qparams: RequestParams):
+    collection = 'devices'
     query = apply_request_parameters({}, qparams)
     query = query = apply_filters(query, qparams.query.filters, collection)
     query = include_resultset_responses(query, qparams)
-    schema = DefaultSchemas.RUNS
-    count = get_count(client.beacon.runs, query)
+    schema = DefaultSchemas.DEVICES
+    count = get_count(client.beacon.devices, query)
     include = qparams.query.include_resultset_responses
     if include == 'MISS':
         pre_docs = get_documents(
-            client.beacon.runs,
+            client.beacon.devices,
             query,
             qparams.query.pagination.skip,
             count
@@ -62,33 +62,33 @@ def get_runs(entry_id: Optional[str], qparams: RequestParams):
         negative_query['$nor']=ids_array
         LOG.debug(negative_query)
         docs = get_documents(
-            client.beacon.runs,
+            client.beacon.devices,
             negative_query,
             qparams.query.pagination.skip,
             qparams.query.pagination.limit
         )
-        count = get_count(client.beacon.runs, negative_query)
+        count = get_count(client.beacon.devices, negative_query)
     else:
         docs = get_documents(
-            client.beacon.runs,
+            client.beacon.devices,
             query,
             qparams.query.pagination.skip,
             qparams.query.pagination.limit
         )
     return schema, count, docs
 
-def get_run_with_id(entry_id: Optional[str], qparams: RequestParams):
+def get_device_with_id(entry_id: Optional[str], qparams: RequestParams):
     collection = 'runs'
     query = apply_request_parameters({}, qparams)
     query = query = apply_filters(query, qparams.query.filters, collection)
     query = query_id(query, entry_id)
     query = include_resultset_responses(query, qparams)
-    schema = DefaultSchemas.RUNS
-    count = get_count(client.beacon.runs, query)
+    schema = DefaultSchemas.DEVICES
+    count = get_count(client.beacon.devices, query)
     include = qparams.query.include_resultset_responses
     if include == 'MISS':
         pre_docs = get_documents(
-            client.beacon.runs,
+            client.beacon.devices,
             query,
             qparams.query.pagination.skip,
             count
@@ -103,15 +103,15 @@ def get_run_with_id(entry_id: Optional[str], qparams: RequestParams):
         negative_query['$nor']=ids_array
         LOG.debug(negative_query)
         docs = get_documents(
-            client.beacon.runs,
+            client.beacon.devices,
             negative_query,
             qparams.query.pagination.skip,
             qparams.query.pagination.limit
         )
-        count = get_count(client.beacon.runs, negative_query)
+        count = get_count(client.beacon.devices, negative_query)
     else:
         docs = get_documents(
-            client.beacon.runs,
+            client.beacon.devices,
             query,
             qparams.query.pagination.skip,
             qparams.query.pagination.limit
@@ -206,8 +206,8 @@ def get_analyses_of_run(entry_id: Optional[str], qparams: RequestParams):
         )
     return schema, count, docs
 
-def get_filtering_terms_of_run(entry_id: Optional[str], qparams: RequestParams):
-    query = {'scope': 'runs'}
+def get_filtering_terms_of_device(entry_id: Optional[str], qparams: RequestParams):
+    query = {'scope': 'devices'}
     schema = DefaultSchemas.FILTERINGTERMS
     count = get_count(client.beacon.filtering_terms, query)
     remove_id={'_id':0}

@@ -1,6 +1,6 @@
 from aiohttp import web
 
-from beacon.db import analyses, biosamples, cohorts, datasets, g_variants, individuals, runs, filtering_terms
+from beacon.db import occurrences, features, cohorts, datasets, g_variants, individuals, devices, filtering_terms
 from beacon.request.handlers import collection_handler, generic_handler, filtering_terms_handler
 from beacon.response import framework, info, service_info
 
@@ -23,17 +23,17 @@ routes = [
     # GET
     ########################################
 
-    web.get('/api/occurrences', generic_handler(db_fn=analyses.get_analyses)),
-    web.get('/api/occurrences/filtering_terms', filtering_terms_handler(db_fn=analyses.get_filtering_terms_of_analyse)),
-    web.get('/api/occurrences/{id}', generic_handler(db_fn=analyses.get_analysis_with_id)),
-    web.get('/api/occurrences/{id}/g_variants', generic_handler(db_fn=analyses.get_variants_of_analysis)),
+    web.get('/api/occurrences', generic_handler(db_fn=occurrences.get_occurrences)),
+    web.get('/api/occurrences/filtering_terms', filtering_terms_handler(db_fn=occurrences.get_filtering_terms_of_occurrence)),
+    web.get('/api/occurrences/{id}', generic_handler(db_fn=occurrences.get_occurrence_with_id)),
+    web.get('/api/occurrences/{id}/g_variants', generic_handler(db_fn=occurrences.get_variants_of_occurrence)),
 
-    web.get('/api/biosamples', generic_handler(db_fn=biosamples.get_biosamples)),
-    web.get('/api/biosamples/filtering_terms', filtering_terms_handler(db_fn=biosamples.get_filtering_terms_of_biosample)),
-    web.get('/api/biosamples/{id}', generic_handler(db_fn=biosamples.get_biosample_with_id)),
-    web.get('/api/biosamples/{id}/g_variants', generic_handler(db_fn=biosamples.get_variants_of_biosample)),
-    web.get('/api/biosamples/{id}/analyses', generic_handler(db_fn=biosamples.get_analyses_of_biosample)),
-    web.get('/api/biosamples/{id}/runs', generic_handler(db_fn=biosamples.get_runs_of_biosample)),
+    web.get('/api/features', generic_handler(db_fn=features.get_features)),
+    web.get('/api/features/filtering_terms', filtering_terms_handler(db_fn=features.get_filtering_terms_of_feature)),
+    web.get('/api/features/{id}', generic_handler(db_fn=features.get_feature_with_id)),
+    web.get('/api/features/{id}/g_variants', generic_handler(db_fn=features.get_variants_of_feature)),
+    web.get('/api/feaatures/{id}/analyses', generic_handler(db_fn=features.get_analyses_of_feature)),
+    web.get('/api/features/{id}/runs', generic_handler(db_fn=features.get_runs_of_biosample)),
 
     web.get('/api/cohorts', collection_handler(db_fn=cohorts.get_cohorts)),
     web.get('/api/cohorts/filtering_terms', filtering_terms_handler(db_fn=cohorts.get_filtering_terms_of_cohort)),
@@ -66,11 +66,11 @@ routes = [
     web.get('/api/individuals/{id}/runs', generic_handler(db_fn=individuals.get_runs_of_individual)),
     web.get('/api/individuals/{id}/analyses', generic_handler(db_fn=individuals.get_analyses_of_individual)),
 
-    web.get('/api/runs', generic_handler(db_fn=runs.get_runs)),
-    web.get('/api/runs/filtering_terms', filtering_terms_handler(db_fn=runs.get_filtering_terms_of_run)),
-    web.get('/api/runs/{id}', generic_handler(db_fn=runs.get_run_with_id)),
-    web.get('/api/runs/{id}/g_variants', generic_handler(db_fn=runs.get_variants_of_run)),
-    web.get('/api/runs/{id}/analyses', generic_handler(db_fn=runs.get_analyses_of_run)),
+    web.get('/api/devices', generic_handler(db_fn=devices.get_devices)),
+    web.get('/api/devices/filtering_terms', filtering_terms_handler(db_fn=devices.get_filtering_terms_of_device)),
+    web.get('/api/devices/{id}', generic_handler(db_fn=devices.get_device_with_id)),
+    web.get('/api/devices/{id}/g_variants', generic_handler(db_fn=devices.get_variants_of_run)),
+    web.get('/api/runs/{id}/analyses', generic_handler(db_fn=devices.get_analyses_of_run)),
 
 
 
@@ -78,17 +78,17 @@ routes = [
     # POST
     ########################################
     web.post('/api', info.handler),
-    web.post('/api/analyses', generic_handler(db_fn=analyses.get_analyses)),
-    web.post('/api/analyses/filtering_terms', filtering_terms_handler(db_fn=analyses.get_filtering_terms_of_analyse)),
-    web.post('/api/analyses/{id}', generic_handler(db_fn=analyses.get_analysis_with_id)),
-    web.post('/api/analyses/{id}/g_variants', generic_handler(db_fn=analyses.get_variants_of_analysis)),
+    web.post('/api/occurrences', generic_handler(db_fn=occurrences.get_occurrences)),
+    web.post('/api/occurrences/filtering_terms', filtering_terms_handler(db_fn=occurrences.get_filtering_terms_of_occurrence)),
+    web.post('/api/occurrences/{id}', generic_handler(db_fn=occurrences.get_occurrence_with_id)),
+    web.post('/api/occurrences/{id}/g_variants', generic_handler(db_fn=occurrences.get_variants_of_occurrence)),
 
-    web.post('/api/biosamples', generic_handler(db_fn=biosamples.get_biosamples)),
-    web.post('/api/biosamples/filtering_terms', filtering_terms_handler(db_fn=biosamples.get_filtering_terms_of_biosample)),
-    web.post('/api/biosamples/{id}', generic_handler(db_fn=biosamples.get_biosample_with_id)),
-    web.post('/api/biosamples/{id}/g_variants', generic_handler(db_fn=biosamples.get_variants_of_biosample)),
-    web.post('/api/biosamples/{id}/analyses', generic_handler(db_fn=biosamples.get_analyses_of_biosample)),
-    web.post('/api/biosamples/{id}/runs', generic_handler(db_fn=biosamples.get_runs_of_biosample)),
+    web.post('/api/features', generic_handler(db_fn=features.get_features)),
+    web.post('/api/features/filtering_terms', filtering_terms_handler(db_fn=features.get_filtering_terms_of_feature)),
+    web.post('/api/features/{id}', generic_handler(db_fn=features.get_feature_with_id)),
+    web.post('/api/features/{id}/g_variants', generic_handler(db_fn=features.get_variants_of_feature)),
+    web.post('/api/features/{id}/analyses', generic_handler(db_fn=features.get_analyses_of_feature)),
+    web.post('/api/biosamples/{id}/runs', generic_handler(db_fn=features.get_runs_of_biosample)),
 
     web.post('/api/cohorts', collection_handler(db_fn=cohorts.get_cohorts)),
     web.post('/api/cohorts/filtering_terms', filtering_terms_handler(db_fn=cohorts.get_filtering_terms_of_cohort)),
@@ -122,9 +122,9 @@ routes = [
     web.post('/api/individuals/{id}/runs', generic_handler(db_fn=individuals.get_runs_of_individual)),
     web.post('/api/individuals/{id}/analyses', generic_handler(db_fn=individuals.get_analyses_of_individual)),
 
-    web.post('/api/runs', generic_handler(db_fn=runs.get_runs)),
-    web.post('/api/runs/filtering_terms', filtering_terms_handler(db_fn=runs.get_filtering_terms_of_run)),
-    web.post('/api/runs/{id}', generic_handler(db_fn=runs.get_run_with_id)),
-    web.post('/api/runs/{id}/g_variants', generic_handler(db_fn=runs.get_variants_of_run)),
-    web.post('/api/runs/{id}/analyses', generic_handler(db_fn=runs.get_analyses_of_run)),
+    web.post('/api/devices', generic_handler(db_fn=devices.get_devices)),
+    web.post('/api/devices/filtering_terms', filtering_terms_handler(db_fn=devices.get_filtering_terms_of_device)),
+    web.post('/api/devices/{id}', generic_handler(db_fn=devices.get_device_with_id)),
+    web.post('/api/runs/{id}/g_variants', generic_handler(db_fn=devices.get_variants_of_run)),
+    web.post('/api/runs/{id}/analyses', generic_handler(db_fn=devices.get_analyses_of_run)),
 ]
