@@ -8,24 +8,27 @@ function TableResultsOccurrences(props) {
     const columns = [
         { field: 'id', headerName: 'Row', flex: 1, headerClassName: 'super-app-theme--header' },
         { field: 'person_id', headerName: 'person_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_concept_class_id', headerName: 'sex_concept_class_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_concept_code', headerName: 'sex_concept_code', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_concept_id', headerName: 'sex_concept_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_concept_name', headerName: 'sex_concept_name', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_domain_id', headerName: 'sex_domain_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_standard_concept', headerName: 'sex_standard_concept', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_vocabulary_id', headerName: 'sex_vocabulary_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'birth_datetime', headerName: 'birth_datetime', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'birth_day', headerName: 'birth_day', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'birth_month', headerName: 'birth_month', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'birth_year', headerName: 'birth_year', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_concept_class_id', headerName: 'ethnicity_concept_class_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_concept_code', headerName: 'ethnicity_concept_code', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_concept_id', headerName: 'ethnicity_concept_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_concept_name', headerName: 'ethnicity_concept_name', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_domain_id', headerName: 'ethnicity_domain_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_standard_concept', headerName: 'ethnicity_standard_concept', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_vocabulary_id', headerName: 'ethnicity_vocabulary_id', flex: 1, headerClassName: 'super-app-theme--header' }
+        { field: 'imaging_occurrence_id', headerName: 'imaging_occurrence_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'imaging_occurrence_date', headerName: 'imaging_occurrence_date', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'imaging_study_series', headerName: 'imaging_study_series', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'imaging_study_uid', headerName: 'imaging_study_uid', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'procedure_occurrence_id_concept_class_id', headerName: 'procedure_occurrence_id_concept_class_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'procedure_occurrence_id_concept_code', headerName: 'procedure_occurrence_id_concept_code', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'procedure_occurrence_id_concept_id', headerName: 'procedure_occurrence_id_concept_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'procedure_occurrence_id_concept_name', headerName: 'procedure_occurrence_id_concept_name', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'procedure_occurrence_id_domain_id', headerName: 'procedure_occurrence_id_domain_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'procedure_occurrence_id_procedure_occurrence_id', headerName: 'procedure_occurrence_id_procedure_occurrence_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'procedure_occurrence_id_standard_concept', headerName: 'procedure_occurrence_id_standard_concept', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'procedure_occurrence_id_vocabulary_id', headerName: 'procedure_occurrence_id_vocabulary_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'wadors_uri', headerName: 'wadors_uri', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'modality', headerName: 'modality', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'anatomic_site_location_concept_class_id', headerName: 'anatomic_site_location_concept_class_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'anatomic_site_location_concept_code', headerName: 'anatomic_site_location_concept_code', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'anatomic_site_location_concept_id', headerName: 'anatomic_site_location_concept_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'anatomic_site_location_concept_name', headerName: 'anatomic_site_location_concept_name', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'anatomic_site_location_domain_id', headerName: 'anatomic_site_location_domain_id', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'anatomic_site_location_standard_concept', headerName: 'anatomic_site_location_standard_concept', flex: 1, headerClassName: 'super-app-theme--header' },
+        { field: 'anatomic_site_location_vocabulary_id', headerName: 'anatomic_site_location_vocabulary_id', flex: 1, headerClassName: 'super-app-theme--header' }
     ]
 
     console.log(props.results)
@@ -36,6 +39,19 @@ function TableResultsOccurrences(props) {
             
         if (element[1] !== undefined) {
             console.log(element[0])
+
+            let imaging_occurrence_id = ''
+            let stringimaging_occurrence_id = ''
+
+            if (element[1].imaging_occurrence_id!== '' && element[1].imaging_occurrence_id !== undefined) {
+                if (element[1].imaging_occurrence_id !== undefined) {
+                    imaging_occurrence_id = element[1].imaging_occurrence_id
+                }
+                stringimaging_occurrence_id= `${imaging_occurrence_id}`
+            } else {
+                stringimaging_occurrence_id = ''
+            }
+
             let person_id = ''
             let stringperson_id = ''
 
@@ -62,254 +78,289 @@ function TableResultsOccurrences(props) {
             }
 
 
-            let sex_concept_name = ''
-            let stringsex_concept_name = ''
+            let procedure_occurrence_id_procedure_occurrence_id = ''
+            let stringprocedure_occurrence_id_procedure_occurrence_id = ''
 
-            if (element[1].sex.concept_name !== '' && element[1].sex.concept_name !== undefined) {
-                if (element[1].sex.concept_name !== undefined) {
-                    sex_concept_name = element[1].sex.concept_name
+            if (element[1].procedure_occurrence_id.procedure_occurrence_id !== '' && element[1].procedure_occurrence_id.procedure_occurrence_id !== undefined) {
+                if (element[1].procedure_occurrence_id.procedure_occurrence_id !== undefined) {
+                    procedure_occurrence_id_procedure_occurrence_id = element[1].procedure_occurrence_id.procedure_occurrence_id
                 }
 
-                stringsex_concept_name = `${sex_concept_name}`
+                stringprocedure_occurrence_id_procedure_occurrence_id = `${procedure_occurrence_id_procedure_occurrence_id}`
             } else {
-                stringsex_concept_name = ''
+                stringprocedure_occurrence_id_procedure_occurrence_id = ''
             }
 
-            let sex_domain_id = ''
-            let stringsex_domain_id = ''
+            let procedure_occurrence_id_concept_id = ''
+            let stringprocedure_occurrence_id_concept_id = ''
 
-            if (element[1].sex.domain_id !== '' && element[1].sex.domain_id !== undefined) {
-                if (element[1].sex.domain_id !== undefined) {
-                    sex_domain_id= element[1].sex.domain_id
+            if (element[1].procedure_occurrence_id.concept_id !== '' && element[1].procedure_occurrence_id.concept_id !== undefined) {
+                if (element[1].procedure_occurrence_id.concept_id !== undefined) {
+                    procedure_occurrence_id_concept_id = element[1].procedure_occurrence_id.concept_id
                 }
 
-                stringsex_domain_id = `${sex_domain_id}`
+                stringprocedure_occurrence_id_concept_id = `${procedure_occurrence_id_concept_id}`
             } else {
-                stringsex_domain_id = ''
+                stringprocedure_occurrence_id_concept_id = ''
             }
 
-            let sex_vocabulary_id = ''
-            let stringsex_vocabulary_id  = ''
+            let procedure_occurrence_id_concept_name = ''
+            let stringprocedure_occurrence_id_concept_name = ''
 
-            if (element[1].sex.vocabulary_id  !== '' && element[1].sex.vocabulary_id  !== undefined) {
-                if (element[1].sex.vocabulary_id  !== undefined) {
-                    sex_vocabulary_id = element[1].sex.vocabulary_id 
+            if (element[1].procedure_occurrence_id.concept_name !== '' && element[1].procedure_occurrence_id.concept_name !== undefined) {
+                if (element[1].procedure_occurrence_id.concept_name !== undefined) {
+                    procedure_occurrence_id_concept_name= element[1].procedure_occurrence_id.concept_name
                 }
 
-                stringsex_vocabulary_id  = `${sex_vocabulary_id}`
+                stringprocedure_occurrence_id_concept_name = `${procedure_occurrence_id_concept_name}`
             } else {
-                stringsex_vocabulary_id  = ''
+                stringprocedure_occurrence_id_concept_name = ''
             }
 
-            let sex_concept_class_id = ''
-            let stringsex_concept_class_id  = ''
+            let procedure_occurrence_id_domain_id = ''
+            let stringprocedure_occurrence_id_domain_id = ''
 
-            if (element[1].sex.concept_class_id  !== '' && element[1].sex.concept_class_id  !== undefined) {
-                if (element[1].sex.concept_class_id  !== undefined) {
-                    sex_concept_class_id = element[1].sex.concept_class_id 
+            if (element[1].procedure_occurrence_id.domain_id !== '' && element[1].procedure_occurrence_id.domain_id !== undefined) {
+                if (element[1].procedure_occurrence_id.domain_id !== undefined) {
+                    procedure_occurrence_id_domain_id= element[1].procedure_occurrence_id.domain_id
                 }
 
-                stringsex_concept_class_id = `${sex_concept_class_id}`
+                stringprocedure_occurrence_id_domain_id = `${procedure_occurrence_id_domain_id}`
             } else {
-                stringsex_concept_class_id  = ''
+                stringprocedure_occurrence_id_domain_id = ''
             }
 
-            let sex_standard_concept = ''
-            let stringsex_standard_concept  = ''
+            let procedure_occurrence_id_vocabulary_id = ''
+            let stringprocedure_occurrence_id_vocabulary_id = ''
 
-            if (element[1].sex.standard_concept  !== '' && element[1].sex.standard_concept  !== undefined) {
-                if (element[1].sex.standard_concept  !== undefined) {
-                    sex_standard_concept = element[1].sex.standard_concept 
+            if (element[1].procedure_occurrence_id.vocabulary_id !== '' && element[1].procedure_occurrence_id.vocabulary_id !== undefined) {
+                if (element[1].procedure_occurrence_id.vocabulary_id !== undefined) {
+                    procedure_occurrence_id_vocabulary_id= element[1].procedure_occurrence_id.vocabulary_id
                 }
 
-                stringsex_standard_concept = `${sex_standard_concept}`
+                stringprocedure_occurrence_id_vocabulary_id = `${procedure_occurrence_id_vocabulary_id}`
             } else {
-                stringsex_standard_concept  = ''
+                stringprocedure_occurrence_id_vocabulary_id = ''
             }
 
-            let sex_concept_code = ''
-            let stringsex_concept_code  = ''
+            let procedure_occurrence_id_concept_class_id = ''
+            let stringprocedure_occurrence_id_concept_class_id = ''
 
-            if (element[1].sex.concept_code  !== '' && element[1].sex.concept_code  !== undefined) {
-                if (element[1].sex.concept_code  !== undefined) {
-                    sex_concept_code = element[1].sex.concept_code 
+            if (element[1].procedure_occurrence_id.concept_class_id !== '' && element[1].procedure_occurrence_id.concept_class_id !== undefined) {
+                if (element[1].procedure_occurrence_id.concept_class_id !== undefined) {
+                    procedure_occurrence_id_concept_class_id= element[1].procedure_occurrence_id.concept_class_id
                 }
 
-                stringsex_concept_code = `${sex_concept_code}`
+                stringprocedure_occurrence_id_concept_class_id = `${procedure_occurrence_id_concept_class_id}`
             } else {
-                stringsex_concept_code  = ''
+                stringprocedure_occurrence_id_concept_class_id = ''
             }
 
-            let birth_year = ''
-            let stringbirth_year = ''
+            let procedure_occurrence_id_standard_concept = ''
+            let stringprocedure_occurrence_id_standard_concept = ''
 
-            if (element[1].birth.year !== '' && element[1].birth.year !== undefined) {
-                if (element[1].birth.year !== undefined) {
-                    birth_year = element[1].birth.year
+            if (element[1].procedure_occurrence_id.standard_concept !== '' && element[1].procedure_occurrence_id.standard_concept !== undefined) {
+                if (element[1].procedure_occurrence_id.standard_concept !== undefined) {
+                    procedure_occurrence_id_standard_concept= element[1].procedure_occurrence_id.standard_concept
                 }
 
-                stringbirth_year = `${birth_year}`
+                stringprocedure_occurrence_id_standard_concept = `${procedure_occurrence_id_standard_concept}`
             } else {
-                stringbirth_year = ''
+                stringprocedure_occurrence_id_standard_concept = ''
             }
 
-            let birth_month = ''
-            let stringbirth_month = ''
+            let procedure_occurrence_id_concept_code = ''
+            let stringprocedure_occurrence_id_concept_code = ''
 
-            if (element[1].birth.month !== '' && element[1].birth.month !== undefined) {
-                if (element[1].birth.month !== undefined) {
-                    birth_month = element[1].birth.month
+            if (element[1].procedure_occurrence_id.concept_code !== '' && element[1].procedure_occurrence_id.concept_code !== undefined) {
+                if (element[1].procedure_occurrence_id.concept_code !== undefined) {
+                    procedure_occurrence_id_concept_code= element[1].procedure_occurrence_id.concept_code
                 }
 
-                stringbirth_month = `${birth_month}`
+                stringprocedure_occurrence_id_concept_code = `${procedure_occurrence_id_concept_code}`
             } else {
-                stringbirth_month = ''
+                stringprocedure_occurrence_id_concept_code = ''
             }
 
-            let birth_day = ''
-            let stringbirth_day  = ''
+            let wadors_uri = ''
+            let stringwadors_uri = ''
 
-            if (element[1].birth.day  !== '' && element[1].birth.day  !== undefined) {
-                if (element[1].birth.day  !== undefined) {
-                    birth_day  = element[1].birth.day 
+            if (element[1].wadors_uri!== '' && element[1].wadors_uri !== undefined) {
+                if (element[1].wadors_uri !== undefined) {
+                    wadors_uri = element[1].wadors_uri
                 }
-
-                stringbirth_day  = `${birth_day}`
+                stringwadors_uri= `${wadors_uri}`
             } else {
-                stringbirth_day  = ''
+                stringwadors_uri = ''
             }
 
-            let birth_datetime = ''
-            let stringbirth_datetime  = ''
+            let imaging_occurrence_date = ''
+            let stringimaging_occurrence_date= ''
 
-            if (element[1].birth.datetime  !== '' && element[1].birth.datetime  !== undefined) {
-                if (element[1].birth.datetime  !== undefined) {
-                    birth_datetime  = element[1].birth.datetime 
+            if (element[1].imaging_occurrence_date!== '' && element[1].imaging_occurrence_date !== undefined) {
+                if (element[1].imaging_occurrence_date !== undefined) {
+                    imaging_occurrence_date = element[1].imaging_occurrence_date
                 }
-
-                stringbirth_datetime = `${birth_datetime}`
+                stringimaging_occurrence_date= `${imaging_occurrence_date}`
             } else {
-                stringbirth_datetime  = ''
+                stringimaging_occurrence_date = ''
             }
 
-            let ethnicity_concept_id = ''
-            let stringethnicity_concept_id = ''
+            let imaging_study_uid = ''
+            let stringimaging_study_uid= ''
 
-            if (element[1].ethnicity.concept_id !== '' && element[1].ethnicity.concept_id !== undefined) {
-                if (element[1].ethnicity.concept_id !== undefined) {
-                    ethnicity_concept_id = element[1].ethnicity.concept_id
+            if (element[1].imaging_study_uid!== '' && element[1].imaging_study_uid !== undefined) {
+                if (element[1].imaging_study_uid !== undefined) {
+                    imaging_study_uid = element[1].imaging_study_uid
                 }
-
-                stringethnicity_concept_id = `${ethnicity_concept_id}`
+                stringimaging_study_uid= `${imaging_study_uid}`
             } else {
-                stringethnicity_concept_id = ''
+                stringimaging_study_uid = ''
             }
 
+            let imaging_study_series = ''
+            let stringimaging_study_series= ''
 
-            let ethnicity_concept_name = ''
-            let stringethnicity_concept_name = ''
-
-            if (element[1].ethnicity.concept_name !== '' && element[1].ethnicity.concept_name !== undefined) {
-                if (element[1].ethnicity.concept_name !== undefined) {
-                    ethnicity_concept_name = element[1].ethnicity.concept_name
+            if (element[1].imaging_study_series!== '' && element[1].imaging_study_series !== undefined) {
+                if (element[1].imaging_study_series !== undefined) {
+                    imaging_study_series = element[1].imaging_study_series
                 }
-
-                stringethnicity_concept_name = `${ethnicity_concept_name}`
+                stringimaging_study_series= `${imaging_study_series}`
             } else {
-                stringethnicity_concept_name = ''
+                stringimaging_study_series = ''
             }
 
-            let ethnicity_domain_id = ''
-            let stringethnicity_domain_id = ''
+            let modality = ''
+            let stringmodality= ''
 
-            if (element[1].ethnicity.domain_id !== '' && element[1].ethnicity.domain_id !== undefined) {
-                if (element[1].ethnicity.domain_id !== undefined) {
-                    ethnicity_domain_id= element[1].ethnicity.domain_id
+            if (element[1].modality!== '' && element[1].modality !== undefined) {
+                if (element[1].modality !== undefined) {
+                    modality = element[1].modality
                 }
-
-                stringethnicity_domain_id = `${ethnicity_domain_id}`
+                stringmodality= `${modality}`
             } else {
-                stringethnicity_domain_id = ''
+                stringmodality = ''
             }
 
-            let ethnicity_vocabulary_id = ''
-            let stringethnicity_vocabulary_id  = ''
+            let anatomic_site_location_concept_id = ''
+            let stringanatomic_site_location_concept_id = ''
 
-            if (element[1].ethnicity.vocabulary_id  !== '' && element[1].ethnicity.vocabulary_id  !== undefined) {
-                if (element[1].ethnicity.vocabulary_id  !== undefined) {
-                    ethnicity_vocabulary_id = element[1].ethnicity.vocabulary_id 
+            if (element[1].anatomic_site_location.concept_id !== '' && element[1].anatomic_site_location.concept_id !== undefined) {
+                if (element[1].anatomic_site_location.concept_id !== undefined) {
+                    anatomic_site_location_concept_id= element[1].anatomic_site_location.concept_id
                 }
 
-                stringethnicity_vocabulary_id  = `${ethnicity_vocabulary_id}`
+                stringanatomic_site_location_concept_id = `${anatomic_site_location_concept_id}`
             } else {
-                stringethnicity_vocabulary_id  = ''
+                stringanatomic_site_location_concept_id = ''
             }
 
-            let ethnicity_concept_class_id = ''
-            let stringethnicity_concept_class_id  = ''
+            let anatomic_site_location_concept_name = ''
+            let stringanatomic_site_location_concept_name = ''
 
-            if (element[1].ethnicity.concept_class_id  !== '' && element[1].ethnicity.concept_class_id  !== undefined) {
-                if (element[1].ethnicity.concept_class_id  !== undefined) {
-                    ethnicity_concept_class_id = element[1].ethnicity.concept_class_id 
+            if (element[1].anatomic_site_location.concept_name !== '' && element[1].anatomic_site_location.concept_name !== undefined) {
+                if (element[1].anatomic_site_location.concept_name !== undefined) {
+                    anatomic_site_location_concept_name= element[1].anatomic_site_location.concept_name
                 }
 
-                stringethnicity_concept_class_id = `${ethnicity_concept_class_id}`
+                stringanatomic_site_location_concept_name= `${anatomic_site_location_concept_name}`
             } else {
-                stringethnicity_concept_class_id  = ''
+                stringanatomic_site_location_concept_name = ''
             }
 
-            let ethnicity_standard_concept = ''
-            let stringethnicity_standard_concept  = ''
+            let anatomic_site_location_domain_id = ''
+            let stringanatomic_site_location_domain_id = ''
 
-            if (element[1].ethnicity.standard_concept  !== '' && element[1].ethnicity.standard_concept  !== undefined) {
-                if (element[1].ethnicity.standard_concept  !== undefined) {
-                    ethnicity_standard_concept = element[1].ethnicity.standard_concept 
+            if (element[1].anatomic_site_location.domain_id !== '' && element[1].anatomic_site_location.domain_id !== undefined) {
+                if (element[1].anatomic_site_location.domain_id !== undefined) {
+                    anatomic_site_location_domain_id= element[1].anatomic_site_location.domain_id
                 }
 
-                stringethnicity_standard_concept = `${ethnicity_standard_concept}`
+                stringanatomic_site_location_domain_id= `${anatomic_site_location_domain_id}`
             } else {
-                stringethnicity_standard_concept  = ''
+                stringanatomic_site_location_domain_id = ''
             }
 
-            let ethnicity_concept_code = ''
-            let stringethnicity_concept_code  = ''
+            let anatomic_site_location_vocabulary_id = ''
+            let stringanatomic_site_location_vocabulary_id = ''
 
-            if (element[1].ethnicity.concept_code  !== '' && element[1].ethnicity.concept_code  !== undefined) {
-                if (element[1].ethnicity.concept_code  !== undefined) {
-                    ethnicity_concept_code = element[1].ethnicity.concept_code 
+            if (element[1].anatomic_site_location.vocabulary_id !== '' && element[1].anatomic_site_location.vocabulary_id !== undefined) {
+                if (element[1].anatomic_site_location.vocabulary_id !== undefined) {
+                    anatomic_site_location_vocabulary_id= element[1].anatomic_site_location.vocabulary_id
                 }
 
-                stringethnicity_concept_code = `${ethnicity_concept_code}`
+                stringanatomic_site_location_vocabulary_id= `${anatomic_site_location_vocabulary_id}`
             } else {
-                stringethnicity_concept_code  = ''
+                stringanatomic_site_location_vocabulary_id = ''
+            }
+
+            let anatomic_site_location_concept_class_id = ''
+            let stringanatomic_site_location_concept_class_id = ''
+
+            if (element[1].anatomic_site_location.concept_class_id !== '' && element[1].anatomic_site_location.concept_class_id !== undefined) {
+                if (element[1].anatomic_site_location.concept_class_id !== undefined) {
+                    anatomic_site_location_concept_class_id= element[1].anatomic_site_location.concept_class_id
+                }
+
+                stringanatomic_site_location_concept_class_id= `${anatomic_site_location_concept_class_id}`
+            } else {
+                stringanatomic_site_location_concept_class_id = ''
+            }
+
+            let anatomic_site_location_standard_concept = ''
+            let stringanatomic_site_location_standard_concept = ''
+
+            if (element[1].anatomic_site_location.standard_concept !== '' && element[1].anatomic_site_location.standard_concept !== undefined) {
+                if (element[1].anatomic_site_location.standard_concept !== undefined) {
+                    anatomic_site_location_standard_concept= element[1].anatomic_site_location.standard_concept
+                }
+
+                stringanatomic_site_location_standard_concept= `${anatomic_site_location_standard_concept}`
+            } else {
+                stringanatomic_site_location_standard_concept = ''
+            }
+
+            let anatomic_site_location_concept_code = ''
+            let stringanatomic_site_location_concept_code = ''
+
+            if (element[1].anatomic_site_location.concept_code !== '' && element[1].anatomic_site_location.concept_code !== undefined) {
+                if (element[1].anatomic_site_location.concept_code !== undefined) {
+                    anatomic_site_location_concept_code= element[1].anatomic_site_location.concept_code
+                }
+
+                stringanatomic_site_location_concept_code= `${anatomic_site_location_concept_code}`
+            } else {
+                stringanatomic_site_location_concept_code = ''
             }
 
             rows.push({ id: index, 
                 Beacon: element[0], 
                 person_id: stringperson_id,
-                sex_concept_class_id: stringsex_concept_class_id,
-                sex_concept_code: stringsex_concept_code,
-                sex_concept_id: stringsex_concept_id,
-                sex_concept_name: stringsex_concept_name,
-                sex_domain_id: stringsex_domain_id,
-                sex_standard_concept: stringsex_standard_concept,
-                sex_vocabulary_id: stringsex_vocabulary_id,
-                birth_datetime: stringbirth_datetime,
-                birth_day: stringbirth_day,
-                birth_month: stringbirth_month,
-                birth_year: stringbirth_year,
-                ethnicity_concept_class_id: stringethnicity_concept_class_id,
-                ethnicity_concept_code: stringethnicity_concept_code,
-                ethnicity_concept_id: stringethnicity_concept_id,
-                ethnicity_concept_name: stringethnicity_concept_name,
-                ethnicity_domain_id: stringethnicity_domain_id,
-                ethnicity_standard_concept: stringethnicity_standard_concept,
-                ethnicity_vocabulary_id: stringethnicity_vocabulary_id  })
+                imaging_occurrence_id: stringimaging_occurrence_id,
+                imaging_occurrence_date: stringimaging_occurrence_date,
+                imaging_study_series: stringimaging_study_series,
+                imaging_study_uid: stringimaging_study_uid,
+                procedure_occurrence_id_concept_class_id: stringprocedure_occurrence_id_concept_class_id,
+                procedure_occurrence_id_concept_code: stringprocedure_occurrence_id_concept_code,
+                procedure_occurrence_id_concept_id: stringprocedure_occurrence_id_concept_id,
+                procedure_occurrence_id_concept_name: stringprocedure_occurrence_id_concept_name,
+                procedure_occurrence_id_domain_id: stringprocedure_occurrence_id_domain_id,
+                procedure_occurrence_id_procedure_occurrence_id: stringprocedure_occurrence_id_procedure_occurrence_id,
+                procedure_occurrence_id_standard_concept: stringprocedure_occurrence_id_standard_concept,
+                procedure_occurrence_id_vocabulary_id: stringprocedure_occurrence_id_vocabulary_id,
+                wadors_uri: stringwadors_uri,
+                modality: stringmodality,
+                anatomic_site_location_concept_class_id: stringanatomic_site_location_concept_class_id,
+                anatomic_site_location_concept_code: stringanatomic_site_location_concept_code,
+                anatomic_site_location_concept_id: stringanatomic_site_location_concept_id,
+                anatomic_site_location_concept_name: stringanatomic_site_location_concept_name,
+                anatomic_site_location_domain_id: stringanatomic_site_location_domain_id,
+                anatomic_site_location_standard_concept: stringanatomic_site_location_standard_concept,
+                anatomic_site_location_vocabulary_id: stringanatomic_site_location_vocabulary_id })
 
         }
 
     })
-
 
 
 

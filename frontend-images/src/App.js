@@ -5,9 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import Individuals from './components/Individuals/Individuals';
 import Occurrences from './components/Occurrences/Occurrences';
-import Biosamples from './components/Biosamples/Biosamples';
-import Runs from './components/Runs/Runs';
-import Analyses from './components/Analyses/Analyses';
+import Features from './components/Features/Features';
+
 import Cohorts from './components/Cohorts/Cohorts';
 import ErrorPage from './pages/ErrorPage';
 import Navbar from './components/NavBar/Navbar';
@@ -23,6 +22,7 @@ function App() {
         <Route path='/' element={<Individuals />} />
         <Route path='/individuals' element={<Individuals />} />
         <Route path='/occurrences' element={<Occurrences />} />
+        <Route path='/features' element={<Features />} />
         <Route path="/sign-in" element={<SignInForm />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

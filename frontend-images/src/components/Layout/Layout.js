@@ -21,6 +21,7 @@ import makeAnimated from 'react-select/animated';
 
 import IndividualsResults from '../Individuals/IndividualsResults';
 import OccurrencesResults from '../Occurrences/OccurrencesResults';
+import FeaturesResults from '../Features/FeaturesResults';
 import { LinearProgress } from '@mui/material';
 
 function Layout(props) {
@@ -333,29 +334,18 @@ function Layout(props) {
 
             } catch (error) {
                 console.log(error)
+            } }else if (props.collection === 'Features') {
+                try {
+    
+                    let res = await axios.get("http://localhost:5054/api/features/filtering_terms?skip=0&limit=0")
+                    setFilteringTerms(res)
+                    setResults(null)
+    
+                } catch (error) {
+                    console.log(error)
+                }
+
             }
-        } else if (props.collection === 'Runs') {
-            try {
-
-                let res = await axios.get("https://beacons.bsc.es/beacon-network/v2.0.0/runs/filtering_terms")
-                setFilteringTerms(res)
-                setResults(null)
-
-            } catch (error) {
-                console.log(error)
-            }
-        } else if (props.collection === 'Biosamples') {
-            try {
-
-                let res = await axios.get("https://beacons.bsc.es/beacon-network/v2.0.0/biosamples/filtering_terms")
-                setFilteringTerms(res)
-                setResults(null)
-
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
 
         setShowFilteringTerms(true)
 
@@ -364,9 +354,11 @@ function Layout(props) {
 
     const handleExQueries = () => {
         if (props.collection === 'Individuals') {
-            setExampleQ(['Sex=1', 'AgeOfOnset>39', 'TumourGrade<3', 'TumourBehaviour!3', 'TumourTopography=%C2','TumourTopography=%C2,Sex=1'])
-        } else if (props.collection === 'Variant') {
-            setExampleQ(['22 : 16050310 - 16050740', '22 : 16050074 A > G'])
+            setExampleQ(['sex.concept_id=Male', '38003600', 'ethnicity.concept_id:African'])
+        } else if (props.collection === 'Occurrences') {
+            setExampleQ(['37209053', 'procedure_occurrence_id.concept_id=Ophthalmic microscopy', 'anatomic_site_location.concept_id:Cerebral lobes'])
+        } else if (props.collection === 'Features') {
+            setExampleQ(['37209053', 'procedure_occurrence_id.concept_id=Ophthalmic microscopy', 'anatomic_site_location.concept_id:Cerebral lobes'])
         }
     }
 
@@ -572,9 +564,9 @@ function Layout(props) {
         } else if (props.collection === "Occurrences") {
             setPlaceholder('filtering term comma-separated, ID><=value')
             setExtraIndividuals(true)
-        } else if (props.collection === "Runs") {
-            setPlaceholder('chr : pos ref > alt')
-            setExtraIndividuals(false)
+        } else if (props.collection === "Features") {
+            setPlaceholder('filtering term comma-separated, ID><=value')
+            setExtraIndividuals(true)
         } else if (props.collection === 'Datasets') {
             setPlaceholder('Search for any cohort')
             setExtraIndividuals(false)
@@ -589,6 +581,8 @@ function Layout(props) {
                 let res = await axios.get("http://localhost:5054/api/individuals/filtering_terms?skip=0&limit=0")}
                 else if (props.collection === 'Occurrences') {
                     let res = await axios.get("http://localhost:5054/api/occurrences/filtering_terms?skip=0&limit=0")}
+                    else if (props.collection === 'Features') {
+                        let res = await axios.get("http://localhost:5054/api/features/filtering_terms?skip=0&limit=0")}
                 if (res !== null) {
                     res.data.response.filteringTerms.forEach(element => {
                         if (element.type !== "custom") {
@@ -646,6 +640,8 @@ function Layout(props) {
             setResults('Individuals')
         } else if (props.collection === 'Occurrences') {
             setResults('Occurrences')
+        } else if (props.collection === 'Features') {
+            setResults('Features')
         }
 
 
@@ -668,6 +664,8 @@ function Layout(props) {
             setResults('Individuals')
         } else if (props.collection === 'Occurrences') {
             setResults('Occurrences')
+        } else if (props.collection === 'Features') {
+            setResults('Features')
         }
 
 
@@ -1021,6 +1019,11 @@ function Layout(props) {
                 {isSubmitted && results === 'Occurrences' &&
                     <div>
                         <OccurrencesResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
+                    </div>
+                }
+                {isSubmitted && results === 'Features' &&
+                    <div>
+                        <FeaturesResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
                     </div>
                 }
                 {isSubmitted && results === 'Variant' &&
