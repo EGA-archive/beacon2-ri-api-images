@@ -717,7 +717,12 @@ function Layout(props) {
         <div className="container1">
             <div className="container2">
                 <button className="helpButton" onClick={handleHelpModal2}><img className="questionLogo2" src="./question.png" alt='questionIcon'></img><h5>Help for querying</h5></button>
-                
+
+      <div class="title">
+        <p class="first">&nbsp;Beacon&nbsp;</p>
+        <p class="second">&nbsp;x&nbsp;</p>
+        <p class="third">&nbsp;Images&nbsp;</p>
+    </div>
                 <div className='logos'>
                     <a href="https://ega-archive.org/" target="_blank">
                         <img className="cinecaLogo" src="./logo.png" alt='EGALogo'></img>
@@ -883,7 +888,7 @@ function Layout(props) {
                                                     fontColor={"black"}
                                                     selectedFontColor={"white"}
                                                     border="0"
-                                                    selectedSwitchColor="#e29348"
+                                                    selectedSwitchColor="#5ad1cd"
                                                     borderWidth="1"
                                                     height={"23px"}
                                                     fontSize={"12px"}

@@ -1,17 +1,17 @@
 .login {
     display: flex;
-    color: white;
+    color: black;
     height: 100vh;
   }
 
 .appAside {
     width: 50%;
-    background-color: #0b5e81;
+    background-color: white;
 }
 
 .appForm {
     width: 50%;
-    background-color: #c8c7c7;;
+    background-color: white;
     padding: 25px 40px;
     overflow: auto;
 }
@@ -63,7 +63,7 @@
 }
 
 .formTitleLink-active {
-    color: white;
+    color: black;
     font-size: 20px;
     text-decoration: underline;
     text-underline-offset: 6px;
@@ -82,14 +82,14 @@
     display: block;
     text-transform: uppercase;
     font-size: 0.9em;
-    color: white;
+    color: black;
 }
 
 .formFieldInput {
     width: 85%;
     background-color: transparent;
     border: none;
-    color: white;
+    color: black;
     outline: none;
     border-bottom: 1px solid #445366;
     font-size: 1em;
@@ -104,7 +104,7 @@
 
 .formFieldButton {
     background-image: linear-gradient(356deg, #6ac5ff 50%, #86d2ff 80%);
-    color: white;
+    color: black;
     border: none;
     outline: none;
     border-radius: 25px;
@@ -146,7 +146,7 @@
 }
 
 .formFieldTermsLink {
-    color: white;
+    color: black;
     border-bottom: 1px solid black;
     text-decoration: none;
     display: inline-block;

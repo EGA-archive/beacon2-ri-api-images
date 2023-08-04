@@ -17,6 +17,12 @@ function Navbar() {
     const handleHelpModal1 = () => {
         setIsOpenModal1(true)
     }
+
+    const handleClik = () => {
+        console.log('hejek')
+        setIsLoggedIn(false)
+        auth.signOut()
+    }
     const logOut = (e) => {
 
         logOutUser()
@@ -25,38 +31,26 @@ function Navbar() {
     }
 
     return (
+
+
         <div className="navB">
             <nav className='nav2'>
                 <NavLink exact
                     to="/"
                     className={({ isActive }) => (isActive ? 'Individuals2' : 'Individuals')}
-                ><b>Beacon v2 Cancer Registry Portal</b></NavLink>
-                
-                <div class="animation nav2"></div>
-            </nav>
-            <nav className='nav2'>
+                >Individuals</NavLink>
                 <NavLink exact
                     to="/occurrences"
                     className={({ isActive }) => (isActive ? 'Occurrences2' : 'Occurrences')}
-                ><b>Occurrences</b></NavLink>
-                
-                <div class="animation nav2"></div>
-            </nav>
-            <nav className='nav2'>
+                >Occurrences</NavLink>
                 <NavLink exact
                     to="/features"
                     className={({ isActive }) => (isActive ? 'Features2' : 'Features')}
-                ><b>Features</b></NavLink>
-                
-                <div class="animation nav2"></div>
-            </nav>
-
-            <nav className='nav2'>
+                >Features</NavLink>
                 <NavLink exact
                     to="/devices"
                     className={({ isActive }) => (isActive ? 'Devices2' : 'Devices')}
-                ><b>Devices</b></NavLink>
-                
+                >Devices</NavLink>
                 <div class="animation nav2"></div>
             </nav>
             <nav className='nav3'>
@@ -64,18 +58,17 @@ function Navbar() {
                     <NavLink exact
                         to="/sign-in"
                         className={({ isActive }) => (isActive ? 'Sign-in2' : 'Sign-in')}
-                    >Sign in</NavLink>}
+                    > Sign in</NavLink>}
                 {isLoggedIn &&
                     <NavLink exact
-                        to="/sign-in"
-                        className={({ isActive }) => (isActive ? 'Sign-in2' : 'Sign-in')}
-                    onClick={logOut}>Log out</NavLink>}
+                        to="/individuals"
+                        className={({ isActive }) => (isActive ? 'Individuals2' : 'Individuals')}
+                        onClick={handleClik}>Log out</NavLink>}
 
                 <div class="animation nav3"></div>
             </nav>
 
         </div>
-
 
     )
 }

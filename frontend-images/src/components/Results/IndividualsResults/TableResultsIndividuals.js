@@ -6,26 +6,26 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 function TableResultsIndividuals(props) {
 
     const columns = [
-        { field: 'id', headerName: 'Row', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'person_id', headerName: 'person_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_concept_class_id', headerName: 'sex_concept_class_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_concept_code', headerName: 'sex_concept_code', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_concept_id', headerName: 'sex_concept_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_concept_name', headerName: 'sex_concept_name', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_domain_id', headerName: 'sex_domain_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_standard_concept', headerName: 'sex_standard_concept', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'sex_vocabulary_id', headerName: 'sex_vocabulary_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'birth_datetime', headerName: 'birth_datetime', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'birth_day', headerName: 'birth_day', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'birth_month', headerName: 'birth_month', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'birth_year', headerName: 'birth_year', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_concept_class_id', headerName: 'ethnicity_concept_class_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_concept_code', headerName: 'ethnicity_concept_code', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_concept_id', headerName: 'ethnicity_concept_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_concept_name', headerName: 'ethnicity_concept_name', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_domain_id', headerName: 'ethnicity_domain_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_standard_concept', headerName: 'ethnicity_standard_concept', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'ethnicity_vocabulary_id', headerName: 'ethnicity_vocabulary_id', flex: 1, headerClassName: 'super-app-theme--header' }
+        { field: 'id', headerName: 'Row', flex: 1, headerClassName: 'hola' },
+        { field: 'person_id', headerName: 'person_id', flex: 1, headerClassName: 'hola' },
+        { field: 'sex_concept_class_id', headerName: 'sex_concept_class_id', flex: 1, headerClassName: 'hola' },
+        { field: 'sex_concept_code', headerName: 'sex_concept_code', flex: 1, headerClassName: 'hola' },
+        { field: 'sex_concept_id', headerName: 'sex_concept_id', flex: 1, headerClassName: 'hola' },
+        { field: 'sex_concept_name', headerName: 'sex_concept_name', flex: 1, headerClassName: 'hola' },
+        { field: 'sex_domain_id', headerName: 'sex_domain_id', flex: 1, headerClassName: 'hola' },
+        { field: 'sex_standard_concept', headerName: 'sex_standard_concept', flex: 1, headerClassName: 'hola' },
+        { field: 'sex_vocabulary_id', headerName: 'sex_vocabulary_id', flex: 1, headerClassName: 'hola' },
+        { field: 'birth_datetime', headerName: 'birth_datetime', flex: 1, headerClassName: 'hola' },
+        { field: 'birth_day', headerName: 'birth_day', flex: 1, headerClassName: 'hola' },
+        { field: 'birth_month', headerName: 'birth_month', flex: 1, headerClassName: 'hola' },
+        { field: 'birth_year', headerName: 'birth_year', flex: 1, headerClassName: 'hola' },
+        { field: 'ethnicity_concept_class_id', headerName: 'ethnicity_concept_class_id', flex: 1, headerClassName: 'hola' },
+        { field: 'ethnicity_concept_code', headerName: 'ethnicity_concept_code', flex: 1, headerClassName: 'hola' },
+        { field: 'ethnicity_concept_id', headerName: 'ethnicity_concept_id', flex: 1, headerClassName: 'hola' },
+        { field: 'ethnicity_concept_name', headerName: 'ethnicity_concept_name', flex: 1, headerClassName: 'hola' },
+        { field: 'ethnicity_domain_id', headerName: 'ethnicity_domain_id', flex: 1, headerClassName: 'hola' },
+        { field: 'ethnicity_standard_concept', headerName: 'ethnicity_standard_concept', flex: 1, headerClassName: 'hola' },
+        { field: 'ethnicity_vocabulary_id', headerName: 'ethnicity_vocabulary_id', flex: 1, headerClassName: 'hola' }
     ]
 
     console.log(props.results)
@@ -315,24 +315,37 @@ function TableResultsIndividuals(props) {
 
     return (
         <DataGrid 
+
         initialState={{
             columns: {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
+                sex_concept_id: false,
+                sex_concept_name: false,
+                sex_domain_id: false,
+                sex_standard_concept: false,
+                sex_vocabulary_id: false,
                 birth_datetime: false,
                 birth_day: false,
                 birth_month: false,
-                birth_year: false
+                birth_year: false,
+                ethnicity_concept_class_id: false,
+                ethnicity_concept_code: false,
+                ethnicity_concept_id: false,
+                ethnicity_concept_name: false,
+                ethnicity_domain_id: false,
+                ethnicity_standard_concept: false,
+                ethnicity_vocabulary_id: false
                 
               },
             },
           }}
-        getRowHeight={() => 'auto'}
+        getRowHeight={() => 'auto' }
 
 
             columns={columns}
             rows={rows}
-            
+            readOnly={true}
 
         />
     )
@@ -341,3 +354,4 @@ function TableResultsIndividuals(props) {
 
 
 export default TableResultsIndividuals;
+

@@ -1,20 +1,19 @@
+
 .navB{
     display: flex;
     width: 100vw;
     position: relative;
     height: 57px;
-    background-color: grey;
     font-size: 0;
 }
 
 .nav2 {
-    width: 50%;
+    width: 70%;
     display: flex;
     justify-content: flex-start;
-	overflow: hidden;
 }
 .nav3 {
-    width: 50%;
+    width: 30%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -22,7 +21,6 @@
 .nav2 a {
 	line-height: 57px;
 	height: 100%;
-	width: 40%;
 	font-size: 12px;
 	display: inline-block;
 	position: relative;
@@ -30,7 +28,6 @@
 	text-decoration: none;
 	text-transform: uppercase;
 	text-align: center;
-	color: white;
 	cursor: pointer;
 }
 
@@ -44,15 +41,12 @@
 	text-decoration: none;
 	text-transform: uppercase;
 	text-align: center;
-	color: white;
 	cursor: pointer;
 }
-
 
 .navB .animation {
 	position: absolute;
 	height: 100%;
-	width: 100%;
 	top: 0;
 	z-index: 0;
 	transition: all .5s ease 0s;
@@ -61,127 +55,138 @@
 
 .Individuals2 {
 	width: 120px;
+	color: #e74c3c;
 }
 
 .Individuals {
 	width: 120px;
+	color: black
+	
 }
 
-.Biosamples2{
+.Occurrences2{
 	width: 120px;
-    background-color: #e74c3c;
+	color: #e74c3c;
 }
-.Biosamples{
+.Occurrences{
 	width: 120px;
+	color: black;
+
 }
 
-.Variants {
+.Features {
 	width: 120px;
+	color: black;
 }
 
-.Variants2 {
+.Features2 {
 	width: 120px;
-    background-color: #3498db;
+	color: #e74c3c;
+
 }
 
-.Runs {
+.Devices {
 	width: 120px;
+	color: black;
+	
 }
-.Runs2 {
+.Devices2 {
 	width: 120px;
-    background-color: #9b59b6;
-}
-
-.Analyses{
-    width: 120px;
-}
-.Analyses2{
-    width: 120px;
-    background-color: #e67e22;
-}
-
-.Cohorts{
-    width: 120px;
-}
-.Cohorts2{
-    width: 120px;
-    background-color: #5be57b;
-}
-
-
-.Cross-queries{
-    width: 120px;
-}
-
-.Cross-queries2{
-    width: 120px;
-    background-color: #d4c223;
-}
-
-.Members{
-    width: 220px;
-}
-
-.Members2{
-    width: 220px;
-    background-color: #4961b8;
+	color:#e74c3c
 }
 
 .Sign-in{
-    width: 120px;
-}
-.Sign-in2{
-    width: 120px;
-    background-color: #e575dd;
+	width: 176px;
+	color: black;
 }
 
-.Members:hover~.animation {
-	width: 200px;
-	right: 130px;
-	background-color: #4961b8;
+
+.Sign-in2{
+	width: 176 px;
+    color: #5ad1cd;
 }
-.Sign-in:hover~.animation {
-	width: 120px;
+
+.nav3 .Sign-in3{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: fit-content;
+	margin-right: 50px;
+}
+
+.nav3 .Sign-in4{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: fit-content;
+    margin-right: 50px;
+}
+
+.Sign-in3{
+	width: 176px;
+	margin-left: 40px;
+}
+
+.Sign-in3:hover~.animation {
+	width: 186px;
 	right: 0px;
 	background-color: #e575dd;
 }
 
-.Individuals:hover~.animation {
-	width: 290px !important;
-	left: 0px !important;
-	background-color: #1abc9c !important;
-}
-.Biosamples:hover~.animation {
-	width: 120px;
-	left: 120px;
-	background-color: #e74c3c;
+.Sign-in4{
+	width: 186px;
+	right: 0px;
+    background-color: #e575dd;
 }
 
-.Variants:hover~.animation {
-	width: 120px;
-	left: 240px;
-	background-color: #3498db;
+.ls-login-image2{
+	width: 24px;
+	margin-right: 10px;
 }
 
-.Runs:hover~.animation {
-	width: 120px;
-	left: 360px;
-	background-color: #9b59b6;
+.ls-login-image{
+	width: 146px;
+	margin-right: 10px;
+	margin-left: 10px;
 }
-.Analyses:hover~.animation {
-	width: 120px;
-	left: 480px;
-	background-color: #e67e22;
+
+
+.nav3 .Sign-in{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: fit-content;
+    margin-right: 9px;
 }
-.Cohorts:hover~.animation {
-	width: 120px;
-	left: 600px;
-	background-color: #5be57b;
+
+
+.nav3 .Sign-in2{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 186px;
 }
-.Cross-queries:hover~.animation {
-	width: 120px;
-	left: 720px;
-	background-color: #d4c223;
+
+.Sign-in:hover {
+	color: #5ad1cd;
+}
+
+.Individuals:hover {
+	color: #e74c3c;
+}
+.Occurrences:hover {
+	color: #e74c3c;
+}
+.Features:hover {
+	color: #e74c3c;
+}
+
+.Devices:hover {
+	color: #e74c3c;
 }
 
 
@@ -197,4 +202,3 @@ button {
     outline: 0;
   }
   
-
