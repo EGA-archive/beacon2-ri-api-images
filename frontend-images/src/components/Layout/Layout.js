@@ -22,6 +22,7 @@ import makeAnimated from 'react-select/animated';
 import IndividualsResults from '../Individuals/IndividualsResults';
 import OccurrencesResults from '../Occurrences/OccurrencesResults';
 import FeaturesResults from '../Features/FeaturesResults';
+import DevicesResults from '../Devices/DevicesResults';
 import { LinearProgress } from '@mui/material';
 
 function Layout(props) {
@@ -345,6 +346,17 @@ function Layout(props) {
                     console.log(error)
                 }
 
+            }else if (props.collection === 'Devices') {
+                try {
+    
+                    let res = await axios.get("http://localhost:5054/api/devices/filtering_terms?skip=0&limit=0")
+                    setFilteringTerms(res)
+                    setResults(null)
+    
+                } catch (error) {
+                    console.log(error)
+                }
+
             }
 
         setShowFilteringTerms(true)
@@ -358,7 +370,9 @@ function Layout(props) {
         } else if (props.collection === 'Occurrences') {
             setExampleQ(['37209053', 'procedure_occurrence_id.concept_id=Ophthalmic microscopy', 'anatomic_site_location.concept_id:Cerebral lobes'])
         } else if (props.collection === 'Features') {
-            setExampleQ(['37209053', 'procedure_occurrence_id.concept_id=Ophthalmic microscopy', 'anatomic_site_location.concept_id:Cerebral lobes'])
+            setExampleQ(['3019787', 'imaging_feature_domain_id.concept_id=Anatomic part Laterality', 'anatomic_site_concept_id.concept_id:Right and left lobes'])
+        } else if (props.collection === 'Devices') {
+            setExampleQ(['45768421', 'device.concept_id=Scanner', 'device_type.concept_id:Diagnostic imaging equipment'])
         }
     }
 
@@ -567,7 +581,10 @@ function Layout(props) {
         } else if (props.collection === "Features") {
             setPlaceholder('filtering term comma-separated, ID><=value')
             setExtraIndividuals(true)
-        } else if (props.collection === 'Datasets') {
+        } else if (props.collection === "Devices") {
+            setPlaceholder('filtering term comma-separated, ID><=value')
+            setExtraIndividuals(true)
+        }else if (props.collection === 'Datasets') {
             setPlaceholder('Search for any cohort')
             setExtraIndividuals(false)
         } else {
@@ -583,6 +600,8 @@ function Layout(props) {
                     let res = await axios.get("http://localhost:5054/api/occurrences/filtering_terms?skip=0&limit=0")}
                     else if (props.collection === 'Features') {
                         let res = await axios.get("http://localhost:5054/api/features/filtering_terms?skip=0&limit=0")}
+                        else if (props.collection === 'Devices') {
+                            let res = await axios.get("http://localhost:5054/api/devices/filtering_terms?skip=0&limit=0")}
                 if (res !== null) {
                     res.data.response.filteringTerms.forEach(element => {
                         if (element.type !== "custom") {
@@ -642,6 +661,8 @@ function Layout(props) {
             setResults('Occurrences')
         } else if (props.collection === 'Features') {
             setResults('Features')
+        }else if (props.collection === 'Devices') {
+            setResults('Devices')
         }
 
 
@@ -666,6 +687,8 @@ function Layout(props) {
             setResults('Occurrences')
         } else if (props.collection === 'Features') {
             setResults('Features')
+        }else if (props.collection === 'Devices') {
+            setResults('Devices')
         }
 
 
@@ -1024,6 +1047,11 @@ function Layout(props) {
                 {isSubmitted && results === 'Features' &&
                     <div>
                         <FeaturesResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
+                    </div>
+                }
+                {isSubmitted && results === 'Devices' &&
+                    <div>
+                        <DevicesResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
                     </div>
                 }
                 {isSubmitted && results === 'Variant' &&

@@ -51,7 +51,14 @@ function Navbar() {
                 <div class="animation nav2"></div>
             </nav>
 
-
+            <nav className='nav2'>
+                <NavLink exact
+                    to="/devices"
+                    className={({ isActive }) => (isActive ? 'Devices2' : 'Devices')}
+                ><b>Devices</b></NavLink>
+                
+                <div class="animation nav2"></div>
+            </nav>
             <nav className='nav3'>
                 {!isLoggedIn &&
                     <NavLink exact
