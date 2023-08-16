@@ -1,19 +1,11 @@
-.super-app-theme--header {
-    background-color: rgb(215, 220, 222);
-
+.table-header {
+    background-color:#84cdfa;
 }
 
-.pre{
-    display: 'block';
-    padding: '10px 30px';
-    margin: '0';
-    overflow: 'scroll';
-    cursor: pointer;
-    overscroll-behavior: contain;
-    overflow-inline: scroll;
-    
+.MuiDataGrid-cellContent{
+    width: 100%;
+    overflow: hidden;
 }
-
 
 .MuiDataGrid-root {
 
@@ -24,38 +16,4 @@
     overflow-inline: scroll;
     height: 750px !important;
 }
-
-.MuiFormControl-root label {
-
-    visibility: hidden;
-    margin: 10px;
-}
-
-.cardTableButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    width: 100vw;
-}
-
-
-.MuiDataGrid-cellContent {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 40px;
-    white-space: pre;
-    overflow-y: scroll !important;
-    overflow-x: scroll !important;
-    height: 50px;
-    font-size: 12px;
-    text-overflow:clip !important;
-    overflow-inline: scroll;
-}
-
-.MuiDataGrid-root{
-    margin-left: 5px;
-}
-
-
 

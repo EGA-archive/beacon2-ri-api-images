@@ -6,26 +6,26 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 function TableResultsDevices(props) {
 
     const columns = [
-        { field: 'id', headerName: 'Row', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'person_id', headerName: 'person_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'imaging_occurrence_id', headerName: 'imaging_occurrence_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_concept_class_id', headerName: 'device_concept_class_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_concept_code', headerName: 'device_concept_code', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_concept_id', headerName: 'device_concept_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_concept_name', headerName: 'device_concept_name', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_domain_id', headerName: 'device_domain_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_exposure_end_date', headerName: 'device_exposure_end_date', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_exposure_id', headerName: 'device_exposure_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_exposure_start_date', headerName: 'device_exposure_start_date', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_standard_concept', headerName: 'device_standard_concept', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_type_concept_class_id', headerName: 'device_type_concept_class_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_type_concept_code', headerName: 'device_type_concept_code', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_type_concept_id', headerName: 'device_type_concept_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_type_concept_name', headerName: 'device_type_concept_name', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_type_domain_id', headerName: 'device_type_domain_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_type_standard_concept', headerName: 'device_type_standard_concept', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_type_vocabulary_id', headerName: 'device_type_vocabulary_id', flex: 1, headerClassName: 'super-app-theme--header' },
-        { field: 'device_vocabulary_id', headerName: 'device_vocabulary_id', flex: 1, headerClassName: 'super-app-theme--header' }
+        { field: 'id', headerName: 'Row', flex: 1, headerClassName: 'table-header' },
+        { field: 'person_id', headerName: 'person_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'imaging_occurrence_id', headerName: 'imaging_occurrence_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_concept_class_id', headerName: 'device_concept_class_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_concept_code', headerName: 'device_concept_code', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_concept_id', headerName: 'device_concept_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_concept_name', headerName: 'device_concept_name', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_domain_id', headerName: 'device_domain_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_exposure_end_date', headerName: 'device_exposure_end_date', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_exposure_id', headerName: 'device_exposure_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_exposure_start_date', headerName: 'device_exposure_start_date', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_standard_concept', headerName: 'device_standard_concept', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_type_concept_class_id', headerName: 'device_type_concept_class_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_type_concept_code', headerName: 'device_type_concept_code', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_type_concept_id', headerName: 'device_type_concept_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_type_concept_name', headerName: 'device_type_concept_name', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_type_domain_id', headerName: 'device_type_domain_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_type_standard_concept', headerName: 'device_type_standard_concept', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_type_vocabulary_id', headerName: 'device_type_vocabulary_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_vocabulary_id', headerName: 'device_vocabulary_id', flex: 1, headerClassName: 'table-header' }
     ]
 
     console.log(props.results)

@@ -1,8 +1,19 @@
-.super-app-theme--header {
-    background-color:  black ;
-
+.table-header {
+    background-color:#84cdfa;
 }
 
 .MuiDataGrid-cellContent{
     width: 100%;
+    overflow: hidden;
 }
+
+.MuiDataGrid-root {
+
+    margin-left: 70px;
+    margin-top: 5px;
+    width: 88vw;
+    margin-right: 5px;
+    overflow-inline: scroll;
+    height: 750px !important;
+}
+
