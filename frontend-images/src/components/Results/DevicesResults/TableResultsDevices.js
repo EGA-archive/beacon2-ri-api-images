@@ -18,14 +18,14 @@ function TableResultsDevices(props) {
         { field: 'device_exposure_id', headerName: 'device_exposure_id', flex: 1, headerClassName: 'table-header' },
         { field: 'device_exposure_start_date', headerName: 'device_exposure_start_date', flex: 1, headerClassName: 'table-header' },
         { field: 'device_standard_concept', headerName: 'device_standard_concept', flex: 1, headerClassName: 'table-header' },
+        { field: 'device_vocabulary_id', headerName: 'device_vocabulary_id', flex: 1, headerClassName: 'table-header' },
         { field: 'device_type_concept_class_id', headerName: 'device_type_concept_class_id', flex: 1, headerClassName: 'table-header' },
         { field: 'device_type_concept_code', headerName: 'device_type_concept_code', flex: 1, headerClassName: 'table-header' },
         { field: 'device_type_concept_id', headerName: 'device_type_concept_id', flex: 1, headerClassName: 'table-header' },
         { field: 'device_type_concept_name', headerName: 'device_type_concept_name', flex: 1, headerClassName: 'table-header' },
         { field: 'device_type_domain_id', headerName: 'device_type_domain_id', flex: 1, headerClassName: 'table-header' },
         { field: 'device_type_standard_concept', headerName: 'device_type_standard_concept', flex: 1, headerClassName: 'table-header' },
-        { field: 'device_type_vocabulary_id', headerName: 'device_type_vocabulary_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'device_vocabulary_id', headerName: 'device_vocabulary_id', flex: 1, headerClassName: 'table-header' }
+        { field: 'device_type_vocabulary_id', headerName: 'device_type_vocabulary_id', flex: 1, headerClassName: 'table-header' }
     ]
 
     console.log(props.results)
@@ -35,7 +35,7 @@ function TableResultsDevices(props) {
         console.log(element[0])
             
         if (element[1] !== undefined) {
-            console.log(element[0])
+            console.log(element[1].imaging_occurrence_id)
 
             let imaging_occurrence_id = ''
             let stringimaging_occurrence_id = ''
@@ -280,6 +280,7 @@ function TableResultsDevices(props) {
                 device_concept_code: stringdevice_type_concept_code,
                 device_concept_id: stringdevice_concept_id,
                 device_concept_name: stringdevice_concept_name,
+                device_vocabulary_id: stringdevice_vocabulary_id,
                 device_domain_id: stringdevice_domain_id,
                 device_exposure_end_date: stringdevice_exposure_end_date,
                 device_exposure_id: stringdevice_exposure_id,
@@ -291,8 +292,8 @@ function TableResultsDevices(props) {
                 device_type_concept_name: stringdevice_type_concept_name,
                 device_type_domain_id: stringdevice_type_domain_id,
                 device_type_standard_concept: stringdevice_type_standard_concept,
-                device_type_vocabulary_id: stringdevice_type_vocabulary_id,
-                device_vocabulary_id: stringdevice_vocabulary_id })
+                device_type_vocabulary_id: stringdevice_type_vocabulary_id
+                 })
 
         }
 
@@ -304,16 +305,18 @@ function TableResultsDevices(props) {
             columns: {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
+                imaging_occurrence_id: false,
                 device_concept_class_id: false,
                 device_concept_code: false,
                 device_domain_id: false,
                 device_exposure_end_date: false,
+                device_exposure_id: false,
                 device_exposure_start_date: false,
                 device_standard_concept: false,
                 device_type_concept_class_id: false,
                 device_type_concept_code: false,
                 device_type_domain_id: false,
-                device_type_standard_concept: false
+                device_type_standard_concept: false,
 
               },
             },

@@ -362,15 +362,15 @@ function TableResultsOccurrences(props) {
                 imaging_study_uid: false,
                 procedure_occurrence_id_concept_class_id: false,
                 procedure_occurrence_id_concept_code: false,
-                procedure_occurrence_id_concept_name: false,
                 procedure_occurrence_id_domain_id: false,
                 procedure_occurrence_id_procedure_occurrence_id: false,
                 procedure_occurrence_id_standard_concept: false,
-                procedure_occurrence_id_vocabulary_id: false,
-                anatomic_site_location_standard_concept: false,
-                anatomic_site_location_concept_class_id: false,
+                wadors_uri: false,
                 modality: false,
-                wadors_uri: false
+                anatomic_site_location_concept_class_id: false,
+                anatomic_site_location_concept_code: false,
+                anatomic_site_location_domain_id: false,
+                anatomic_site_location_standard_concept: false,
 
                 
               },

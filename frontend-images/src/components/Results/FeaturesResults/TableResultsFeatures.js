@@ -354,10 +354,15 @@ function TableResultsFeatures(props) {
             columns: {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
+                imaging_feature_id: false,
                 imaging_feature_domain_id_concept_class_id: false,
                 imaging_feature_domain_id_concept_code: false,
                 imaging_feature_domain_id_domain_id: false,
+                imaging_feature_domain_id_measurement_id: false,
                 imaging_feature_domain_id_standard_concept: false,
+                imaging_finding_num: false,
+                imaging_occurrence_id: false,
+                domain_concept_id: false,
                 alg_system: false,
                 alg_datetime: false,
                 anatomic_site_concept_id_concept_class_id: false,

@@ -197,11 +197,13 @@ function Layout(props) {
                 return arrayFilteringTerms
             } else {
                 if (post !== undefined) {
-                    if (post.toLowerCase().includes(e.target.value.toLowerCase())) {
+                    console.log(post)
+                    console.log(e.target.value)
+                    if (post.toString().toLowerCase().includes(e.target.value.toLowerCase())) {
                         return post
                     }
                 } else {
-                    if (post.toLowerCase().includes(e.target.value.toLowerCase())) {
+                    if (post.toString().toLowerCase().includes(e.target.value.toLowerCase())) {
                         return post
                     }
                 }
@@ -453,111 +455,6 @@ function Layout(props) {
         setHideForm(false)
     }
 
-    const handleQEclick = (e) => {
-        setExpansionSection(true)
-    }
-
-    const handleSubmitQE = async (e) => {
-        try {
-            if (ontologyValue !== '' && qeValue !== '') {
-
-                resultsQEexact.splice(0, resultsQEexact.length)
-                setError(null)
-                const res = await axios.get(`http://goldorak.hesge.ch:8890/catalogue_explorer/HorizontalExpansionOls/?keywords=${qeValue}&ontology=${ontologyValue.toLowerCase()}`)
-                console.log(res)
-                let arrayResults = []
-                if (res.data.response.ols[qeValue] !== undefined) {
-                    arrayResults = res.data.response.ols[qeValue].search_term_expansion
-                    if (arrayResults.length < 1) {
-                        setError("Not found. Please check the keyword and ontologies and retry")
-                    }
-
-                } else {
-                    arrayResults = res.data.response.ols[qeValue.toLowerCase()].search_term_expansion
-                }
-
-                console.log(arrayResults)
-                arrayResults.forEach(element => {
-                    if (element.label.trim().toLowerCase() === qeValue.toLowerCase()) {
-                        //exact match
-                        console.log(qeValue.toLowerCase)
-                        console.log(element.label.trim().toLowerCase)
-                        resultsQEexact.push(element)
-                    }
-                })
-
-
-                if (resultsQEexact.length > 0) {
-                    setShowQEfirstResults(true)
-                    matchesQE.splice(0, matchesQE.length)
-                    console.log(resultsQEexact)
-                    resultsQEexact.forEach(element => {
-                        console.log(element)
-                        arrayFilteringTermsQE.forEach(element2 => {
-
-                                if (element.obo_id.toLowerCase().trim() === element2.id.toLowerCase().trim()) {
-                                    setError(null)
-                                    matchesQE.push(element2.id)
-                                    console.log(matchesQE)
-                                    console.log("FOUND A MATCH")
-                                    setShowQEresults(true)
-                                }
-                            
-                        
-                        })
-
-
-
-
-
-                    })
-                }
-
-            } else {
-                setError("Please write the keyword and at least one ontology")
-            }
-
-        } catch (error) {
-            setError("NOT FOUND")
-            console.log(error)
-        }
-    }
-
-    const handleCheckQE = (e) => {
-        if (e.target.checked === true) {
-            if (query !== null && query !== '') {
-                console.log(query)
-                setQuery(query + ',' + e.target.value)
-            } else {
-                setQuery(e.target.value)
-            }
-        } else if (e.target.checked === false) {
-            console.log(query)
-            let varQuery = ''
-            if (query.includes(',' + e.target.value)) {
-                varQuery = query.replace(',' + e.target.value, '')
-            } else if (query.includes(e.target.value + ',')) {
-                varQuery = query.replace(e.target.value + ',', '')
-            } else {
-                varQuery = query.replace(e.target.value, '')
-            }
-            setQuery(varQuery)
-        }
-
-
-
-    }
-
-    const handleForward = () => {
-        setShowQEfirstResults(false)
-        setShowQEresults(false)
-    }
-    
-    const handleNext = () => {
-        setShowQEfirstResults(false)
-        setShowQEresults(true)
-    }
-
     useEffect(() => {
 
         if (props.collection === 'Individuals') {
@@ -594,19 +491,11 @@ function Layout(props) {
         const fetchData = async () => {
             
             try {
-                if (props.collection === 'Individuals') {
-                let res = await axios.get("http://localhost:5054/api/individuals/filtering_terms?skip=0&limit=0")}
-                else if (props.collection === 'Occurrences') {
-                    let res = await axios.get("http://localhost:5054/api/occurrences/filtering_terms?skip=0&limit=0")}
-                    else if (props.collection === 'Features') {
-                        let res = await axios.get("http://localhost:5054/api/features/filtering_terms?skip=0&limit=0")}
-                        else if (props.collection === 'Devices') {
-                            let res = await axios.get("http://localhost:5054/api/devices/filtering_terms?skip=0&limit=0")}
+                let res = await axios.get("http://localhost:5054/api/individuals/filtering_terms?skip=0&limit=0")
                 if (res !== null) {
                     res.data.response.filteringTerms.forEach(element => {
                         if (element.type !== "custom") {
                             arrayFilteringTerms.push(element.id)
-                            arrayFilteringTermsQE.push(element)
                         }
 
 
@@ -655,7 +544,6 @@ function Layout(props) {
             setQuery(null)
         }
         if (props.collection === 'Individuals') {
-
             setResults('Individuals')
         } else if (props.collection === 'Occurrences') {
             setResults('Occurrences')
@@ -762,27 +650,6 @@ function Layout(props) {
                         </div>
                     }
 
-                    {cohorts &&
-                        <div className="cohortsModule">
-                            <Select
-                                onClick={triggerOptions}
-                                closeMenuOnSelect={false}
-                                components={animatedComponents}
-                                defaultValue={[]}
-                                isMulti
-                                options={options}
-                                onChange={handleChangeCohorts}
-                                autoFocus={true}
-                            //onToggleCallback={onToggle3}
-                            />
-
-                            <form className="d-flex2" onSubmit={onSubmitCohorts}>
-
-                                {results !== 'Cohorts' && <button className="searchButton2" type="submit"><img className="forwardIcon" src="./adelante.png" alt='searchIcon'></img></button>}
-                            </form>
-
-                        </div>}
-
                 </div>}
 
 
@@ -811,9 +678,6 @@ function Layout(props) {
                         </button>}
                     </div>
                 </div>
-                {showVariants === true && showBar === true && <button className='modeVariants' onClick={handleClick}><h2 className='modeVariantsQueries'>Change to FORM mode</h2></button>}
-                {showVariants === true && showBar === false && <button className='modeVariants' onClick={handleClick}><h2 className='modeVariantsQueries'>Change to BAR mode</h2></button>}
-                <hr></hr>
                 {showExtraIndividuals &&
                     <div className="containerExtraSections">
                         {showButton &&
@@ -913,101 +777,7 @@ function Layout(props) {
                             </div>
                         </div>}
                     </div>}
-                {hideForm === true && <button onClick={handleHideVariantsForm}><img className="arrowLogo" src="../arrow-down.png" alt='arrowIcon' /></button>}
-                {showVariants && showBar === false && hideForm === false && <div>
-                    <form onSubmit={handleSubmit}>
-                        <div className='variantsContainer'>
-
-                            <div className='moduleVariants'>
-                                <label className='labelVariantsTittle'>Sequence queries</label>
-                                <div>
-                                    <label className='labelVariants'>Reference name</label>
-                                    <input className='inputVariants' type='text' value={referenceName} onChange={handleChangeRefN}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>AssemblyID</label>
-                                    <input className='inputVariants' type='text' value={assemblyId} onChange={handleChangeAssembly}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>Start (single value)*</label>
-                                    <input className='inputVariants' type='text' value={start} onChange={handleChangeStart}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>alternateBases*</label>
-                                    <input className='inputVariants' type='text' value={alternateBases} onChange={handleChangeAlternateB}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>referenceBases*</label>
-                                    <input className='inputVariants' type='text' value={referenceBases} onChange={handleChangeReferenceB}></input>
-                                </div>
-                                <div className='DivButtonVariants'>
-                                    <input className='buttonVariants' type="submit" value="Search" />
-                                </div>
-                            </div>
-                            <div className='moduleVariants'>
-                                <label className='labelVariantsTittle'>Range queries</label>
-                                <div>
-                                    <label className='labelVariants'>Reference name</label>
-                                    <input className='inputVariants' type='text' value={referenceName2} onChange={handleChangeRefN2}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>AssemblyID</label>
-                                    <input className='inputVariants' type='text' value={assemblyId2} onChange={handleChangeAssembly2}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>Start (single value)*</label>
-                                    <input className='inputVariants' type='text' value={start2} onChange={handleChangeStart2}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants' >End (single value)*</label>
-                                    <input className='inputVariants' type='text' value={end} onChange={handleChangeEnd}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>Variant type:</label>
-                                    <input className='inputVariants' type='text' value={variantType} onChange={handleChangeVariantType}></input> </div>
-                                <div><h3>OR</h3>
-                                    <label className='labelVariants'>alternateBases:</label>
-                                    <input className='inputVariants' type='text' value={alternateBases2} onChange={handleChangeAlternateB2}></input></div>
-                                <div>
-                                    <label className='labelVariants'>referenceBases:</label>
-                                    <input className='inputVariants' type='text' value={referenceBases2} onChange={handleChangeReferenceB2}></input></div>
-                                <div><h3>OR</h3>
-                                    <label className='labelVariants'>Aminoacid Change:</label>
-                                    <input className='inputVariants' type='text' value={aminoacid} onChange={handleChangeAminoacid}></input>
-                                </div>
-                                <div className='DivButtonVariants'>
-                                    <input className='buttonVariants' type="submit" value="Search" />
-                                </div>
-                            </div>
-                            <div className='moduleVariants'>
-                                <label className='labelVariantsTittle'>Gene ID queries</label>
-                                <div>
-                                    <label className='labelVariants' >Gene ID*</label>
-                                    <input className='inputVariants' type='text' value={geneID} onChange={handleChangeGeneId}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>AssemblyID</label>
-                                    <input className='inputVariants' type='text' value={assemblyId3} onChange={handleChangeAssembly3}></input>
-                                </div>
-                                <div>
-                                    <label className='labelVariants'>Variant type:</label>
-                                    <input className='inputVariants' type='text' value={variantType2} onChange={handleChangeVariantType2}></input></div>
-                                <div><h3>OR</h3>
-                                    <label className='labelVariants'>alternateBases:</label>
-                                    <input className='inputVariants' type='text' value={alternateBases3} onChange={handleChangeAlternateB3}></input></div>
-                                <div><h3>OR</h3>
-                                    <label className='labelVariants'>Aminoacid Change:</label>
-                                    <input className='inputVariants' type='text' value={aminoacid2} onChange={handleChangeAminoacid2}></input>
-                                </div>
-                                <div className='DivButtonVariants'>
-                                    <input className='buttonVariants' type="submit" value="Search" />
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-
-                </div>}
+                
 
             </nav>
 
