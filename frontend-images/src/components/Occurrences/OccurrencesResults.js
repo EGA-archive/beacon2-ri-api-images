@@ -319,7 +319,9 @@ function OccurrencesResults(props) {
 
     }
     return (
-        <div>
+        <div>{timeOut === false && <div className="contenidorvolta">
+        <div className="volta"></div>
+      </div>}
             {logInRequired === false &&
 
                 <div>

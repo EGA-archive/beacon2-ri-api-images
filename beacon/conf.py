@@ -67,7 +67,7 @@ ga4gh_service_type_version = '1.0'
 # Database connection
 #
 database_host = '127.0.0.1'
-database_port = 27017
+database_port = 27019
 database_user = 'root'
 database_password = 'example'
 database_name = 'beacon'
