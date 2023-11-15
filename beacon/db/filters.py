@@ -58,7 +58,7 @@ def apply_ontology_filter(query: dict, filter: OntologyFilter, collection: str) 
     dict_scope['scope']=collection
     query_filtering['$and'].append(dict_scope)
     dict_id={}
-    dict_id['id']=int(filter.id)
+    dict_id['id']=filter.id
     query_filtering['$and'].append(dict_id)
     docs = get_documents(
         client.beacon.filtering_terms,
@@ -87,7 +87,7 @@ def apply_ontology_filter(query: dict, filter: OntologyFilter, collection: str) 
         query_terms = doc2['id']
     query_terms = query_terms.split(':')
     query_term = query_terms[0]
-    query[query_term]=int(filter.id)
+    query[query_term]=filter.id
 
    
 

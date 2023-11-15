@@ -74,10 +74,10 @@ def get_filtering_object(dict_terms: dict, c_name: str):
                         for k3,v3 in v2.items():
                             
                             label = v3
-                            if k3 == 'concept_id':
+                            if k3 == 'measurement_source_concept_id':
                                 id=v3
                                 field = k + '.' + k2 + '.' + k3
-                            if k3 == 'concept_name':
+                            if k3 == 'measurement_source_value':
                                 label = v3
                         if id is not None:
                             terms.append({
@@ -98,10 +98,10 @@ def get_filtering_object(dict_terms: dict, c_name: str):
                                                             })
 
                     else:
-                        if k2 == 'concept_id':
+                        if k2 == 'measurement_source_concept_id':
                             id=v2
                             field = k + '.' + k2
-                        if k2 == 'concept_name':
+                        if k2 == 'measurement_source_value':
                             label = v2
                 if id is not None:
                     terms.append({
@@ -121,10 +121,10 @@ def get_filtering_object(dict_terms: dict, c_name: str):
                                                                 'scope': c_name                    
                                                             })
             else:
-                if k == 'concept_id':
+                if k == 'measurement_source_concept_id':
                     id=v
                     field = k
-                if k == 'concept_name':
+                if k == 'measurement_source_value':
                     label = v
         if id is not None:
             terms.append({

@@ -130,3 +130,5 @@ deploy/ontologies/*.owl*
 .antlr/
 
 alternate_docker_compose_ls.yml
+
+deploy/data/output

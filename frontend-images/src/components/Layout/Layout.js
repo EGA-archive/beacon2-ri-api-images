@@ -370,9 +370,9 @@ function Layout(props) {
         if (props.collection === 'Individuals') {
             setExampleQ(['sex.concept_id=Male', '38003600', 'ethnicity.concept_id:African'])
         } else if (props.collection === 'Occurrences') {
-            setExampleQ(['37209053', 'procedure_occurrence_id.concept_id=Ophthalmic microscopy', 'anatomic_site_location.concept_id:Cerebral lobes'])
+            setExampleQ(['2000000026', 'anatomic_site_concept_id.concept_id', 'anatomic_site_concept_id.concept_id:Measurement'])
         } else if (props.collection === 'Features') {
-            setExampleQ(['3019787', 'imaging_feature_domain_id.concept_id=Anatomic part Laterality', 'anatomic_site_concept_id.concept_id:Right and left lobes'])
+            setExampleQ(['RAD002', 'imaging_feature_domain_id.measurement_source_concept_id', 'imaging_feature_domain_id.measurement_source_concept_id:shape_Flatness'])
         } else if (props.collection === 'Devices') {
             setExampleQ(['45768421', 'device.concept_id=Scanner', 'device_type.concept_id:Diagnostic imaging equipment'])
         }
