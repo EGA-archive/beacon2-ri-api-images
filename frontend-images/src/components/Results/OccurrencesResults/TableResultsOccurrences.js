@@ -356,6 +356,7 @@ function TableResultsOccurrences(props) {
             columns: {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
+                person_id: true,
                 imaging_occurrence_id: false,
                 imaging_occurrence_date: false,
                 imaging_study_series: false,
@@ -365,12 +366,19 @@ function TableResultsOccurrences(props) {
                 procedure_occurrence_id_domain_id: false,
                 procedure_occurrence_id_procedure_occurrence_id: false,
                 procedure_occurrence_id_standard_concept: false,
-                wadors_uri: false,
-                modality: false,
+                procedure_occurrence_id_concept_id: false,
+                procedure_occurrence_id_concept_name: false,
+                procedure_occurrence_id_vocabulary_id: false,
+                anatomic_site_location_concept_name: false,
+                anatomic_site_location_vocabulary_id: false,
+                wadors_uri: true,
+                modality: true,
                 anatomic_site_location_concept_class_id: false,
                 anatomic_site_location_concept_code: false,
-                anatomic_site_location_domain_id: false,
+                anatomic_site_location_domain_id: true,
                 anatomic_site_location_standard_concept: false,
+                anatomic_site_location_concept_id: true,
+
 
                 
               },
