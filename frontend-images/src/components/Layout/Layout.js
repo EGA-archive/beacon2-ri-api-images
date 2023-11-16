@@ -370,9 +370,9 @@ function Layout(props) {
         if (props.collection === 'Individuals') {
             setExampleQ(['sex.concept_id=Male', '38003600', 'ethnicity.concept_id:African'])
         } else if (props.collection === 'Occurrences') {
-            setExampleQ(['2000000026', 'anatomic_site_concept_id.concept_id', 'anatomic_site_concept_id.concept_id:Measurement'])
+            setExampleQ(['imaging_occurrence_id:100008', '4', 'imaging_occurrence_id:100025'])
         } else if (props.collection === 'Features') {
-            setExampleQ(['RAD002', 'imaging_feature_domain_id.measurement_source_concept_id', 'imaging_feature_domain_id.measurement_source_concept_id:shape_Flatness'])
+            setExampleQ(['RAD002', 'RAD004', 'imaging_feature_domain_id.measurement_source_concept_id:shape_Flatness'])
         } else if (props.collection === 'Devices') {
             setExampleQ(['45768421', 'device.concept_id=Scanner', 'device_type.concept_id:Diagnostic imaging equipment'])
         }

@@ -23,7 +23,7 @@ def apply_filters(query: dict, filters: List[dict], collection: str) -> dict:
         query["$and"] = []
         for filter in filters:
             partial_query = {}
-            if "value" in filter:
+            if ":" not in filter["id"] and '.' in filter["id"]:
                 LOG.debug(filter)
                 filter = AlphanumericFilter(**filter)
                 LOG.debug("Alphanumeric filter: %s %s %s", filter.id, filter.operator, filter.value)
@@ -66,8 +66,9 @@ def apply_ontology_filter(query: dict, filter: OntologyFilter, collection: str) 
         0,
         1
     )
-        
+    
     for doc_term in docs:
+        LOG.debug(doc_term)
         label = doc_term['label']
     query_filtering={}
     query_filtering['$and']=[]
@@ -85,8 +86,10 @@ def apply_ontology_filter(query: dict, filter: OntologyFilter, collection: str) 
     )
     for doc2 in docs_2:
         query_terms = doc2['id']
+    LOG.debug(query_terms)
     query_terms = query_terms.split(':')
     query_term = query_terms[0]
+    LOG.debug(query_term)
     query[query_term]=filter.id
 
    
@@ -157,7 +160,9 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
                         query['$or']=[]
                 except Exception:
                     query['$or']=[]
-                query_term = filter.id.replace("concept_id", "concept_name")
+                query_term = filter.id.replace("concept_id", "value")
+                query_term = filter.id.replace("imaging_occurrence_id", "procedure_occurrence_id.procedure_occurrence_id")
+
                 query_id={}
                 query_id[query_term]=filter.value
                 query['$or'].append(query_id) 
@@ -187,7 +192,9 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
                 except Exception:
                     query['$nor']=[]
 
-                query_term = filter.id.replace("concept_id", "concept_name")
+                query_term = filter.id.replace("concept_id", "value")
+                query_term = filter.id.replace("imaging_occurrence_id", "procedure_occurrence_id.procedure_occurrence_id")
+
                 query_id={}
                 query_id[query_term]=filter.value
                 query['$nor'].append(query_id) 
@@ -215,7 +222,10 @@ def apply_custom_filter(query: dict, filter: CustomFilter, collection:str) -> di
     LOG.debug(query)
 
     value_splitted = filter.id.split(':')
-    query_term = value_splitted[0].replace("concept_id", "concept_name")
+    query_term = value_splitted[0].replace("concept_id", "value")
+    if 'imaging_occurrence_id' in value_splitted[0]:
+        query_term = value_splitted[0].replace("imaging_occurrence_id", "procedure_occurrence_id.procedure_occurrence_id")
+
     try:
         query[query_term]=value_splitted[1]
     except Exception:
