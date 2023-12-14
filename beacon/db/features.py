@@ -43,8 +43,10 @@ def get_features(entry_id: Optional[str], qparams: RequestParams):
     collection = 'features'
     query = apply_request_parameters({}, qparams)
     query = apply_filters(query, qparams.query.filters, collection)
+    LOG.debug(query)
     query = include_resultset_responses(query, qparams)
     schema = DefaultSchemas.FEATURES
+    LOG.debug(query)
     count = get_count(client.beacon.features, query)
     include = qparams.query.include_resultset_responses
     if include == 'MISS':

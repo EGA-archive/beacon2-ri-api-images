@@ -23,11 +23,12 @@ def apply_filters(query: dict, filters: List[dict], collection: str) -> dict:
         query["$and"] = []
         for filter in filters:
             partial_query = {}
-            if ":" not in filter["id"] and '.' in filter["id"]:
+            if ":" not in filter["id"] and '_' in filter["id"]:
                 LOG.debug(filter)
                 filter = AlphanumericFilter(**filter)
                 LOG.debug("Alphanumeric filter: %s %s %s", filter.id, filter.operator, filter.value)
                 partial_query = apply_alphanumeric_filter(partial_query, filter, collection)
+                query["$and"].append({'imaging_feature_domain_id.concept_name': filter.id})
             elif ":" in filter["id"]:
                 filter = CustomFilter(**filter)
                 LOG.debug("Custom filter: %s", filter.id)
@@ -51,11 +52,17 @@ def apply_filters(query: dict, filters: List[dict], collection: str) -> dict:
 
 def apply_ontology_filter(query: dict, filter: OntologyFilter, collection: str) -> dict:
     
-   
+
+    final_term_list=[]
+        
+    final_term_list.append(filter.id)
     query_filtering={}
     query_filtering['$and']=[]
     dict_scope={}
-    dict_scope['scope']=collection
+    if collection == 'g_variants':
+        dict_scope['scope']='genomicVariations'
+    else:
+        dict_scope['scope']=collection
     query_filtering['$and'].append(dict_scope)
     dict_id={}
     dict_id['id']=filter.id
@@ -66,15 +73,17 @@ def apply_ontology_filter(query: dict, filter: OntologyFilter, collection: str) 
         0,
         1
     )
-    
+        
     for doc_term in docs:
-        LOG.debug(doc_term)
         label = doc_term['label']
     query_filtering={}
     query_filtering['$and']=[]
     query_filtering['$and'].append(dict_scope)
     dict_regex={}
-    dict_regex['$regex']=label
+    try:
+        dict_regex['$regex']=label
+    except Exception:
+        dict_regex['$regex']=''
     dict_id={}
     dict_id['id']=dict_regex
     query_filtering['$and'].append(dict_id)
@@ -86,14 +95,15 @@ def apply_ontology_filter(query: dict, filter: OntologyFilter, collection: str) 
     )
     for doc2 in docs_2:
         query_terms = doc2['id']
-    LOG.debug(query_terms)
     query_terms = query_terms.split(':')
     query_term = query_terms[0]
     LOG.debug(query_term)
-    query[query_term]=filter.id
-
-   
-
+    query_id={}
+    query['$or']=[]
+    for simil in final_term_list:
+        query_id={}
+        query_id[query_term]=simil
+        query['$or'].append(query_id)
     LOG.debug("QUERY: %s", query)
     return query
 
@@ -160,8 +170,7 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
                         query['$or']=[]
                 except Exception:
                     query['$or']=[]
-                query_term = filter.id.replace("concept_id", "value")
-                query_term = filter.id.replace("imaging_occurrence_id", "procedure_occurrence_id.procedure_occurrence_id")
+                query_term = "imaging_feature_domain_id.value_as_number"
 
                 query_id={}
                 query_id[query_term]=filter.value
@@ -192,8 +201,14 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
                 except Exception:
                     query['$nor']=[]
 
-                query_term = filter.id.replace("concept_id", "value")
-                query_term = filter.id.replace("imaging_occurrence_id", "procedure_occurrence_id.procedure_occurrence_id")
+                try: 
+                    if query['$or']:
+                        pass
+                    else:
+                        query['$or']=[]
+                except Exception:
+                    query['$or']=[]
+                query_term = "imaging_feature_domain_id.value_as_number"
 
                 query_id={}
                 query_id[query_term]=filter.value
@@ -204,14 +219,15 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
             query = { formatted_operator: formatted_value }
             LOG.debug(query)
             dict_measures={}
-            dict_measures[filter.id]=query
+            dict_measures['imaging_feature_domain_id.value_as_number']=query
             query = dict_measures
     else:
         query = { formatted_operator: float(formatted_value) }
         LOG.debug(query)
         dict_measures={}
-        dict_measures[filter.id]=query
+        dict_measures['imaging_feature_domain_id.value_as_number']=query
         query = dict_measures
+        
 
     LOG.debug("QUERY: %s", query)
     return query

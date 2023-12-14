@@ -72,10 +72,11 @@ def get_filtering_object(list_terms: list, c_name: str):
                                 id = None
                                 label = None
                                 for k3,v3 in v2.items():
-                                    if k3 == 'measurement_source_concept_id':
+                                    if k3 == 'concept_id':
                                         id=v3
                                         field = k + '.' + k2 + '.' + k3
-                                    if k3 == 'measurement_source_value':
+
+                                    if k3 == 'concept_name':
                                         label = v3
                                     if id is not None and label is not None:
                                         ontologyterm={
@@ -84,6 +85,11 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                                             'label': label,
                                                                             'scope': c_name                    
                                                                         }
+                                        alphanumericterm={
+                                                                                        'type': 'alphanumeric',
+                                                                                        'id': field,
+                                                                                        'scope': c_name                    
+                                                                                    }
                                         customterm={
                                                                             'type': 'custom',
                                                                             'id': '{}:{}'.format(field,label),
@@ -91,14 +97,16 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                                         }
                                         if ontologyterm not in terms:
                                             terms.append(ontologyterm)
+                                        if alphanumericterm not in terms:
+                                            terms.append(alphanumericterm)
                                         if customterm not in terms:
                                             terms.append(customterm)
 
                             else:
-                                if k2 == 'measurement_source_concept_id':
+                                if k2 == 'concept_id':
                                     id=v2
                                     field = k + '.' + k2
-                                if k2 == 'measurement_source_value':
+                                if k2 == 'concept_name':
                                     label = v2
                                 if id is not None and label is not None:
                                     ontologyterm={
@@ -107,6 +115,11 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                                         'label': label,
                                                                         'scope': c_name                    
                                                                     }
+                                    alphanumericterm={
+                                                                                    'type': 'alphanumeric',
+                                                                                    'id': field,                                                                      
+                                                                                    'scope': c_name                    
+                                                                                }
                                     customterm={
                                                                         'type': 'custom',
                                                                         'id': '{}:{}'.format(field,label),
@@ -114,13 +127,15 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                                     }
                                     if ontologyterm not in terms:
                                         terms.append(ontologyterm)
+                                    if alphanumericterm not in terms:
+                                        terms.append(alphanumericterm)
                                     if customterm not in terms:
                                         terms.append(customterm)
                     else:
-                        if k == 'measurement_source_concept_id':
+                        if k == 'concept_id':
                             id=v
                             field = k
-                        if k == 'measurement_source_value':
+                        if k == 'concept_name':
                             label = v
                         if id is not None and label is not None:
                             ontologyterm={
@@ -129,6 +144,11 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                                 'label': label,
                                                                 'scope': c_name                    
                                                             }
+                            alphanumericterm={
+                                                                            'type': 'alphanumeric',
+                                                                            'id': field,
+                                                                            'scope': c_name                    
+                                                                        }
                             customterm={
                                                                 'type': 'custom',
                                                                 'id': '{}:{}'.format(field,label),
@@ -136,6 +156,8 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                             }
                             if ontologyterm not in terms:
                                 terms.append(ontologyterm)
+                            if alphanumericterm not in terms:
+                                terms.append(alphanumericterm)
                             if customterm not in terms:
                                 terms.append(customterm)
 
@@ -170,6 +192,11 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                                 'label': label,
                                                                 'scope': c_name                    
                                                             }
+                            alphanumericterm={
+                                                                            'type': 'alphanumeric',
+                                                                            'id': field,
+                                                                            'scope': c_name                    
+                                                                        }
                             customterm={
                                                                 'type': 'custom',
                                                                 'id': '{}:{}'.format(field,label),
@@ -177,6 +204,8 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                             }
                             if ontologyterm not in terms:
                                 terms.append(ontologyterm)
+                            if alphanumericterm not in terms:
+                                terms.append(alphanumericterm)
                             if customterm not in terms:
                                 terms.append(customterm)
 

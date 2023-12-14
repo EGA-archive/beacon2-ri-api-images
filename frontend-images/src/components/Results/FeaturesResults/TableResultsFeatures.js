@@ -7,25 +7,27 @@ function TableResultsFeatures(props) {
 
     const columns = [
         { field: 'id', headerName: 'Row', flex: 1, headerClassName: 'table-header' },
+        { field: 'imaging_feature_domain_id_measurement_id', headerName: 'imaging_feature_domain_id_measurement_id', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_id', headerName: 'imaging_feature_id', flex: 1, headerClassName: 'table-header' },
         { field: 'person_id', headerName: 'person_id', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_concept_class_id', headerName: 'imaging_feature_domain_id_concept_class_id', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_concept_code', headerName: 'imaging_feature_domain_id_concept_code', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_concept_id', headerName: 'imaging_feature_domain_id_concept_id', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_concept_name', headerName: 'imaging_feature_domain_id_concept_name', flex: 1, headerClassName: 'table-header' },
+        { field: 'imaging_feature_domain_id_operator_concept_id', headerName: 'imaging_feature_domain_id_operator_concept_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'imaging_feature_domain_id_operator_concept_name', headerName: 'imaging_feature_domain_id_operator_concept_name', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_domain_id', headerName: 'imaging_feature_domain_id_domain_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_feature_domain_id_measurement_id', headerName: 'imaging_feature_domain_id_measurement_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'imaging_feature_domain_id_value_as_number', headerName: 'imaging_feature_domain_id_value_as_number', flex: 1, headerClassName: 'table-header' },
+        { field: 'imaging_feature_domain_id_measurement_source_concept_id', headerName: 'imaging_feature_domain_id_measurement_source_concept_id', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_standard_concept', headerName: 'imaging_feature_domain_id_standard_concept', flex: 1, headerClassName: 'table-header' },
+        { field: 'imaging_feature_domain_id_measurement_type_concept_id', headerName: 'imaging_feature_domain_id_measurement_type_concept_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'imaging_feature_domain_id_measurement_type_concept_name', headerName: 'imaging_feature_domain_id_measurement_type_concept_name', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_vocabulary_id', headerName: 'imaging_feature_domain_id_vocabulary_id', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_person_id', headerName: 'imaging_feature_domain_id_person_id', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_measurement_date', headerName: 'imaging_feature_domain_id_measurement_date', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_measurement_datetime', headerName: 'imaging_feature_domain_id_measurement_datetime', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_measurement_time', headerName: 'imaging_feature_domain_id_measurement_time', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_feature_domain_id_measurement_type_concept_id', headerName: 'imaging_feature_domain_id_measurement_type_concept_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_feature_domain_id_operator_concept_id', headerName: 'imaging_feature_domain_id_operator_concept_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_feature_domain_id_value_as_number', headerName: 'imaging_feature_domain_id_value_as_number', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_feature_domain_id_measurement_source_value', headerName: 'imaging_feature_domain_id_measurement_source_value', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_feature_domain_id_measurement_source_concept_id', headerName: 'imaging_feature_domain_id_measurement_source_concept_id', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_finding_num', headerName: 'imaging_finding_num', flex: 1, headerClassName: 'table-header' },
         { field: 'imaging_occurrence_id', headerName: 'imaging_occurrence_id', flex: 1, headerClassName: 'table-header' },
         { field: 'domain_concept_id', headerName: 'domain_concept_id', flex: 1, headerClassName: 'table-header' },
@@ -266,6 +268,20 @@ function TableResultsFeatures(props) {
                 stringimaging_feature_domain_id_measurement_type_concept_id = ''
             }
 
+            let imaging_feature_domain_id_measurement_type_concept_name = ''
+            let stringimaging_feature_domain_id_measurement_type_concept_name = ''
+
+            if (element[1].imaging_feature_domain_id.measurement_type_concept_name !== '' && element[1].imaging_feature_domain_id.measurement_type_concept_name !== undefined) {
+                if (element[1].imaging_feature_domain_id.measurement_type_concept_name !== undefined) {
+                    imaging_feature_domain_id_measurement_type_concept_name = element[1].imaging_feature_domain_id.measurement_type_concept_name
+                }
+
+                stringimaging_feature_domain_id_measurement_type_concept_name= `${imaging_feature_domain_id_measurement_type_concept_name}`
+            } else {
+                stringimaging_feature_domain_id_measurement_type_concept_name = ''
+            }
+
+
             let imaging_feature_domain_id_operator_concept_id = ''
             let stringimaging_feature_domain_id_operator_concept_id = ''
 
@@ -277,6 +293,19 @@ function TableResultsFeatures(props) {
                 stringimaging_feature_domain_id_operator_concept_id= `${imaging_feature_domain_id_operator_concept_id}`
             } else {
                 stringimaging_feature_domain_id_operator_concept_id = ''
+            }
+
+            let imaging_feature_domain_id_operator_concept_name = ''
+            let stringimaging_feature_domain_id_operator_concept_name = ''
+
+            if (element[1].imaging_feature_domain_id.operator_concept_name !== '' && element[1].imaging_feature_domain_id.operator_concept_name !== undefined) {
+                if (element[1].imaging_feature_domain_id.operator_concept_name !== undefined) {
+                    imaging_feature_domain_id_operator_concept_name = element[1].imaging_feature_domain_id.operator_concept_name
+                }
+
+                stringimaging_feature_domain_id_operator_concept_name= `${imaging_feature_domain_id_operator_concept_name}`
+            } else {
+                stringimaging_feature_domain_id_operator_concept_name = ''
             }
 
             let imaging_feature_domain_id_value_as_number = ''
@@ -462,7 +491,9 @@ function TableResultsFeatures(props) {
                 imaging_feature_domain_id_measurement_datetime: stringimaging_feature_domain_id_measurement_datetime,
                 imaging_feature_domain_id_measurement_time: stringimaging_feature_domain_id_measurement_time,
                 imaging_feature_domain_id_measurement_type_concept_id: stringimaging_feature_domain_id_measurement_type_concept_id,
+                imaging_feature_domain_id_measurement_type_concept_name: stringimaging_feature_domain_id_measurement_type_concept_name,
                 imaging_feature_domain_id_operator_concept_id: stringimaging_feature_domain_id_operator_concept_id,
+                imaging_feature_domain_id_operator_concept_name: stringimaging_feature_domain_id_operator_concept_name,
                 imaging_feature_domain_id_value_as_number: stringimaging_feature_domain_id_value_as_number,
                 imaging_feature_domain_id_measurement_source_concept_id: stringimaging_feature_domain_id_measurement_source_concept_id,
                 imaging_feature_domain_id_measurement_source_value: stringimaging_feature_domain_id_measurement_source_value,
@@ -489,26 +520,28 @@ function TableResultsFeatures(props) {
             columns: {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
-                imaging_feature_id: true,
+                imaging_feature_domain_id_measurement_id: true,
+                imaging_feature_id: false,
                 person_id: true,
                 imaging_feature_domain_id_concept_class_id: false,
                 imaging_feature_domain_id_concept_code: false,
                 imaging_feature_domain_id_concept_id: true,
-                imaging_feature_domain_id_concept_name: false,
-                imaging_feature_domain_id_domain_id: true,
-                imaging_feature_domain_id_measurement_id: true,
+                imaging_feature_domain_id_concept_name: true,
+                imaging_feature_domain_id_domain_id: false,
                 imaging_feature_domain_id_standard_concept: false,
-                imaging_feature_domain_id_vocabulary_id: false,
                 imaging_feature_domain_id_measurement_date: false,
                 imaging_feature_domain_id_measurement_datetime:false,
                 imaging_feature_domain_id_measurement_time:false,
                 imaging_feature_domain_id_measurement_type_concept_id:false,
-                imaging_feature_domain_id_operator_concept_id:true,
-                imaging_feature_domain_id_value_as_number:false,
-                imaging_feature_domain_id_measurement_source_concept_id:true,
-                imaging_feature_domain_id_measurement_source_value:true,
+                imaging_feature_domain_id_measurement_type_concept_name:true,
+                imaging_feature_domain_id_operator_concept_id:false,
+                imaging_feature_domain_id_operator_concept_name:false,
+                imaging_feature_domain_id_value_as_number:true,
+                imaging_feature_domain_id_measurement_source_concept_id:false,
+                imaging_feature_domain_id_measurement_source_value:false,
+                imaging_feature_domain_id_vocabulary_id: true,
                 imaging_finding_num: false,
-                imaging_occurrence_id: true,
+                imaging_occurrence_id: false,
                 domain_concept_id: false,
                 alg_system: false,
                 alg_datetime: false,
@@ -518,7 +551,8 @@ function TableResultsFeatures(props) {
                 anatomic_site_concept_id_concept_name: false,
                 anatomic_site_concept_id_domain_id: false,
                 anatomic_site_concept_id_standard_concept: false,
-                anatomic_site_concept_id_vocabulary_id: false
+                anatomic_site_concept_id_vocabulary_id: false,
+                imaging_feature_domain_id_person_id: false
                 
               },
             },
