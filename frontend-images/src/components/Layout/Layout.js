@@ -294,7 +294,7 @@ function Layout(props) {
 
             try {
 
-                let res = await axios.get("http://localhost:5054/api/individuals/filtering_terms?skip=0&limit=0")
+                let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/individuals/filtering_terms?skip=0&limit=0")
                 console.log(res)
                 if (res.data.response.filteringTerms !== undefined) {
                     setFilteringTerms(res)
@@ -331,7 +331,7 @@ function Layout(props) {
         } else if (props.collection === 'Occurrences') {
             try {
 
-                let res = await axios.get("http://localhost:5054/api/occurrences/filtering_terms?skip=0&limit=0")
+                let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/occurrences/filtering_terms?skip=0&limit=0")
                 setFilteringTerms(res)
                 setResults(null)
 
@@ -340,7 +340,7 @@ function Layout(props) {
             } }else if (props.collection === 'Features') {
                 try {
     
-                    let res = await axios.get("http://localhost:5054/api/features/filtering_terms?skip=0&limit=0")
+                    let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/features/filtering_terms?skip=0&limit=0")
                     setFilteringTerms(res)
                     setResults(null)
     
@@ -351,7 +351,7 @@ function Layout(props) {
             }else if (props.collection === 'Devices') {
                 try {
     
-                    let res = await axios.get("http://localhost:5054/api/devices/filtering_terms?skip=0&limit=0")
+                    let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/devices/filtering_terms?skip=0&limit=0")
                     setFilteringTerms(res)
                     setResults(null)
     
@@ -491,7 +491,7 @@ function Layout(props) {
         const fetchData = async () => {
             
             try {
-                let res = await axios.get("http://localhost:5054/api/individuals/filtering_terms?skip=0&limit=0")
+                let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/individuals/filtering_terms?skip=0&limit=0")
                 if (res !== null) {
                     res.data.response.filteringTerms.forEach(element => {
                         if (element.type !== "custom") {

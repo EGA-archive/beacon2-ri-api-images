@@ -61,7 +61,7 @@ export default function SignInForm() {
             formBody = formBody.join("&");
 
 
-            const response = await fetch('http://localhost:8080/auth/realms/Beacon/protocol/openid-connect/token', {
+            const response = await fetch('https://beacon-network-demo2.ega-archive.org/auth/realms/Beacon/protocol/openid-connect/token', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

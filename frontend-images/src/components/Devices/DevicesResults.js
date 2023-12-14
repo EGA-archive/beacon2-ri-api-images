@@ -43,7 +43,7 @@ function DevicesResults(props) {
 
     const [checked, setChecked] = useState(false)
 
-    const API_ENDPOINT = "http://localhost:5054/api/devices/"
+    const API_ENDPOINT = "https://beacon-images-api-test.ega-archive.org/api/devices/"
 
     let queryStringTerm = ''
 
@@ -187,7 +187,7 @@ function DevicesResults(props) {
 
                     //   const headers = { 'Content-type': 'application/json', "Access-Control-Allow-Origin": "*" }
                     //res = await axios.post("https://beacons.bsc.es/beacon-network/v2.0.0/Devices/", jsonData1, { headers: headers })
-                    res = await axios.post("http://localhost:5054/api/devices", jsonData1)
+                    res = await axios.post("https://beacon-images-api-test.ega-archive.org/api/devices", jsonData1)
 
                     // res = await axios.post("http://localhost:5050/api/Devices", jsonData1, { headers: headers })
                     console.log(res)
@@ -239,7 +239,7 @@ function DevicesResults(props) {
                     jsonData2 = JSON.stringify(jsonData2)
                     console.log(jsonData2)
 
-                    res = await axios.post("http://localhost:5054/api/devices", jsonData2)
+                    res = await axios.post("https://beacon-images-api-test.ega-archive.org/api/devices", jsonData2)
                     console.log(res)
                     setTimeOut(true)
 
