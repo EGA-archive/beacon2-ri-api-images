@@ -24,6 +24,7 @@ import OccurrencesResults from '../Occurrences/OccurrencesResults';
 import FeaturesResults from '../Features/FeaturesResults';
 import DevicesResults from '../Devices/DevicesResults';
 import { LinearProgress } from '@mui/material';
+import configData from '../../config.json'
 
 function Layout(props) {
     console.log(props)
@@ -291,10 +292,10 @@ function Layout(props) {
 
 
         if (props.collection === 'Individuals') {
-
+            
             try {
-
-                let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/individuals/filtering_terms?skip=0&limit=0")
+                const API_ENDPOINT = configData.API_URL + "/api/individuals/filtering_terms?skip=0&limit=0"
+                let res = await axios.get(API_ENDPOINT)
                 console.log(res)
                 if (res.data.response.filteringTerms !== undefined) {
                     setFilteringTerms(res)
@@ -307,31 +308,10 @@ function Layout(props) {
             } catch (error) {
                 console.log(error)
             }
-        } else if (props.collection === 'Cohorts') {
-
-            try {
-
-                let res = await axios.get("https://beacons.bsc.es/beacon-network/v2.0.0/cohorts/filtering_terms")
-                setFilteringTerms(res)
-                setResults(null)
-
-            } catch (error) {
-                console.log(error)
-            }
-        } else if (props.collection === 'Variant') {
-            try {
-
-                let res = await axios.get("https://beacons.bsc.es/beacon-network/v2.0.0/g_variants/filtering_terms")
-                setFilteringTerms(res)
-                setResults(null)
-
-            } catch (error) {
-                console.log(error)
-            }
         } else if (props.collection === 'Occurrences') {
             try {
-
-                let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/occurrences/filtering_terms?skip=0&limit=0")
+                const API_ENDPOINT = configData.API_URL + "/api/occurrences/filtering_terms?skip=0&limit=0"
+                let res = await axios.get(API_ENDPOINT)
                 setFilteringTerms(res)
                 setResults(null)
 
@@ -339,8 +319,8 @@ function Layout(props) {
                 console.log(error)
             } }else if (props.collection === 'Features') {
                 try {
-    
-                    let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/features/filtering_terms?skip=0&limit=0")
+                    const API_ENDPOINT = configData.API_URL + "/api/features/filtering_terms?skip=0&limit=0"
+                    let res = await axios.get(API_ENDPOINT)
                     setFilteringTerms(res)
                     setResults(null)
     
@@ -350,8 +330,8 @@ function Layout(props) {
 
             }else if (props.collection === 'Devices') {
                 try {
-    
-                    let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/devices/filtering_terms?skip=0&limit=0")
+                    const API_ENDPOINT = configData.API_URL + "/api/devices/filtering_terms?skip=0&limit=0"
+                    let res = await axios.get(API_ENDPOINT)
                     setFilteringTerms(res)
                     setResults(null)
     
@@ -491,7 +471,8 @@ function Layout(props) {
         const fetchData = async () => {
             
             try {
-                let res = await axios.get("https://beacon-images-api-test.ega-archive.org/api/individuals/filtering_terms?skip=0&limit=0")
+                const API_ENDPOINT = configData.API_URL + "/api/individuals/filtering_terms?skip=0&limit=0"
+                let res = await axios.get(API_ENDPOINT)
                 if (res !== null) {
                     res.data.response.filteringTerms.forEach(element => {
                         if (element.type !== "custom") {

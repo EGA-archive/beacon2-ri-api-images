@@ -8,6 +8,8 @@ import { useContext } from 'react';
 
 import TableResultsOccurrences from '../Results/OccurrencesResults/TableResultsOccurrences';
 
+import configData from '../../config.json'
+
 function OccurrencesResults(props) {
 
     const [showLayout, setShowLayout] = useState(false)
@@ -43,7 +45,7 @@ function OccurrencesResults(props) {
 
     const [checked, setChecked] = useState(false)
 
-    const API_ENDPOINT = "https://beacon-images-api-test.ega-archive.org/api/occurrences/"
+    const API_ENDPOINT = configData.API_URL + "/api/occurrences/"
 
     let queryStringTerm = ''
 
@@ -187,7 +189,7 @@ function OccurrencesResults(props) {
 
                     //   const headers = { 'Content-type': 'application/json', "Access-Control-Allow-Origin": "*" }
                     //res = await axios.post("https://beacons.bsc.es/beacon-network/v2.0.0/occurrences/", jsonData1, { headers: headers })
-                    res = await axios.post("https://beacon-images-api-test.ega-archive.org/api/occurrences", jsonData1)
+                    res = await axios.post(API_ENDPOINT, jsonData1)
 
                     // res = await axios.post("http://localhost:5050/api/occurrences", jsonData1, { headers: headers })
                     console.log(res)
@@ -239,7 +241,7 @@ function OccurrencesResults(props) {
                     jsonData2 = JSON.stringify(jsonData2)
                     console.log(jsonData2)
 
-                    res = await axios.post("https://beacon-images-api-test.ega-archive.org/api/occurrences", jsonData2)
+                    res = await axios.post(API_ENDPOINT, jsonData2)
                     console.log(res)
                     setTimeOut(true)
 

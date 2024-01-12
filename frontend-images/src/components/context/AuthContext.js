@@ -1,5 +1,6 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import configData from '../../config.json'
 
 const AuthContext = createContext();
 
@@ -105,7 +106,9 @@ function AuthProviderWrapper(props) {
             }
             formBody = formBody.join("&");
 
-            const response = await fetch('https://beacon-network-demo2.ega-archive.org/auth/realms/Beacon/protocol/openid-connect/token', {
+            const KEYCLOAK_ENDPOINT = configData.KEYCLOAK_URL + '/auth/realms/Beacon/protocol/openid-connect/token'
+
+            const response = await fetch(KEYCLOAK_ENDPOINT, {
                method: 'POST',
                headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'

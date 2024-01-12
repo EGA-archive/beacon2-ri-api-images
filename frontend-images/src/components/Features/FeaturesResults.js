@@ -8,6 +8,8 @@ import { useContext } from 'react';
 
 import TableResultsFeatures from '../Results/FeaturesResults/TableResultsFeatures';
 
+import configData from '../../config.json'
+
 function FeaturesResults(props) {
 
     const [showLayout, setShowLayout] = useState(false)
@@ -43,7 +45,7 @@ function FeaturesResults(props) {
 
     const [checked, setChecked] = useState(false)
 
-    const API_ENDPOINT = "https://beacon-images-api-test.ega-archive.org/api/features/"
+    const API_ENDPOINT = configData.API_URL + "/api/features"
 
     let queryStringTerm = ''
 
@@ -187,7 +189,7 @@ function FeaturesResults(props) {
 
                     //   const headers = { 'Content-type': 'application/json', "Access-Control-Allow-Origin": "*" }
                     //res = await axios.post("https://beacons.bsc.es/beacon-network/v2.0.0/Features/", jsonData1, { headers: headers })
-                    res = await axios.post("https://beacon-images-api-test.ega-archive.org/api/features", jsonData1)
+                    res = await axios.post(API_ENDPOINT, jsonData1)
 
                     // res = await axios.post("http://localhost:5050/api/features", jsonData1, { headers: headers })
                     console.log(res)
@@ -239,7 +241,7 @@ function FeaturesResults(props) {
                     jsonData2 = JSON.stringify(jsonData2)
                     console.log(jsonData2)
 
-                    res = await axios.post("https://beacon-images-api-test.ega-archive.org/api/features", jsonData2)
+                    res = await axios.post(API_ENDPOINT, jsonData2)
                     console.log(res)
                     setTimeOut(true)
 

@@ -1,9 +1,10 @@
 import './SignInForm.css'
 import { NavLink } from 'react-router-dom';
 import { Component } from 'react';
+import configData from '../../config.json'
 
-const apiURL = 'http://localhost:8080/auth/admin/realms/Beacon/users'
-const apiURL2 = 'http://localhost:8080/auth/realms/Beacon/protocol/openid-connect/token'
+const apiURL =  configData.KEYCLOAK_URL + '/auth/admin/realms/Beacon/users'
+const apiURL2 = configData.KEYCLOAK_URL + '/auth/realms/Beacon/protocol/openid-connect/token'
 
 
 class SignUpForm extends Component {

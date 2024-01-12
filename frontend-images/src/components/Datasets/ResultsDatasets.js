@@ -2,6 +2,7 @@
 import './ResultsDatasets.css'
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import configData from '../../config.json'
 
 function ResultsDatasets(props) {
 
@@ -9,13 +10,15 @@ function ResultsDatasets(props) {
 
     const [trigger, setTrigger] = useState(false)
 
+    const API_ENDPOINT_INFO = configData.API_URL + "/api/info"
+
 
     useEffect(() => {
 
         const apiCall = async () => {
 
             try {
-                let res = await axios.get('https://beacon-images-api-test.ega-archive.org/api/info')
+                let res = await axios.get(API_ENDPOINT_INFO)
                 console.log(res.data.responses)
                 res.data.responses.forEach(element => {
                     resp.push(element)

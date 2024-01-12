@@ -94,13 +94,13 @@ services:
   frontend-images:
     build:
       context: ../frontend-images
-    command: ["node", "/opt/yarn-v1.22.19/bin/yarn.js", "start"]
-    #command: ["yarn"]
+    command: node /opt/yarn-v1.22.19/bin/yarn.js start
     container_name: react-images
     depends_on:
       - beacon-images
     ports:
       - 3004:3001
     volumes:
-      - ../frontend-images:/usr/src/app
+      - ../frontend-images/.env:/frontend/.env
+      - ../frontend-images/src/config.json:/frontend/src/config.json
 
