@@ -1,4 +1,4 @@
 {
     "API_URL": "http://localhost:5054",
-    "KEYCLOAK_URL": "http://localhost:8080"
+    "KEYCLOAK_URL": "https://beacon-network-demo2.ega-archive.org"
 }

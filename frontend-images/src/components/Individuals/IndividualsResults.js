@@ -44,7 +44,7 @@ function IndividualsResults(props) {
 
     const [checked, setChecked] = useState(false)
 
-    const API_ENDPOINT = configData.API_URL + "/api/individuals/"
+    const API_ENDPOINT = configData.API_URL + "/api/individuals"
 
     let queryStringTerm = ''
 

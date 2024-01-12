@@ -313,12 +313,12 @@ function FilteringTerms(props) {
                             <tbody>
 
                                 {index % 2 === 0 && <tr className="terms1">
-                                    <td className="th2"> {(term.type=== "ontology" || term.type === "custom") && <input className="select-checkbox" onClick={handleCheck} type="checkbox" id='includeTerm' name="term" value={term.id} />}
+                                    <td className="th2"> {(term.type=== "ontology" || term.type=== "alphanumeric" || term.type === "custom") && <input className="select-checkbox" onClick={handleCheck} type="checkbox" id='includeTerm' name="term" value={term.id} />}
                                         {term.id}</td>
                                     <td className="th1">{term.type}</td>
                                 </tr>}
                                 {index % 2 == !0 && <tr className="terms2">
-                                    <td className="th2"> {(term.type=== "ontology" || term.type === "custom") &&  <input className="select-checkbox" onClick={handleCheck} type="checkbox" id="includeTerm" name="term" value={term.id} />}
+                                    <td className="th2"> {(term.type=== "ontology" || term.type=== "alphanumeric" || term.type === "custom") &&  <input className="select-checkbox" onClick={handleCheck} type="checkbox" id="includeTerm" name="term" value={term.id} />}
                                         {term.id}</td>
                                     <td className="th1">{term.type}</td>
                         

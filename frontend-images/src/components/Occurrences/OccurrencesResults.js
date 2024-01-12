@@ -45,7 +45,7 @@ function OccurrencesResults(props) {
 
     const [checked, setChecked] = useState(false)
 
-    const API_ENDPOINT = configData.API_URL + "/api/occurrences/"
+    const API_ENDPOINT = configData.API_URL + "/api/occurrences"
 
     let queryStringTerm = ''
 

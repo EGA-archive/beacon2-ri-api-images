@@ -87,7 +87,7 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                                         }
                                         alphanumericterm={
                                                                                         'type': 'alphanumeric',
-                                                                                        'id': field,
+                                                                                        'id': label+">"+"2000",
                                                                                         'scope': c_name                    
                                                                                     }
                                         customterm={
@@ -117,7 +117,7 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                                     }
                                     alphanumericterm={
                                                                                     'type': 'alphanumeric',
-                                                                                    'id': field,                                                                      
+                                                                                    'id': label+">"+"2000",
                                                                                     'scope': c_name                    
                                                                                 }
                                     customterm={
@@ -146,7 +146,7 @@ def get_filtering_object(list_terms: list, c_name: str):
                                                             }
                             alphanumericterm={
                                                                             'type': 'alphanumeric',
-                                                                            'id': field,
+                                                                            'id': label+">"+"2000",
                                                                             'scope': c_name                    
                                                                         }
                             customterm={

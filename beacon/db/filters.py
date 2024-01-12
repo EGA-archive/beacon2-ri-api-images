@@ -238,7 +238,7 @@ def apply_custom_filter(query: dict, filter: CustomFilter, collection:str) -> di
     LOG.debug(query)
 
     value_splitted = filter.id.split(':')
-    query_term = value_splitted[0].replace("concept_id", "value")
+    query_term = value_splitted[0].replace("concept_id", "concept_name")
     if 'imaging_occurrence_id' in value_splitted[0]:
         query_term = value_splitted[0].replace("imaging_occurrence_id", "procedure_occurrence_id.procedure_occurrence_id")
 
