@@ -78,7 +78,7 @@ def get_filtering_object(list_terms: list, c_name: str):
 
                                     if k3 == 'concept_name':
                                         label = v3
-                                    if id is not None and label is not None:
+                                    if id is not None and label is not None and id != "" and label != "":
                                         ontologyterm={
                                                                             'type': 'ontology',
                                                                             'id': id,
@@ -108,7 +108,7 @@ def get_filtering_object(list_terms: list, c_name: str):
                                     field = k + '.' + k2
                                 if k2 == 'concept_name':
                                     label = v2
-                                if id is not None and label is not None:
+                                if id is not None and label is not None and id != "" and label != "":
                                     ontologyterm={
                                                                         'type': 'ontology',
                                                                         'id': id,
@@ -137,7 +137,7 @@ def get_filtering_object(list_terms: list, c_name: str):
                             field = k
                         if k == 'concept_name':
                             label = v
-                        if id is not None and label is not None:
+                        if id is not None and label is not None and id != "" and label != "":
                             ontologyterm={
                                                                 'type': 'ontology',
                                                                 'id': id,
@@ -185,7 +185,7 @@ def get_filtering_object(list_terms: list, c_name: str):
                             field = k
                         print(id)
                         print(label)
-                        if id is not None and label is not None:
+                        if id is not None and label is not None and id != "" and label != "":
                             ontologyterm={
                                                                 'type': 'ontology',
                                                                 'id': id,
