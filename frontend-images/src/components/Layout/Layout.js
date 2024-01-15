@@ -352,7 +352,7 @@ function Layout(props) {
         } else if (props.collection === 'Occurrences') {
             setExampleQ(['imaging_occurrence_id:100008', '4', 'imaging_occurrence_id:100025'])
         } else if (props.collection === 'Features') {
-            setExampleQ(['2000000109', 'shape_MajorAxisLength>2000', 'imaging_feature_domain_id.measurement_source_concept_id:shape_Flatness'])
+            setExampleQ(['2000000109', 'shape_MajorAxisLength>2000', 'imaging_feature_domain_id.concept_id:shape_Flatness'])
         } else if (props.collection === 'Devices') {
             setExampleQ(['45768421', 'device.concept_id=Scanner', 'device_type.concept_id:Diagnostic imaging equipment'])
         }

@@ -216,7 +216,7 @@ def apply_alphanumeric_filter(query: dict, filter: AlphanumericFilter, collectio
 
 
         else:
-            query = { formatted_operator: formatted_value }
+            query = { formatted_operator: float(formatted_value) }
             LOG.debug(query)
             dict_measures={}
             dict_measures['imaging_feature_domain_id.value_as_number']=query
