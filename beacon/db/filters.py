@@ -87,6 +87,10 @@ def apply_ontology_filter(query: dict, filter: OntologyFilter, collection: str) 
     dict_id={}
     dict_id['id']=dict_regex
     query_filtering['$and'].append(dict_id)
+    dict_type={}
+    dict_type['type']='custom'
+    query_filtering['$and'].append(dict_id)
+    query_filtering['$and'].append(dict_type)
     docs_2 = get_documents(
         client.beacon.filtering_terms,
         query_filtering,
