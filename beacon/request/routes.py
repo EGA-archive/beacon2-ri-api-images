@@ -1,6 +1,6 @@
 from aiohttp import web
 
-from beacon.db import occurrences, features, cohorts, datasets, g_variants, individuals, devices, filtering_terms
+from beacon.db import occurrences, features, cohorts, datasets, g_variants, individuals, devices, filtering_terms, measurements, conditions
 from beacon.request.handlers import collection_handler, generic_handler, filtering_terms_handler
 from beacon.response import framework, info, service_info
 
@@ -27,6 +27,16 @@ routes = [
     web.get('/api/occurrences/filtering_terms', filtering_terms_handler(db_fn=occurrences.get_filtering_terms_of_occurrence)),
     web.get('/api/occurrences/{id}', generic_handler(db_fn=occurrences.get_occurrence_with_id)),
     web.get('/api/occurrences/{id}/g_variants', generic_handler(db_fn=occurrences.get_variants_of_occurrence)),
+
+    web.get('/api/measurements', generic_handler(db_fn=measurements.get_measurements)),
+    web.get('/api/measurements/filtering_terms', filtering_terms_handler(db_fn=measurements.get_filtering_terms_of_occurrence)),
+    web.get('/api/measurements/{id}', generic_handler(db_fn=measurements.get_occurrence_with_id)),
+    web.get('/api/measurements/{id}/g_variants', generic_handler(db_fn=measurements.get_variants_of_occurrence)),
+
+    web.get('/api/conditions', generic_handler(db_fn=conditions.get_conditions)),
+    web.get('/api/conditions/filtering_terms', filtering_terms_handler(db_fn=conditions.get_filtering_terms_of_occurrence)),
+    web.get('/api/conditions/{id}', generic_handler(db_fn=conditions.get_occurrence_with_id)),
+    web.get('/api/conditions/{id}/g_variants', generic_handler(db_fn=conditions.get_variants_of_occurrence)),
 
     web.get('/api/features', generic_handler(db_fn=features.get_features)),
     web.get('/api/features/filtering_terms', filtering_terms_handler(db_fn=features.get_filtering_terms_of_feature)),
@@ -82,6 +92,16 @@ routes = [
     web.post('/api/occurrences/filtering_terms', filtering_terms_handler(db_fn=occurrences.get_filtering_terms_of_occurrence)),
     web.post('/api/occurrences/{id}', generic_handler(db_fn=occurrences.get_occurrence_with_id)),
     web.post('/api/occurrences/{id}/g_variants', generic_handler(db_fn=occurrences.get_variants_of_occurrence)),
+
+    web.post('/api/measurements', generic_handler(db_fn=measurements.get_measurements)),
+    web.post('/api/measurements/filtering_terms', filtering_terms_handler(db_fn=measurements.get_filtering_terms_of_occurrence)),
+    web.post('/api/measurements/{id}', generic_handler(db_fn=measurements.get_occurrence_with_id)),
+    web.post('/api/measurements/{id}/g_variants', generic_handler(db_fn=measurements.get_variants_of_occurrence)),
+
+    web.post('/api/conditions', generic_handler(db_fn=conditions.get_conditions)),
+    web.post('/api/conditions/filtering_terms', filtering_terms_handler(db_fn=conditions.get_filtering_terms_of_occurrence)),
+    web.post('/api/conditions/{id}', generic_handler(db_fn=conditions.get_occurrence_with_id)),
+    web.post('/api/conditions/{id}/g_variants', generic_handler(db_fn=conditions.get_variants_of_occurrence)),
 
     web.post('/api/features', generic_handler(db_fn=features.get_features)),
     web.post('/api/features/filtering_terms', filtering_terms_handler(db_fn=features.get_filtering_terms_of_feature)),

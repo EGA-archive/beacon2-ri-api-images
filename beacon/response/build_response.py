@@ -117,7 +117,12 @@ def build_beacon_resultset_response_by_dataset(data,
                     dataset_id = dataset_dict['dataset']
                     response_dict[dataset_id].append(doc)
             except Exception as e:
-                LOG.debug(e)
+                try:
+                    if doc['domain_concept_id'] in dataset_dict['ids'][0]['domain_concept_id']:
+                        dataset_id = dataset_dict['dataset']
+                        response_dict[dataset_id].append(doc)
+                except Exception as e:
+                    LOG.debug(e)
     length_to_rest=0
     for dataset_id in dataset_ids_list:
         finish_record = finish_record - length_to_rest

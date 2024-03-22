@@ -44,6 +44,14 @@ function Navbar() {
                     className={({ isActive }) => (isActive ? 'Occurrences2' : 'Occurrences')}
                 >Occurrences</NavLink>
                 <NavLink exact
+                    to="/measurements"
+                    className={({ isActive }) => (isActive ? 'Measurements2' : 'Measurements')}
+                >Measurements</NavLink>
+                <NavLink exact
+                    to="/conditions"
+                    className={({ isActive }) => (isActive ? 'Conditions2' : 'Conditions')}
+                >Conditions</NavLink>
+                <NavLink exact
                     to="/features"
                     className={({ isActive }) => (isActive ? 'Features2' : 'Features')}
                 >Features</NavLink>

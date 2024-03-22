@@ -60,159 +60,45 @@ def get_filtering_object(list_terms: list, c_name: str):
     #alphanumeric_fields=['AgeOfOnset', 'DateOfBirth.DayOfBirth', 'DateOfBirth.MonthOfBirth', 'DateOfBirth.YearOfBirth', 'Sex', 'TumourIdentificationCode', 'GeographicResidence', 'IncidenceDate.IncidenceDay', 'IncidenceDate.IncidenceMonth', 'IncidenceDate.IncidenceYear', 'BasisOfDiagnosis', 'TumourMorphology', 'TumourBehaviour', 'TumourGrade', 'TumourLaterality', 'PrimaryTreatment.Surgery', 'PrimaryTreatment.Radiotherapy', 'PrimaryTreatment.Chemotherapy', 'PrimaryTreatment.TargetedTherapy', 'PrimaryTreatment.Immunotherapy', 'PrimaryTreatment.HormoneTherapy', 'PrimaryTreatment.Other', 'PrimaryTreatment.StemCellTransplantation', 'DateOfRecurrence.DayOfRecurrence', 'DateOfRecurrence.MonthOfRecurrence', 'DateOfRecurrence.YearOfRecurrence', 'VitalStatus', 'VitalStatusDate.DayVitalStatus', 'VitalStatusDate.MonthVitalStatus', 'VitalStatusDate.YearVitalStatus', 'SurvivalDuration', 'CauseOfDeath_ICDedition']
     id=None
     label = None
-    if c_name == 'features':
-        for term in list_terms:
-            try:
-                for k, v in term.items():
-                    if isinstance(v, dict):
-                        id = None
-                        label = None
-                        for k2, v2 in v.items():
-                            if isinstance(v2, dict):
-                                id = None
-                                label = None
-                                for k3,v3 in v2.items():
-                                    if k3 == 'concept_id':
-                                        id=v3
-                                        field = k + '.' + k2 + '.' + k3
+    for term in list_terms:
+        try:
+            for k, v in term.items():
+                if k == 'concept_id':
+                    id=v
+                    field = k
+                elif k == 'anatomic_site_concept_id':
+                    id=v
+                    field = k
 
-                                    if k3 == 'concept_name':
-                                        label = v3
-                                    if id is not None and label is not None and id != "" and label != "":
-                                        ontologyterm={
-                                                                            'type': 'ontology',
-                                                                            'id': id,
-                                                                            'label': label,
-                                                                            'scope': c_name                    
-                                                                        }
-                                        alphanumericterm={
-                                                                                        'type': 'alphanumeric',
-                                                                                        'id': label,
-                                                                                        'scope': c_name                    
-                                                                                    }
-                                        customterm={
-                                                                            'type': 'custom',
-                                                                            'id': '{}:{}'.format(field,label),
-                                                                            'scope': c_name                    
-                                                                        }
-                                        if ontologyterm not in terms:
-                                            terms.append(ontologyterm)
-                                        if alphanumericterm not in terms:
-                                            terms.append(alphanumericterm)
-                                        if customterm not in terms:
-                                            terms.append(customterm)
-
-                            else:
-                                if k2 == 'concept_id':
-                                    id=v2
-                                    field = k + '.' + k2
-                                if k2 == 'concept_name':
-                                    label = v2
-                                if id is not None and label is not None and id != "" and label != "":
-                                    ontologyterm={
-                                                                        'type': 'ontology',
-                                                                        'id': id,
-                                                                        'label': label,
-                                                                        'scope': c_name                    
-                                                                    }
-                                    alphanumericterm={
-                                                                                    'type': 'alphanumeric',
-                                                                                    'id': label,
-                                                                                    'scope': c_name                    
-                                                                                }
-                                    customterm={
-                                                                        'type': 'custom',
-                                                                        'id': '{}:{}'.format(field,label),
-                                                                        'scope': c_name                    
-                                                                    }
-                                    if ontologyterm not in terms:
-                                        terms.append(ontologyterm)
-                                    if alphanumericterm not in terms:
-                                        terms.append(alphanumericterm)
-                                    if customterm not in terms:
-                                        terms.append(customterm)
-                    else:
-                        if k == 'concept_id':
-                            id=v
-                            field = k
-                        if k == 'concept_name':
-                            label = v
-                        if id is not None and label is not None and id != "" and label != "":
-                            ontologyterm={
-                                                                'type': 'ontology',
-                                                                'id': id,
-                                                                'label': label,
-                                                                'scope': c_name                    
-                                                            }
-                            alphanumericterm={
-                                                                            'type': 'alphanumeric',
-                                                                            'id': label,
-                                                                            'scope': c_name                    
-                                                                        }
-                            customterm={
-                                                                'type': 'custom',
-                                                                'id': '{}:{}'.format(field,label),
-                                                                'scope': c_name                    
-                                                            }
-                            if ontologyterm not in terms:
-                                terms.append(ontologyterm)
-                            if alphanumericterm not in terms:
-                                terms.append(alphanumericterm)
-                            if customterm not in terms:
-                                terms.append(customterm)
-
-                #print(terms)
-            
-            except Exception as e:
-                print(e)
-    elif c_name == 'occurrences':
-        for term in list_terms:
-            id = None
-            label = None
-            try:
-                for k, v in term.items():
-
-                    if isinstance(v, dict):
-                        for k2, v2 in v.items():
-                            if isinstance(v2, dict):
-                                pass
-                            else:
-                                if k2 == 'procedure_occurrence_id':
-                                    label = v2
-                    else:
-                        if k == 'imaging_occurrence_id':
-                            id=v
-                            field = k
-                        print(id)
-                        print(label)
-                        if id is not None and label is not None and id != "" and label != "":
-                            ontologyterm={
-                                                                'type': 'ontology',
-                                                                'id': id,
-                                                                'label': label,
-                                                                'scope': c_name                    
-                                                            }
-                            alphanumericterm={
-                                                                            'type': 'alphanumeric',
-                                                                            'id': field,
-                                                                            'scope': c_name                    
-                                                                        }
-                            customterm={
-                                                                'type': 'custom',
-                                                                'id': '{}:{}'.format(field,label),
-                                                                'scope': c_name                    
-                                                            }
-                            if ontologyterm not in terms:
-                                terms.append(ontologyterm)
-                            if alphanumericterm not in terms:
-                                terms.append(alphanumericterm)
-                            if customterm not in terms:
-                                terms.append(customterm)
-
-                #print(terms)
-            
-            except Exception as e:
-                print(e)
+                if k == 'concept_name':
+                    label = v
+                elif k == 'anatomic_site_concept_name':
+                    label = v
+                if id is not None and label is not None and id != "" and label != "":
+                    ontologyterm={
+                                                        'type': 'ontology',
+                                                        'id': id,
+                                                        'label': label,
+                                                        'scope': c_name                    
+                                                    }
+                    alphanumericterm={
+                                                                    'type': 'alphanumeric',
+                                                                    'id': label,
+                                                                    'scope': c_name                    
+                                                                }
+                    customterm={
+                                                        'type': 'custom',
+                                                        'id': '{}:{}'.format(field,label),
+                                                        'scope': c_name                    
+                                                    }
+                    if ontologyterm not in terms:
+                        terms.append(ontologyterm)
+                    if alphanumericterm not in terms:
+                        terms.append(alphanumericterm)
+                    if customterm not in terms:
+                        terms.append(customterm)
+        except Exception as e:
+            print(e)
 
 
     return terms

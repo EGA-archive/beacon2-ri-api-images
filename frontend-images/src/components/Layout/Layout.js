@@ -21,6 +21,8 @@ import makeAnimated from 'react-select/animated';
 
 import IndividualsResults from '../Individuals/IndividualsResults';
 import OccurrencesResults from '../Occurrences/OccurrencesResults';
+import MeasurementsResults from '../Measurements/MeasurementsResults';
+import ConditionsResults from '../Conditions/ConditionsResults';
 import FeaturesResults from '../Features/FeaturesResults';
 import DevicesResults from '../Devices/DevicesResults';
 import { LinearProgress } from '@mui/material';
@@ -327,6 +329,26 @@ function Layout(props) {
                 } catch (error) {
                     console.log(error)
                 }
+            } else if (props.collection === 'Measurements') {
+                try {
+                    const API_ENDPOINT = configData.API_URL + "/api/measurements/filtering_terms?skip=0&limit=0"
+                    let res = await axios.get(API_ENDPOINT)
+                    setFilteringTerms(res)
+                    setResults(null)
+    
+                } catch (error) {
+                    console.log(error)
+                } 
+            } else if (props.collection === 'Conditions') {
+                try {
+                    const API_ENDPOINT = configData.API_URL + "/api/conditions/filtering_terms?skip=0&limit=0"
+                    let res = await axios.get(API_ENDPOINT)
+                    setFilteringTerms(res)
+                    setResults(null)
+    
+                } catch (error) {
+                    console.log(error)
+                } 
 
             }else if (props.collection === 'Devices') {
                 try {
@@ -350,6 +372,10 @@ function Layout(props) {
         if (props.collection === 'Individuals') {
             setExampleQ(['sex.concept_id=Male', '38003600', 'ethnicity.concept_id:African'])
         } else if (props.collection === 'Occurrences') {
+            setExampleQ(['imaging_occurrence_id:100008', '4', 'imaging_occurrence_id:100025'])
+        } else if (props.collection === 'Measurements') {
+            setExampleQ(['imaging_occurrence_id:100008', '4', 'imaging_occurrence_id:100025'])
+        } else if (props.collection === 'Conditions') {
             setExampleQ(['imaging_occurrence_id:100008', '4', 'imaging_occurrence_id:100025'])
         } else if (props.collection === 'Features') {
             setExampleQ(['2000000109', 'shape_MajorAxisLength>2000', 'imaging_feature_domain_id.concept_id:shape_Flatness'])
@@ -455,6 +481,12 @@ function Layout(props) {
         } else if (props.collection === "Occurrences") {
             setPlaceholder('filtering term comma-separated, ID><=value')
             setExtraIndividuals(true)
+        } else if (props.collection === "Measurements") {
+            setPlaceholder('filtering term comma-separated, ID><=value')
+            setExtraIndividuals(true)
+        } else if (props.collection === "Conditions") {
+            setPlaceholder('filtering term comma-separated, ID><=value')
+            setExtraIndividuals(true)
         } else if (props.collection === "Features") {
             setPlaceholder('filtering term comma-separated, ID><=value')
             setExtraIndividuals(true)
@@ -528,6 +560,10 @@ function Layout(props) {
             setResults('Individuals')
         } else if (props.collection === 'Occurrences') {
             setResults('Occurrences')
+        } else if (props.collection === 'Measurements') {
+            setResults('Measurements')
+        } else if (props.collection === 'Conditions') {
+            setResults('Conditions')
         } else if (props.collection === 'Features') {
             setResults('Features')
         }else if (props.collection === 'Devices') {
@@ -554,6 +590,10 @@ function Layout(props) {
             setResults('Individuals')
         } else if (props.collection === 'Occurrences') {
             setResults('Occurrences')
+        } else if (props.collection === 'Measurements') {
+            setResults('Measurements')
+        } else if (props.collection === 'Conditions') {
+            setResults('Conditions')
         } else if (props.collection === 'Features') {
             setResults('Features')
         }else if (props.collection === 'Devices') {
@@ -798,6 +838,16 @@ function Layout(props) {
                 {isSubmitted && results === 'Occurrences' &&
                     <div>
                         <OccurrencesResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
+                    </div>
+                }
+                {isSubmitted && results === 'Measurements' &&
+                    <div>
+                        <MeasurementsResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
+                    </div>
+                }
+                {isSubmitted && results === 'Conditions' &&
+                    <div>
+                        <ConditionsResults query={query} resultSets={resultSet} ID={ID} operator={operator} valueFree={valueFree} descendantTerm={descendantTerm} similarity={similarity} isSubmitted={isSubmitted} />
                     </div>
                 }
                 {isSubmitted && results === 'Features' &&

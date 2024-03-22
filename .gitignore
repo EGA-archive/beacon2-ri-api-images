@@ -132,3 +132,4 @@ deploy/ontologies/*.owl*
 alternate_docker_compose_ls.yml
 
 deploy/data/output
+deploy/data/la_fe

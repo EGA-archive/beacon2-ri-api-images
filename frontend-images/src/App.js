@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import Individuals from './components/Individuals/Individuals';
 import Occurrences from './components/Occurrences/Occurrences';
+import Measurements from './components/Measurements/Measurements';
+import Conditions from './components/Conditions/Conditions';
 import Features from './components/Features/Features';
 import Devices from './components/Devices/Devices';
 
@@ -23,6 +25,8 @@ function App() {
         <Route path='/' element={<Individuals />} />
         <Route path='/individuals' element={<Individuals />} />
         <Route path='/occurrences' element={<Occurrences />} />
+        <Route path='/measurements' element={<Measurements />} />
+        <Route path='/conditions' element={<Conditions />} />
         <Route path='/features' element={<Features />} />
         <Route path='/devices' element={<Devices />} />
         <Route path="/sign-in" element={<SignInForm />} />

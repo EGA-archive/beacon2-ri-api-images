@@ -74,6 +74,26 @@
 
 }
 
+.Measurements2{
+	width: 120px;
+	color: #e74c3c;
+}
+.Measurements{
+	width: 120px;
+	color: black;
+
+}
+
+.Conditions2{
+	width: 120px;
+	color: #e74c3c;
+}
+.Conditions{
+	width: 120px;
+	color: black;
+
+}
+
 .Features {
 	width: 120px;
 	color: black;
@@ -179,6 +199,12 @@
 	color: #e74c3c;
 }
 .Occurrences:hover {
+	color: #e74c3c;
+}
+.Measurements:hover {
+	color: #e74c3c;
+}
+.Conditions:hover {
 	color: #e74c3c;
 }
 .Features:hover {
