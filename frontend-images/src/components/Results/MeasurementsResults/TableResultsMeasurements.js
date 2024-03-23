@@ -8,27 +8,18 @@ function TableResultsMeasurements(props) {
     const columns = [
         { field: 'id', headerName: 'Row', flex: 1, headerClassName: 'table-header' },
         { field: 'person_id', headerName: 'person_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_occurrence_id', headerName: 'imaging_occurrence_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_occurrence_date', headerName: 'imaging_occurrence_date', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_study_series', headerName: 'imaging_study_series', flex: 1, headerClassName: 'table-header' },
-        { field: 'imaging_study_uid', headerName: 'imaging_study_uid', flex: 1, headerClassName: 'table-header' },
-        { field: 'procedure_occurrence_id_concept_class_id', headerName: 'procedure_occurrence_id_concept_class_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'procedure_occurrence_id_concept_code', headerName: 'procedure_occurrence_id_concept_code', flex: 1, headerClassName: 'table-header' },
-        { field: 'procedure_occurrence_id_concept_id', headerName: 'procedure_occurrence_id_concept_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'procedure_occurrence_id_concept_name', headerName: 'procedure_occurrence_id_concept_name', flex: 1, headerClassName: 'table-header' },
-        { field: 'procedure_occurrence_id_domain_id', headerName: 'procedure_occurrence_id_domain_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'procedure_occurrence_id_procedure_occurrence_id', headerName: 'procedure_occurrence_id_procedure_occurrence_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'procedure_occurrence_id_standard_concept', headerName: 'procedure_occurrence_id_standard_concept', flex: 1, headerClassName: 'table-header' },
-        { field: 'procedure_occurrence_id_vocabulary_id', headerName: 'procedure_occurrence_id_vocabulary_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'wadors_uri', headerName: 'wadors_uri', flex: 1, headerClassName: 'table-header' },
-        { field: 'modality', headerName: 'modality', flex: 1, headerClassName: 'table-header' },
-        { field: 'anatomic_site_location_concept_class_id', headerName: 'anatomic_site_location_concept_class_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'anatomic_site_location_concept_code', headerName: 'anatomic_site_location_concept_code', flex: 1, headerClassName: 'table-header' },
-        { field: 'anatomic_site_location_concept_id', headerName: 'anatomic_site_location_concept_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'anatomic_site_location_concept_name', headerName: 'anatomic_site_location_concept_name', flex: 1, headerClassName: 'table-header' },
-        { field: 'anatomic_site_location_domain_id', headerName: 'anatomic_site_location_domain_id', flex: 1, headerClassName: 'table-header' },
-        { field: 'anatomic_site_location_standard_concept', headerName: 'anatomic_site_location_standard_concept', flex: 1, headerClassName: 'table-header' },
-        { field: 'anatomic_site_location_vocabulary_id', headerName: 'anatomic_site_location_vocabulary_id', flex: 1, headerClassName: 'table-header' }
+        { field: 'measurement_id', headerName: 'measurement_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'concept_id', headerName: 'concept_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'concept_name', headerName: 'concept_name', flex: 1, headerClassName: 'table-header' },
+        { field: 'measurement_date', headerName: 'measurement_date', flex: 1, headerClassName: 'table-header' },
+        { field: 'measurement_datetime', headerName: 'measurement_datetime', flex: 1, headerClassName: 'table-header' },
+        { field: 'measurement_time', headerName: 'measurement_time', flex: 1, headerClassName: 'table-header' },
+        { field: 'measurement_type_concept_id', headerName: 'measurement_type_concept_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'measurement_type_concept_name', headerName: 'measurement_type_concept_name', flex: 1, headerClassName: 'table-header' },
+        { field: 'operator_concept_id', headerName: 'operator_concept_id', flex: 1, headerClassName: 'table-header' },
+        { field: 'operator_concept_name', headerName: 'operator_concept_name', flex: 1, headerClassName: 'table-header' },
+        { field: 'value_as_number', headerName: 'value_as_number', flex: 1, headerClassName: 'table-header' },
+        { field: 'measurement_source_value', headerName: 'measurement_source_value', flex: 1, headerClassName: 'table-header' }
     ]
 
     console.log(props.results)
@@ -40,16 +31,16 @@ function TableResultsMeasurements(props) {
         if (element[1] !== undefined) {
             console.log(element[0])
 
-            let imaging_occurrence_id = ''
-            let stringimaging_occurrence_id = ''
+            let measurement_id = ''
+            let stringmeasurement_id = ''
 
-            if (element[1].imaging_occurrence_id!== '' && element[1].imaging_occurrence_id !== undefined) {
-                if (element[1].imaging_occurrence_id !== undefined) {
-                    imaging_occurrence_id = element[1].imaging_occurrence_id
+            if (element[1].measurement_id!== '' && element[1].measurement_id !== undefined) {
+                if (element[1].measurement_id !== undefined) {
+                    measurement_id = element[1].measurement_id
                 }
-                stringimaging_occurrence_id= `${imaging_occurrence_id}`
+                stringmeasurement_id= `${measurement_id}`
             } else {
-                stringimaging_occurrence_id = ''
+                stringmeasurement_id = ''
             }
 
             let person_id = ''
@@ -64,285 +55,159 @@ function TableResultsMeasurements(props) {
                 stringperson_id = ''
             }
 
-            let procedure_occurrence_id_procedure_occurrence_id = ''
-            let stringprocedure_occurrence_id_procedure_occurrence_id = ''
+            let operator_concept_name = ''
+            let stringoperator_concept_name = ''
 
-            if (element[1].procedure_occurrence_id.procedure_occurrence_id !== '' && element[1].procedure_occurrence_id.procedure_occurrence_id !== undefined) {
-                if (element[1].procedure_occurrence_id.procedure_occurrence_id !== undefined) {
-                    procedure_occurrence_id_procedure_occurrence_id = element[1].procedure_occurrence_id.procedure_occurrence_id
+            if (element[1].operator_concept_name !== '' && element[1].operator_concept_name !== undefined) {
+                if (element[1].operator_concept_name !== undefined) {
+                    operator_concept_name = element[1].operator_concept_name
                 }
 
-                stringprocedure_occurrence_id_procedure_occurrence_id = `${procedure_occurrence_id_procedure_occurrence_id}`
+                stringoperator_concept_name = `${operator_concept_name}`
             } else {
-                stringprocedure_occurrence_id_procedure_occurrence_id = ''
+                stringoperator_concept_name = ''
             }
 
-            let procedure_occurrence_id_concept_id = ''
-            let stringprocedure_occurrence_id_concept_id = ''
+            let measurement_type_concept_id = ''
+            let stringmeasurement_type_concept_id = ''
 
-            if (element[1].procedure_occurrence_id.concept_id !== '' && element[1].procedure_occurrence_id.concept_id !== undefined) {
-                if (element[1].procedure_occurrence_id.concept_id !== undefined) {
-                    procedure_occurrence_id_concept_id = element[1].procedure_occurrence_id.concept_id
+            if (element[1].measurement_type_concept_id !== '' && element[1].measurement_type_concept_id !== undefined) {
+                if (element[1].measurement_type_concept_id !== undefined) {
+                    measurement_type_concept_id = element[1].measurement_type_concept_id
                 }
 
-                stringprocedure_occurrence_id_concept_id = `${procedure_occurrence_id_concept_id}`
+                stringmeasurement_type_concept_id = `${measurement_type_concept_id}`
             } else {
-                stringprocedure_occurrence_id_concept_id = ''
+                stringmeasurement_type_concept_id = ''
             }
 
-            let procedure_occurrence_id_concept_name = ''
-            let stringprocedure_occurrence_id_concept_name = ''
+            let measurement_type_concept_name = ''
+            let stringmeasurement_type_concept_name = ''
 
-            if (element[1].procedure_occurrence_id.concept_name !== '' && element[1].procedure_occurrence_id.concept_name !== undefined) {
-                if (element[1].procedure_occurrence_id.concept_name !== undefined) {
-                    procedure_occurrence_id_concept_name= element[1].procedure_occurrence_id.concept_name
+            if (element[1].measurement_type_concept_name !== '' && element[1].measurement_type_concept_name !== undefined) {
+                if (element[1].measurement_type_concept_name !== undefined) {
+                    measurement_type_concept_name= element[1].measurement_type_concept_name
                 }
 
-                stringprocedure_occurrence_id_concept_name = `${procedure_occurrence_id_concept_name}`
+                stringmeasurement_type_concept_name = `${measurement_type_concept_name}`
             } else {
-                stringprocedure_occurrence_id_concept_name = ''
+                stringmeasurement_type_concept_name = ''
             }
 
-            let procedure_occurrence_id_domain_id = ''
-            let stringprocedure_occurrence_id_domain_id = ''
+            let operator_concept_id = ''
+            let stringoperator_concept_id = ''
 
-            if (element[1].procedure_occurrence_id.domain_id !== '' && element[1].procedure_occurrence_id.domain_id !== undefined) {
-                if (element[1].procedure_occurrence_id.domain_id !== undefined) {
-                    procedure_occurrence_id_domain_id= element[1].procedure_occurrence_id.domain_id
+            if (element[1].operator_concept_id !== '' && element[1].operator_concept_id !== undefined) {
+                if (element[1].operator_concept_id !== undefined) {
+                    operator_concept_id= element[1].operator_concept_id
                 }
 
-                stringprocedure_occurrence_id_domain_id = `${procedure_occurrence_id_domain_id}`
+                stringoperator_concept_id = `${operator_concept_id}`
             } else {
-                stringprocedure_occurrence_id_domain_id = ''
+                stringoperator_concept_id = ''
             }
 
-            let procedure_occurrence_id_vocabulary_id = ''
-            let stringprocedure_occurrence_id_vocabulary_id = ''
+            let measurement_datetime = ''
+            let stringmeasurement_datetime = ''
 
-            if (element[1].procedure_occurrence_id.vocabulary_id !== '' && element[1].procedure_occurrence_id.vocabulary_id !== undefined) {
-                if (element[1].procedure_occurrence_id.vocabulary_id !== undefined) {
-                    procedure_occurrence_id_vocabulary_id= element[1].procedure_occurrence_id.vocabulary_id
+            if (element[1].measurement_datetime !== '' && element[1].measurement_datetime !== undefined) {
+                if (element[1].measurement_datetime !== undefined) {
+                    measurement_datetime= element[1].measurement_datetime
                 }
 
-                stringprocedure_occurrence_id_vocabulary_id = `${procedure_occurrence_id_vocabulary_id}`
+                stringmeasurement_datetime = `${measurement_datetime}`
             } else {
-                stringprocedure_occurrence_id_vocabulary_id = ''
+                stringmeasurement_datetime = ''
             }
 
-            let procedure_occurrence_id_concept_class_id = ''
-            let stringprocedure_occurrence_id_concept_class_id = ''
+            let measurement_time = ''
+            let stringmeasurement_time = ''
 
-            if (element[1].procedure_occurrence_id.concept_class_id !== '' && element[1].procedure_occurrence_id.concept_class_id !== undefined) {
-                if (element[1].procedure_occurrence_id.concept_class_id !== undefined) {
-                    procedure_occurrence_id_concept_class_id= element[1].procedure_occurrence_id.concept_class_id
+            if (element[1].measurement_time !== '' && element[1].measurement_time !== undefined) {
+                if (element[1].measurement_time !== undefined) {
+                    measurement_time= element[1].measurement_time
                 }
 
-                stringprocedure_occurrence_id_concept_class_id = `${procedure_occurrence_id_concept_class_id}`
+                stringmeasurement_time = `${measurement_time}`
             } else {
-                stringprocedure_occurrence_id_concept_class_id = ''
+                stringmeasurement_time = ''
             }
 
-            let procedure_occurrence_id_standard_concept = ''
-            let stringprocedure_occurrence_id_standard_concept = ''
+            let value_as_number = ''
+            let stringvalue_as_number = ''
 
-            if (element[1].procedure_occurrence_id.standard_concept !== '' && element[1].procedure_occurrence_id.standard_concept !== undefined) {
-                if (element[1].procedure_occurrence_id.standard_concept !== undefined) {
-                    procedure_occurrence_id_standard_concept= element[1].procedure_occurrence_id.standard_concept
+            if (element[1].value_as_number!== '' && element[1].value_as_number !== undefined) {
+                if (element[1].value_as_number !== undefined) {
+                    value_as_number = element[1].value_as_number
                 }
-
-                stringprocedure_occurrence_id_standard_concept = `${procedure_occurrence_id_standard_concept}`
+                stringvalue_as_number= `${value_as_number}`
             } else {
-                stringprocedure_occurrence_id_standard_concept = ''
+                stringvalue_as_number = ''
             }
 
-            let procedure_occurrence_id_concept_code = ''
-            let stringprocedure_occurrence_id_concept_code = ''
+            let concept_id = ''
+            let stringconcept_id= ''
 
-            if (element[1].procedure_occurrence_id.concept_code !== '' && element[1].procedure_occurrence_id.concept_code !== undefined) {
-                if (element[1].procedure_occurrence_id.concept_code !== undefined) {
-                    procedure_occurrence_id_concept_code= element[1].procedure_occurrence_id.concept_code
+            if (element[1].concept_id!== '' && element[1].concept_id !== undefined) {
+                if (element[1].concept_id !== undefined) {
+                    concept_id = element[1].concept_id
                 }
-
-                stringprocedure_occurrence_id_concept_code = `${procedure_occurrence_id_concept_code}`
+                stringconcept_id= `${concept_id}`
             } else {
-                stringprocedure_occurrence_id_concept_code = ''
+                stringconcept_id = ''
             }
 
-            let wadors_uri = ''
-            let stringwadors_uri = ''
+            let measurement_date = ''
+            let stringmeasurement_date= ''
 
-            if (element[1].wadors_uri!== '' && element[1].wadors_uri !== undefined) {
-                if (element[1].wadors_uri !== undefined) {
-                    wadors_uri = element[1].wadors_uri
+            if (element[1].measurement_date!== '' && element[1].measurement_date !== undefined) {
+                if (element[1].measurement_date !== undefined) {
+                    measurement_date = element[1].measurement_date
                 }
-                stringwadors_uri= `${wadors_uri}`
+                stringmeasurement_date= `${measurement_date}`
             } else {
-                stringwadors_uri = ''
+                stringmeasurement_date = ''
             }
 
-            let imaging_occurrence_date = ''
-            let stringimaging_occurrence_date= ''
+            let concept_name = ''
+            let stringconcept_name= ''
 
-            if (element[1].imaging_occurrence_date!== '' && element[1].imaging_occurrence_date !== undefined) {
-                if (element[1].imaging_occurrence_date !== undefined) {
-                    imaging_occurrence_date = element[1].imaging_occurrence_date
+            if (element[1].concept_name!== '' && element[1].concept_name !== undefined) {
+                if (element[1].concept_name !== undefined) {
+                    concept_name = element[1].concept_name
                 }
-                stringimaging_occurrence_date= `${imaging_occurrence_date}`
+                stringconcept_name= `${concept_name}`
             } else {
-                stringimaging_occurrence_date = ''
+                stringconcept_name = ''
             }
 
-            let imaging_study_uid = ''
-            let stringimaging_study_uid= ''
-
-            if (element[1].imaging_study_uid!== '' && element[1].imaging_study_uid !== undefined) {
-                if (element[1].imaging_study_uid !== undefined) {
-                    imaging_study_uid = element[1].imaging_study_uid
-                }
-                stringimaging_study_uid= `${imaging_study_uid}`
-            } else {
-                stringimaging_study_uid = ''
-            }
-
-            let imaging_study_series = ''
-            let stringimaging_study_series= ''
-
-            if (element[1].imaging_study_series!== '' && element[1].imaging_study_series !== undefined) {
-                if (element[1].imaging_study_series !== undefined) {
-                    imaging_study_series = element[1].imaging_study_series
-                }
-                stringimaging_study_series= `${imaging_study_series}`
-            } else {
-                stringimaging_study_series = ''
-            }
-
-            let modality = ''
+            let measurement_source_value = ''
             let stringmodality= ''
 
-            if (element[1].modality!== '' && element[1].modality !== undefined) {
-                if (element[1].modality !== undefined) {
-                    modality = element[1].modality
+            if (element[1].measurement_source_value!== '' && element[1].measurement_source_value !== undefined) {
+                if (element[1].measurement_source_value !== undefined) {
+                    measurement_source_value = element[1].measurement_source_value
                 }
-                stringmodality= `${modality}`
+                stringmodality= `${measurement_source_value}`
             } else {
                 stringmodality = ''
-            }
-
-            let anatomic_site_location_concept_id = ''
-            let stringanatomic_site_location_concept_id = ''
-
-            if (element[1].anatomic_site_location.concept_id !== '' && element[1].anatomic_site_location.concept_id !== undefined) {
-                if (element[1].anatomic_site_location.concept_id !== undefined) {
-                    anatomic_site_location_concept_id= element[1].anatomic_site_location.concept_id
-                }
-
-                stringanatomic_site_location_concept_id = `${anatomic_site_location_concept_id}`
-            } else {
-                stringanatomic_site_location_concept_id = ''
-            }
-
-            let anatomic_site_location_concept_name = ''
-            let stringanatomic_site_location_concept_name = ''
-
-            if (element[1].anatomic_site_location.concept_name !== '' && element[1].anatomic_site_location.concept_name !== undefined) {
-                if (element[1].anatomic_site_location.concept_name !== undefined) {
-                    anatomic_site_location_concept_name= element[1].anatomic_site_location.concept_name
-                }
-
-                stringanatomic_site_location_concept_name= `${anatomic_site_location_concept_name}`
-            } else {
-                stringanatomic_site_location_concept_name = ''
-            }
-
-            let anatomic_site_location_domain_id = ''
-            let stringanatomic_site_location_domain_id = ''
-
-            if (element[1].anatomic_site_location.domain_id !== '' && element[1].anatomic_site_location.domain_id !== undefined) {
-                if (element[1].anatomic_site_location.domain_id !== undefined) {
-                    anatomic_site_location_domain_id= element[1].anatomic_site_location.domain_id
-                }
-
-                stringanatomic_site_location_domain_id= `${anatomic_site_location_domain_id}`
-            } else {
-                stringanatomic_site_location_domain_id = ''
-            }
-
-            let anatomic_site_location_vocabulary_id = ''
-            let stringanatomic_site_location_vocabulary_id = ''
-
-            if (element[1].anatomic_site_location.vocabulary_id !== '' && element[1].anatomic_site_location.vocabulary_id !== undefined) {
-                if (element[1].anatomic_site_location.vocabulary_id !== undefined) {
-                    anatomic_site_location_vocabulary_id= element[1].anatomic_site_location.vocabulary_id
-                }
-
-                stringanatomic_site_location_vocabulary_id= `${anatomic_site_location_vocabulary_id}`
-            } else {
-                stringanatomic_site_location_vocabulary_id = ''
-            }
-
-            let anatomic_site_location_concept_class_id = ''
-            let stringanatomic_site_location_concept_class_id = ''
-
-            if (element[1].anatomic_site_location.concept_class_id !== '' && element[1].anatomic_site_location.concept_class_id !== undefined) {
-                if (element[1].anatomic_site_location.concept_class_id !== undefined) {
-                    anatomic_site_location_concept_class_id= element[1].anatomic_site_location.concept_class_id
-                }
-
-                stringanatomic_site_location_concept_class_id= `${anatomic_site_location_concept_class_id}`
-            } else {
-                stringanatomic_site_location_concept_class_id = ''
-            }
-
-            let anatomic_site_location_standard_concept = ''
-            let stringanatomic_site_location_standard_concept = ''
-
-            if (element[1].anatomic_site_location.standard_concept !== '' && element[1].anatomic_site_location.standard_concept !== undefined) {
-                if (element[1].anatomic_site_location.standard_concept !== undefined) {
-                    anatomic_site_location_standard_concept= element[1].anatomic_site_location.standard_concept
-                }
-
-                stringanatomic_site_location_standard_concept= `${anatomic_site_location_standard_concept}`
-            } else {
-                stringanatomic_site_location_standard_concept = ''
-            }
-
-            let anatomic_site_location_concept_code = ''
-            let stringanatomic_site_location_concept_code = ''
-
-            if (element[1].anatomic_site_location.concept_code !== '' && element[1].anatomic_site_location.concept_code !== undefined) {
-                if (element[1].anatomic_site_location.concept_code !== undefined) {
-                    anatomic_site_location_concept_code= element[1].anatomic_site_location.concept_code
-                }
-
-                stringanatomic_site_location_concept_code= `${anatomic_site_location_concept_code}`
-            } else {
-                stringanatomic_site_location_concept_code = ''
             }
 
             rows.push({ id: index, 
                 Beacon: element[0], 
                 person_id: stringperson_id,
-                imaging_occurrence_id: stringimaging_occurrence_id,
-                imaging_occurrence_date: stringimaging_occurrence_date,
-                imaging_study_series: stringimaging_study_series,
-                imaging_study_uid: stringimaging_study_uid,
-                procedure_occurrence_id_concept_class_id: stringprocedure_occurrence_id_concept_class_id,
-                procedure_occurrence_id_concept_code: stringprocedure_occurrence_id_concept_code,
-                procedure_occurrence_id_concept_id: stringprocedure_occurrence_id_concept_id,
-                procedure_occurrence_id_concept_name: stringprocedure_occurrence_id_concept_name,
-                procedure_occurrence_id_domain_id: stringprocedure_occurrence_id_domain_id,
-                procedure_occurrence_id_procedure_occurrence_id: stringprocedure_occurrence_id_procedure_occurrence_id,
-                procedure_occurrence_id_standard_concept: stringprocedure_occurrence_id_standard_concept,
-                procedure_occurrence_id_vocabulary_id: stringprocedure_occurrence_id_vocabulary_id,
-                wadors_uri: stringwadors_uri,
-                modality: stringmodality,
-                anatomic_site_location_concept_class_id: stringanatomic_site_location_concept_class_id,
-                anatomic_site_location_concept_code: stringanatomic_site_location_concept_code,
-                anatomic_site_location_concept_id: stringanatomic_site_location_concept_id,
-                anatomic_site_location_concept_name: stringanatomic_site_location_concept_name,
-                anatomic_site_location_domain_id: stringanatomic_site_location_domain_id,
-                anatomic_site_location_standard_concept: stringanatomic_site_location_standard_concept,
-                anatomic_site_location_vocabulary_id: stringanatomic_site_location_vocabulary_id })
+                measurement_id: stringmeasurement_id,
+                concept_id: stringconcept_id,
+                concept_name: stringconcept_name,
+                measurement_date: stringmeasurement_date,
+                measurement_datetime: stringmeasurement_datetime,
+                measurement_time: stringmeasurement_time,
+                measurement_type_concept_id: stringmeasurement_type_concept_id,
+                measurement_type_concept_name: stringmeasurement_type_concept_name,
+                operator_concept_id: stringoperator_concept_id,
+                operator_concept_name: stringoperator_concept_name,
+                value_as_number: stringvalue_as_number,
+                measurement_source_value: stringmodality })
 
         }
 
@@ -357,27 +222,18 @@ function TableResultsMeasurements(props) {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
                 person_id: true,
-                imaging_occurrence_id: false,
-                imaging_occurrence_date: false,
-                imaging_study_series: false,
-                imaging_study_uid: false,
-                procedure_occurrence_id_concept_class_id: false,
-                procedure_occurrence_id_concept_code: false,
-                procedure_occurrence_id_domain_id: false,
-                procedure_occurrence_id_procedure_occurrence_id: false,
-                procedure_occurrence_id_standard_concept: false,
-                procedure_occurrence_id_concept_id: false,
-                procedure_occurrence_id_concept_name: false,
-                procedure_occurrence_id_vocabulary_id: false,
-                anatomic_site_location_concept_name: false,
-                anatomic_site_location_vocabulary_id: false,
-                wadors_uri: true,
-                modality: true,
-                anatomic_site_location_concept_class_id: false,
-                anatomic_site_location_concept_code: false,
-                anatomic_site_location_domain_id: true,
-                anatomic_site_location_standard_concept: false,
-                anatomic_site_location_concept_id: true,
+                measurement_id: false,
+                concept_id: false,
+                concept_name: false,
+                measurement_date: false,
+                measurement_datetime: false,
+                measurement_time: false,
+                operator_concept_id: false,
+                operator_concept_name: false,
+                measurement_type_concept_id: false,
+                measurement_type_concept_name: false,
+                value_as_number: true,
+                measurement_source_value: true
 
 
                 
