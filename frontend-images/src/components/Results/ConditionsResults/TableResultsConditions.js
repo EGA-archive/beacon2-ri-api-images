@@ -254,9 +254,9 @@ function TableResultsConditions(props) {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
                 person_id: true,
-                condition_occurrence_id: false,
-                concept_id: false,
-                concept_name: false,
+                condition_occurrence_id: true,
+                concept_id: true,
+                concept_name: true,
                 condition_start_date: false,
                 condition_start_datetime: false,
                 condition_end_date: false,
@@ -264,8 +264,11 @@ function TableResultsConditions(props) {
                 provider_id: false,
                 visit_occurrence_id: false,
                 condition_end_datetime: false,
-                condition_type_concept_id: false,
-                condition_source_value: false,
+                condition_type_concept_id: true,
+                condition_source_concept_id: true,
+                condition_source_value: true,
+                condition_status_source_value: false
+
 
 
                 

@@ -370,15 +370,15 @@ function Layout(props) {
 
     const handleExQueries = () => {
         if (props.collection === 'Individuals') {
-            setExampleQ(['sex.concept_id=Male', '38003600', 'ethnicity.concept_id:African'])
+            setExampleQ(['2000000001', '38003600', 'ethnicity.concept_id:African'])
         } else if (props.collection === 'Occurrences') {
-            setExampleQ(['imaging_occurrence_id:100008', '4', 'imaging_occurrence_id:100025'])
+            setExampleQ(['2000000001', 'anatomic_site_concept_id:Thorax'])
         } else if (props.collection === 'Measurements') {
-            setExampleQ(['imaging_occurrence_id:100008', '4', 'imaging_occurrence_id:100025'])
+            setExampleQ(['2000000105', 'concept_id:shape_Flatness', 'concept_id:shape_Maximum2DDiameterColumn'])
         } else if (props.collection === 'Conditions') {
-            setExampleQ(['imaging_occurrence_id:100008', '4', 'imaging_occurrence_id:100025'])
+            setExampleQ(['concept_id:Loss of sense of smell', '45767013', 'concept_id:Chest pain'])
         } else if (props.collection === 'Features') {
-            setExampleQ(['2000000109', 'shape_MajorAxisLength>2000', 'imaging_feature_domain_id.concept_id:shape_Flatness'])
+            setExampleQ(['shape_MajorAxisLength>2000', 'shape_Flatness>3', 'shape_Maximum2DDiameterColumn>1'])
         } else if (props.collection === 'Devices') {
             setExampleQ(['45768421', 'device.concept_id=Scanner', 'device_type.concept_id:Diagnostic imaging equipment'])
         }

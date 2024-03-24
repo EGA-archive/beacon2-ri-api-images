@@ -222,18 +222,18 @@ function TableResultsMeasurements(props) {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
                 person_id: true,
-                measurement_id: false,
-                concept_id: false,
-                concept_name: false,
+                measurement_id: true,
+                concept_id: true,
+                concept_name: true,
                 measurement_date: false,
                 measurement_datetime: false,
                 measurement_time: false,
                 operator_concept_id: false,
-                operator_concept_name: false,
-                measurement_type_concept_id: false,
+                operator_concept_name: true,
+                measurement_type_concept_id: true,
                 measurement_type_concept_name: false,
                 value_as_number: true,
-                measurement_source_value: true
+                measurement_source_value: false
 
 
                 

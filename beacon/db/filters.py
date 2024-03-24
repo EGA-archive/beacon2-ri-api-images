@@ -17,30 +17,27 @@ LOG = logging.getLogger(__name__)
 
 CURIE_REGEX = r'^([a-zA-Z0-9]*):\/?[a-zA-Z0-9]*$'
 
+def has_numbers(inputString):
+    return any(char.isdigit() for char in inputString)
+
 def apply_filters(query: dict, filters: List[dict], collection: str) -> dict:
     LOG.debug("Filters len = {}".format(len(filters)))
     if len(filters) >= 1:
         query["$and"] = []
         for filter in filters:
             partial_query = {}
-            if ":" not in filter["id"] and '_' in filter["id"]:
-                LOG.debug(filter)
-                filter = AlphanumericFilter(**filter)
-                LOG.debug("Alphanumeric filter: %s %s %s", filter.id, filter.operator, filter.value)
-                partial_query = apply_alphanumeric_filter(partial_query, filter, collection)
-                query["$and"].append({'imaging_feature_domain_id.concept_name': filter.id})
-            elif ":" in filter["id"]:
-                filter = CustomFilter(**filter)
-                LOG.debug("Custom filter: %s", filter.id)
-                partial_query = apply_custom_filter(partial_query, filter, collection)
-
-            else:
+            if ":" not in filter["id"]:
+                LOG.debug('holaaaa')
                 filter = OntologyFilter(**filter)
                 LOG.debug("Ontology filter: %s", filter.id)
                 #partial_query = {"$text": defaultdict(str) }
                 #partial_query =  { "$text": { "$search": "" } } 
                 LOG.debug(partial_query)
                 partial_query = apply_ontology_filter(partial_query, filter, collection)
+            elif ":" in filter["id"]:
+                filter = CustomFilter(**filter)
+                LOG.debug("Custom filter: %s", filter.id)
+                partial_query = apply_custom_filter(partial_query, filter, collection)
 
             query["$and"].append(partial_query)
             if query["$and"] == [{'$or': []}]:

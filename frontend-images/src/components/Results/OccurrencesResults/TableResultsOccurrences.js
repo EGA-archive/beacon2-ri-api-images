@@ -178,12 +178,12 @@ function TableResultsOccurrences(props) {
               columnVisibilityModel: {
                 // Hide columns status and traderName, the other columns will remain visible
                 person_id: true,
-                imaging_occurrence_id: false,
+                imaging_occurrence_id: true,
                 imaging_occurrence_date: false,
                 imaging_study_series: false,
-                imaging_study_uid: false,
-                procedure_occurrence_id: false,
-                anatomic_site_concept_name: false,
+                imaging_study_uid: true,
+                procedure_occurrence_id: trye,
+                anatomic_site_concept_name: true,
                 wadors_uri: true,
                 modality: true,
                 anatomic_site_concept_id: true
