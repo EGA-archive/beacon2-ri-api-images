@@ -2,7 +2,7 @@
 
 <!-- [![Testsuite](https://github.com/EGA-archive/beacon-2.x/workflows/Testsuite/badge.svg)](https://github.com/EGA-archive/beacon-2.x/actions) -->
 
-This repository is an implementation of the [Beacon v2.0 Model](https://github.com/ga4gh-beacon/beacon-v2-Models) and contains:
+This repository is an implementation of the beacon for images model:
 
 * The (Python 3.9+) [source code for beacon](beacon),
 * A MongoDB database with sample data to demo the capabilities of the Beacon API images.
