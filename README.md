@@ -68,7 +68,7 @@ curl \
     "query": {
         "requestParameters": {        },
         "filters": [
-{"id": "Dyspnea"}],
+{"id": "312437"}],
         "includeResultsetResponses": "HIT",
         "pagination": {
             "skip": 0,
