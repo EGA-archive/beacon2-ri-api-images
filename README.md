@@ -49,6 +49,8 @@ docker exec deploy-db-images-1 mongoimport --jsonArray --uri "mongodb://root:exa
 docker exec deploy-db-images-1 mongoimport --jsonArray --uri "mongodb://root:example@127.0.0.1:27019/beacon?authSource=admin" --file /tmp/occurrences.json --collection occurrences
 ```
 
+*Individuals can also be filled in.
+
 Extract filtering terms:
 
 ```bash
