@@ -1,0 +1,19 @@
+[
+      {
+            "condition_occurrence_id": "2581679",
+            "person_id": "10676",
+            "concept_id": "312437",
+            "concept_name": "Dyspnea",
+            "condition_start_date": "2019-03-26 00:00:00",
+            "condition_start_datetime": "2019-03-26 00:00:00",
+            "condition_end_date": "2019-04-08 00:00:00",
+            "condition_end_datetime": "2019-04-08 13:51:00",
+            "condition_type_concept_id": "32020",
+            "condition_status_concept_id": "32890",
+            "provider_id": "5010.0",
+            "visit_occurrence_id": "29817554.0",
+            "condition_source_value": "R06.00",
+            "condition_source_concept_id": "45591496",
+            "condition_status_source_value": "DIAG"
+      }
+]

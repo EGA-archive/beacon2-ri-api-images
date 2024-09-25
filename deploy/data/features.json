@@ -1,29 +1,14 @@
-[{
-      "imaging_feature_id": 9900145,
-      "imaging_finding_num": 70,
-      "imaging_occurrence_id": 414124,
-      "domain_concept_id": "Measurement",
-      "person_id": 292495,
-      "imaging_feature_domain_id": 
-            {
-                  "measurement_id": 959875878,
-                  "concept_id": 3019787,
-                  "concept_name": "Anatomic part Laterality",
-                  "domain_id": "Measurement",
-                  "vocabulary_id": "LOINC",
-                  "concept_class_id": "Clinical Observation",
-                  "standard_concept": "Standard",
-                  "concept_code": "20228-3"
-            },
-      "anatomic_site_concept_id": {
-            "concept_id": 36769635,
-            "concept_name": "Right and left lobes",
-            "domain_id": "Measurement",
-            "vocabulary_id": "Cancer Modifier",
-            "concept_class_id": "Topography",
-            "standard_concept": "Standard",
-            "concept_code": "OMOP4999312"
-      },
-      "alg_system": "RS256",
-      "alg_datetime": "2023-01-01"
-}]
+[
+      {
+            "imaging_feature_id": "1",
+            "imaging_finding_num": "0",
+            "imaging_occurrence_id": "1",
+            "domain_concept_id": "21",
+            "domain_concept_name": "Measurement",
+            "imaging_feature_domain_id": "1",
+            "anatomic_site_concept_id": "2000000001",
+            "anatomic_site_concept_name": "Thorax",
+            "alg_system": "https://github.com",
+            "alg_datetime": "2021-02-19 00:00:00"
+      }
+]

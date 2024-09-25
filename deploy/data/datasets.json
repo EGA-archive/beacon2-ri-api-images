@@ -1,0 +1,37 @@
+[
+    {
+       "createDateTime" : "2021-12-29T20:33:40Z",
+       "dataUseConditions" : {
+          "duoDataUse" : [
+             {
+                "id" : "DUO:0000019",
+                "label" : "publication required",
+                "version" : "2019-01-07"
+             },
+             {
+                "id" : "DUO:0000042",
+                "label" : "general research use",
+                "version" : "2019-01-07"
+             },
+             {
+                "id" : "DUO:0000026",
+                "label" : "user specific restriction",
+                "version" : "2019-01-07"
+             },
+             {
+                "id" : "DUO:0000028",
+                "label" : "institution specific restriction",
+                "version" : "2019-01-07"
+             }
+          ]
+       },
+       "description" : "Fake images test dataset.",
+       "id" : "Images_test_dataset",
+       "ids" : {
+          "individualIds" : ["10676"]
+       },
+       "name" : "Images_test_dataset",
+       "updateDateTime" : "2021-12-29T20:33:40Z",
+       "version" : "v1.0"
+    }
+  ]
