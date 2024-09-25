@@ -21,6 +21,8 @@ Build the containers:
 docker-compose up -d --build
 ```
 
+Go to [http://localhost:5054/api](http://localhost:5054/api) and your API will be running there.
+
 ### Inject data
 
 From deploy folder, switch to data folder:
